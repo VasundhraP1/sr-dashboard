@@ -921,6 +921,14 @@ function handleUpdateCandidateInterviewStatus(data, sheetId) {
     idxReason = headers.indexOf('rejection reason');
   }
 
+  let idxNotSubmitted = headers.indexOf('not submitted reason');
+  if (idxNotSubmitted === -1) {
+    sheet.getRange(1, lastCol + 1).setValue('Not Submitted Reason');
+    lastCol++;
+    headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(h => h.toString().trim().toLowerCase());
+    idxNotSubmitted = headers.indexOf('not submitted reason');
+  }
+
   const idxReq = headers.indexOf('requirement name');
   const idxCand = headers.indexOf('candidate name');
 
@@ -948,6 +956,9 @@ function handleUpdateCandidateInterviewStatus(data, sheetId) {
       }
       if (reason !== null) {
         sheet.getRange(r + 1, idxReason + 1).setValue(reason);
+      }
+      if (data.not_submitted_reason !== undefined) {
+        sheet.getRange(r + 1, idxNotSubmitted + 1).setValue(data.not_submitted_reason.toString().trim());
       }
       updatedCount++;
     }

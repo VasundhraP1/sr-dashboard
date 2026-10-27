@@ -1621,16 +1621,45 @@ app.post('/find-resume', (req, res) => {
   res.json({ success: true, matches: matches.slice(0, 5) });
 });
 
-// Update candidate interview status & result
+// Update candidate interview status, result & not submitted reason
 app.post('/update-candidate-interview-status', (req, res) => {
-  const { requirement_name, candidate_name, interview_status, interview_result, rejection_reason } = req.body;
+  const { requirement_name, candidate_name, interview_status, interview_result, rejection_reason, not_submitted_reason } = req.body;
   const found = candidates.find(c => c.candidate_name === candidate_name && (!requirement_name || c.requirement_name === requirement_name));
   if (found) {
     if (interview_status !== undefined) found.interview_status = interview_status;
     if (interview_result !== undefined) found.interview_result = interview_result;
     if (rejection_reason !== undefined) found.rejection_reason = rejection_reason;
+    if (not_submitted_reason !== undefined) found.not_submitted_reason = not_submitted_reason;
+    saveCandidatesToDisk();
   }
-  res.json({ success: true, message: 'Candidate interview details updated.' });
+  res.json({ success: true, message: 'Candidate interview details updated.', candidate: found });
+});
+
+// Update reasons for not submitting to vendor (single or batch)
+app.post('/update-not-submitted-reason', (req, res) => {
+  const { candidate_name, requirement_name, not_submitted_reason, reasons } = req.body;
+  
+  if (Array.isArray(reasons)) {
+    let updatedCount = 0;
+    reasons.forEach(item => {
+      const found = candidates.find(c => c.candidate_name === item.candidate_name && (!item.requirement_name || c.requirement_name === item.requirement_name));
+      if (found && item.not_submitted_reason !== undefined) {
+        found.not_submitted_reason = item.not_submitted_reason.trim();
+        updatedCount++;
+      }
+    });
+    saveCandidatesToDisk();
+    return res.json({ success: true, message: `${updatedCount} reason(s) updated successfully.`, candidates });
+  }
+
+  const found = candidates.find(c => c.candidate_name === candidate_name && (!requirement_name || c.requirement_name === requirement_name));
+  if (found) {
+    found.not_submitted_reason = (not_submitted_reason || '').trim();
+    saveCandidatesToDisk();
+    return res.json({ success: true, message: 'Reason updated successfully.', candidate: found });
+  }
+
+  res.status(404).json({ success: false, message: 'Candidate not found.' });
 });
 
 // Helper to generate realistic Google Meet codes (e.g. https://meet.google.com/xyz-pqrs-uvw)
