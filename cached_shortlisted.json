@@ -1,0 +1,42 @@
+[
+  {
+    "id": "maneesh_senior_staff_go_engineer",
+    "candidate_name": "Maneesh",
+    "requirement_name": "Senior Staff Go Engineer",
+    "requirement_date": "2026-10-15",
+    "resume_link": "https://docs.google.com/document/d/19xnG_HnuuAzyqZzHrfHPL1A0pVU6gd2u/edit?usp=sharing&ouid=112476888509079307945&rtpof=true&sd=true",
+    "standardized_title": "Senior Golang Backend Engineer",
+    "primary_domain": "Other",
+    "notice_period": "—",
+    "expected_ctc": "1.6lpm +gst",
+    "total_experience": "7 Yrs Exp",
+    "phone_number": "Taln",
+    "email": "",
+    "searchable_summary": "Senior Golang Backend Engineer with 7 years of experience building scalable microservices, event-driven systems, and cloud-native applications. Proficient in Golang, AWS, Kafka, MySQL, MongoDB, Redis, and Terraform across telecom, restaurant tech, and blockchain domains.",
+    "skills_with_evidence": [],
+    "simPct": 70,
+    "shortlisted_at": "2026-10-15T19:13:35.411Z",
+    "shortlisted_by": "Vasundhra Panwar",
+    "status": "Shortlisted"
+  },
+  {
+    "id": "ganesh_nelluri_servicenow_platform_developer_spm_csm_itsm_hrsd__exp___7_10_yrs__rel_exp__7_10_yrs",
+    "candidate_name": "Ganesh Nelluri",
+    "requirement_name": "ServiceNow Platform Developer(SPM/CSM/ITSM/HRSD)\nExp : 7-10 yrs \nRel Exp: 7-10 yrs",
+    "requirement_date": "2026-07-13",
+    "resume_link": "https://docs.google.com/document/d/1Rm6JmJscxguu3iCGSnXsiJ2Is_RD7E4h/edit?usp=drive_link&ouid=101786061788683402461&rtpof=true&sd=true",
+    "standardized_title": "ServiceNow Developer",
+    "primary_domain": "ServiceNow",
+    "notice_period": "15 Days or less",
+    "expected_ctc": "Rs 3.50 Lakhs",
+    "total_experience": "1.5 Yrs Exp",
+    "phone_number": "6302257029",
+    "email": "",
+    "searchable_summary": "Ganesh Nelluri is a ServiceNow Developer with 1.5 years of experience specializing in IT Service Management (ITSM), custom application development, and integrations using REST and SOAP APIs. Experienced in configuring workflows, business rules, client scripts, and service catalog items across client projects for Bayer and Conagra.",
+    "skills_with_evidence": [],
+    "simPct": 71,
+    "shortlisted_at": "2026-10-15T10:35:28.241Z",
+    "shortlisted_by": "Vasundhra Panwar",
+    "status": "Shortlisted"
+  }
+]

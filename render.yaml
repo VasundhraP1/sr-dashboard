@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: steady-rabbit-console
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: RECRUIT41_WEBHOOK_AUTH_TOKEN
+        value: r41_whsec_9c86624a93bbb72b10b696bd84a5d550c5bf35847b7c2cdb

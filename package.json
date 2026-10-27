@@ -1,0 +1,17 @@
+{
+  "name": "steady-rabbit-console-backend",
+  "version": "1.0.0",
+  "description": "Mock server for Steady Rabbit requirement console",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemailer": "^10.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

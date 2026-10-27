@@ -1,0 +1,567 @@
+{
+  "name": "Steady Rabbit Requirement Console Backend",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "google-login",
+        "options": {}
+      },
+      "id": "e2f6b8b0-a396-48be-8f0a-a0353c7a0201",
+      "name": "Webhook: Google Login",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const token = $input.item.json.body.credential;\nif (!token) {\n  return { json: { success: false, message: 'No credential provided' } };\n}\n\ntry {\n  const parts = token.split('.');\n  if (parts.length !== 3) {\n    return { json: { success: false, message: 'Invalid token format' } };\n  }\n  const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));\n  \n  const email = (payload.email || '').toLowerCase();\n  const name = payload.name || 'User';\n  \n  let role = 'HR';\n  // Check if Vasundhra or custom marketing emails\n  if (email === 'vasundhara@steadyrabbit.in' || name.toLowerCase().includes('vasundh') || name.toLowerCase().includes('admin')) {\n    role = 'Both';\n  } else if (email.startsWith('marketing') || name.toLowerCase().includes('marketing')) {\n    role = 'Marketing';\n  }\n  \n  return {\n    json: {\n      success: true,\n      name: name,\n      email: email,\n      picture: payload.picture || '',\n      role: role\n    }\n  };\n} catch (e) {\n  return { json: { success: false, message: 'Error decoding token: ' + e.message } };\n}"
+      },
+      "id": "9dcd7531-bc6a-4934-be5c-43f7a1f592d3",
+      "name": "JS: Decode Google Token",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": "= {{$json.success ? 200 : 401}}"
+        }
+      },
+      "id": "f51b9e24-9b98-4c81-807d-304b7e1ea7df",
+      "name": "Respond: Login Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        540,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "add-requirement",
+        "options": {}
+      },
+      "id": "a24314c1-4cb5-45d2-a72e-c5fe6b6188dc",
+      "name": "Webhook: Add Requirement",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Final",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "b1b72aef-bf0e-4de4-b049-cfdbdb5113d0",
+      "name": "Sheets: Append Requirement Row",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        320,
+        300
+      ],
+      "notesInFlow": true,
+      "notes": "Replace YOUR_SPREADSHEET_ID_HERE with your real Google Sheets Spreadsheet ID. Headers: Date, Requirement, Priority, Assignee, Requirement Owner, Vendor Budget, Client Budget, Location, Client Name, POC, Entity, Status, Type of Contract, Shift Timings, Hyd/Telangana, Candidate"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c1f72aef-bf0e-4de4-b049-cfdbdb5113d1",
+      "name": "Respond: Add Requirement Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "marketing-add-requirement",
+        "options": {}
+      },
+      "id": "e24314c1-4cb5-45d2-a72e-c5fe6b6188dd",
+      "name": "Webhook: Marketing Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const req = $input.item.json.body;\nreturn {\n  json: {\n    date: new Date().toISOString().split('T')[0],\n    requirement: req.requirement,\n    priority: 'Low',\n    assignee: req.assignee,\n    requirement_owner: 'Marketing',\n    vendor_budget: '—',\n    client_budget: '—',\n    location: '—',\n    client_name: '—',\n    poc: '—',\n    entity: '—',\n    status: 'Inactive',\n    contract_type: '—',\n    shift_timings: '—',\n    hyd_telangana: '—',\n    candidate_name: '—',\n    jd_link: req.jd_link || ''\n  }\n};"
+      },
+      "id": "cf9374c2-4cb5-45d2-a72e-c5fe6b6188de",
+      "name": "JS: Format Marketing Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Final",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "d1b72aef-bf0e-4de4-b049-cfdbdb5113d2",
+      "name": "Sheets: Append Marketing Row",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        540,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e1f72aef-bf0e-4de4-b049-cfdbdb5113d3",
+      "name": "Respond: Marketing Req Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "path": "list-requirements",
+        "options": {}
+      },
+      "id": "f24314c1-4cb5-45d2-a72e-c5fe6b6188de",
+      "name": "Webhook: List Requirements",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Final",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "e1b72aef-bf0e-4de4-b049-cfdbdb5113d4",
+      "name": "Sheets: Read Requirements",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        320,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst requirements = items.map(item => ({\n  date: item.json['Date'] || '',\n  requirement: item.json['Requirement'] || '',\n  priority: item.json['Priority'] || '',\n  assignee: item.json['Assignee'] || '',\n  requirement_owner: item.json['Requirement Owner'] || '',\n  vendor_budget: item.json['Vendor Budget'] || '',\n  client_budget: item.json['Client Budget'] || '',\n  location: item.json['Location'] || '',\n  client_name: item.json['Client Name'] || '',\n  poc: item.json['POC'] || '',\n  entity: item.json['Entity'] || '',\n  status: item.json['Status'] || 'Inactive',\n  contract_type: item.json['Type of Contract'] || '',\n  shift_timings: item.json['Shift Timings'] || '',\n  hyd_telangana: item.json['Hyd/Telangana'] || '',\n  candidate_name: item.json['Candidate'] || '—'\n}));\n\nreturn { json: { success: true, requirements } };"
+      },
+      "id": "f1b72aef-bf0e-4de4-b049-cfdbdb5113d5",
+      "name": "JS: Map Sheet Requirements",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "g1f72aef-bf0e-4de4-b049-cfdbdb5113d6",
+      "name": "Respond: Requirements List",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "add-candidates",
+        "options": {}
+      },
+      "id": "a24314c1-4cb5-45d2-a72e-c5fe6b6188df",
+      "name": "Webhook: Add Candidates",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.item.json.body;\nconst requirement_name = body.requirement_name;\nconst added_by = body.added_by;\nconst candidatesList = body.candidates || [];\n\nconst formatted = candidatesList.map(c => ({\n  json: {\n    'Date': new Date().toISOString().split('T')[0],\n    'Requirement Name': requirement_name,\n    'Candidate Name': c.name,\n    'Resume Link': c.resume_link,\n    'Notice Period': c.notice_period || '—',\n    'CTC': c.ctc || '—',\n    'Remarks': c.remarks || '—',\n    'Submitted By': added_by\n  }\n}));\n\nreturn formatted;"
+      },
+      "id": "b1b72aef-bf0e-4de4-b049-cfdbdb5113d7",
+      "name": "JS: Format Candidate Rows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Candidates",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "c1b72aef-bf0e-4de4-b049-cfdbdb5113d8",
+      "name": "Sheets: Append Candidates",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        540,
+        900
+      ],
+      "notesInFlow": true,
+      "notes": "Appends each candidate row to the 'Candidates' tab. Columns: Date, Requirement Name, Candidate Name, Resume Link, Notice Period, CTC, Remarks, Submitted By"
+    },
+    {
+      "parameters": {
+        "jsCode": "return { json: { success: true, message: 'Candidates submitted successfully.' } };"
+      },
+      "id": "d1b72aef-bf0e-4de4-b049-cfdbdb5113d9",
+      "name": "JS: Build Success Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e1f72aef-bf0e-4de4-b049-cfdbdb5113da",
+      "name": "Respond: Candidates Appended",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        980,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "path": "list-candidates",
+        "options": {}
+      },
+      "id": "f24314c1-4cb5-45d2-a72e-c5fe6b6188df",
+      "name": "Webhook: List Candidates",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Candidates",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "e1b72aef-bf0e-4de4-b049-cfdbdb5113db",
+      "name": "Sheets: Read Candidates",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        320,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst candidates = items.map(item => ({\n  date: item.json['Date'] || '',\n  requirement_name: item.json['Requirement Name'] || '',\n  candidate_name: item.json['Candidate Name'] || '',\n  resume_link: item.json['Resume Link'] || '',\n  notice_period: item.json['Notice Period'] || '',\n  ctc: item.json['CTC'] || '',\n  remarks: item.json['Remarks'] || '',\n  submitted_by: item.json['Submitted By'] || ''\n}));\n\nreturn { json: { success: true, candidates } };"
+      },
+      "id": "f1b72aef-bf0e-4de4-b049-cfdbdb5113dc",
+      "name": "JS: Map Candidates Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "g1f72aef-bf0e-4de4-b049-cfdbdb5113dd",
+      "name": "Respond: Candidates List Output",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1100
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook: Google Login": {
+      "main": [
+        [
+          {
+            "node": "JS: Decode Google Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Decode Google Token": {
+      "main": [
+        [
+          {
+            "node": "Respond: Login Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: Add Requirement": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Append Requirement Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Append Requirement Row": {
+      "main": [
+        [
+          {
+            "node": "Respond: Add Requirement Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: Marketing Request": {
+      "main": [
+        [
+          {
+            "node": "JS: Format Marketing Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Format Marketing Row": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Append Marketing Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Append Marketing Row": {
+      "main": [
+        [
+          {
+            "node": "Respond: Marketing Req Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: List Requirements": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Read Requirements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Read Requirements": {
+      "main": [
+        [
+          {
+            "node": "JS: Map Sheet Requirements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Map Sheet Requirements": {
+      "main": [
+        [
+          {
+            "node": "Respond: Requirements List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: Add Candidates": {
+      "main": [
+        [
+          {
+            "node": "JS: Format Candidate Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Format Candidate Rows": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Append Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Append Candidates": {
+      "main": [
+        [
+          {
+            "node": "JS: Build Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Build Success Response": {
+      "main": [
+        [
+          {
+            "node": "Respond: Candidates Appended",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: List Candidates": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Read Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Read Candidates": {
+      "main": [
+        [
+          {
+            "node": "JS: Map Candidates Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JS: Map Candidates Data": {
+      "main": [
+        [
+          {
+            "node": "Respond: Candidates List Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "active": true,
+  "pinData": {}
+}
