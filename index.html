@@ -2586,19 +2586,19 @@
     border-color: #bfdbfe !important;
   }
 
-  /* Holiday & Leave Reassignment System Styles */
-  .holiday-duty-card {
+  /* Duty Reassignment System Styles */
+  .reassign-duty-card {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 14px 16px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     transition: all 0.2s ease;
   }
-  .holiday-duty-card:hover {
-    border-color: rgba(245, 158, 11, 0.4);
+  .reassign-duty-card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
   }
-  .holiday-duty-item {
+  .reassign-duty-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2610,39 +2610,38 @@
     gap: 12px;
     flex-wrap: wrap;
   }
-  .badge-holiday-status {
+  .badge-reassign-status {
     font-size: 10.5px;
     padding: 2px 8px;
     border-radius: 12px;
     font-weight: 700;
-    text-transform: uppercase;
     font-family: var(--mono);
     display: inline-flex;
     align-items: center;
     gap: 4px;
   }
-  .badge-holiday-status.submitted {
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+  .badge-reassign-status.active {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.35);
   }
-  .badge-holiday-status.covering {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-  }
-  .badge-holiday-status.returned {
+  .badge-reassign-status.returned {
     background: rgba(16, 185, 129, 0.15);
     color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+  .badge-reassign-status.permanent {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+    border: 1px solid rgba(168, 85, 247, 0.35);
   }
   .badge-covered-tag {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    background: rgba(245, 158, 11, 0.12);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 4px;
     font-size: 10.5px;
     padding: 2px 6px;
@@ -2765,10 +2764,10 @@
       </div>
     </div>
 
-    <!-- Holiday & Leave Reassignment Button in Top Bar -->
-    <button class="btn secondary sm" id="btn-open-holiday-menu" type="button" style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; font-size:11.5px; border-radius:20px; border:1px solid rgba(245,158,11,0.35); background:rgba(245,158,11,0.08); color:#f59e0b; cursor:pointer;" title="Submit Holiday Request & View Duty Reassignments">
-      <span>🏖️ Holiday & Leave</span>
-      <span id="holiday-pending-badge" style="display:none; background:#ef4444; color:#fff; font-size:9.5px; padding:1px 6px; border-radius:10px; font-weight:bold;">0</span>
+    <!-- Reassign Duties Button in Top Bar -->
+    <button class="btn secondary sm" id="btn-open-reassign-menu" type="button" style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; font-size:11.5px; border-radius:20px; border:1px solid rgba(56,189,248,0.4); background:rgba(56,189,248,0.08); color:#38bdf8; cursor:pointer;" title="Reassign requirements between HR recruiters & track progress">
+      <span>🔄 Reassign Duties</span>
+      <span id="reassign-active-badge" style="display:none; background:#38bdf8; color:#0f172a; font-size:9.5px; padding:1px 6px; border-radius:10px; font-weight:bold;">0</span>
     </button>
 
     <button class="btn secondary sm" id="btn-toggle-theme" type="button" style="padding: 5px 10px; font-family: var(--mono); font-size:11px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;" title="Toggle Light / Dark Mode">
@@ -2796,6 +2795,7 @@
   <div class="tab" data-view="candidates" id="tab-candidates"><span class="n">09</span>View Candidates</div>
   <div class="tab" data-view="send-interview" id="tab-send-interview"><span class="n">10</span>Send for Interview</div>
   <div class="tab" data-view="interview-status" id="tab-interview-status"><span class="n">11</span>Interview Status</div>
+  <div class="tab" data-view="reassign" id="tab-reassign"><span class="n">12</span>Reassign Duties <span id="reassign-tab-badge" style="display:none; font-size:9.5px; padding:1px 6px; margin-left:6px; font-weight:700; border-radius:10px; background:#38bdf8; color:#0f172a;">0</span></div>
 </div>
 
 <div class="wrap">
@@ -3645,6 +3645,111 @@
     </div>
   </div>
 
+  <!-- 12 DUTY REASSIGNMENT WORKSPACE -->
+  <div class="view" id="view-reassign">
+    <div class="reassign-header-box" style="margin-bottom:16px; background:linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(99,102,241,0.08) 100%); border:1px solid rgba(56,189,248,0.25); border-radius:10px; padding:16px 18px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h1 style="display:flex; align-items:center; gap:10px; margin-bottom:4px; font-size:22px;">
+            <span>🔄</span> Duty Reassignment & Coverage Workspace
+          </h1>
+          <p class="sub" style="margin:0; font-size:12.5px;">
+            Reassign requirements between HR recruiters at any time (regardless of holidays), monitor live candidate submission progress, and return duties when needed.
+          </p>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button type="button" class="btn primary" id="btn-toggle-reassign-form">
+            <span>+ Reassign Requirements</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reassignment Form Card -->
+    <div class="card" id="reassign-action-card" style="margin-bottom:20px; border:1px solid rgba(56,189,248,0.3); background:var(--panel);">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:14px;">
+        <h3 style="margin:0; font-size:14.5px; display:flex; align-items:center; gap:8px;">
+          <span>⚡</span> Reassign Requirements Between HRs
+        </h3>
+        <span style="font-size:11.5px; color:var(--muted); font-family:var(--mono);">Instantly updates requirement assignee & notifies team</span>
+      </div>
+
+      <form id="form-do-reassign">
+        <div class="grid-2">
+          <div class="field">
+            <label>Reassign From (Current Recruiter) *</label>
+            <select id="reassign-from-select" required style="font-size:13px;">
+              <option value="">-- Choose Current Recruiter --</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Reassign To (New / Covering Recruiter) *</label>
+            <select id="reassign-to-select" required style="font-size:13px;">
+              <option value="">-- Choose New / Covering Recruiter --</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <label style="font-size:12px; font-weight:600; margin:0;">
+              Select Requirements to Reassign (<span id="reassign-reqs-count">0</span> available) *
+            </label>
+            <button type="button" class="btn secondary sm" id="btn-reassign-select-all" style="font-size:11px; padding:2px 8px;">Select All</button>
+          </div>
+          <div id="reassign-reqs-selection-list" style="max-height: 220px; overflow-y:auto; border:1px solid var(--line); border-radius:6px; background:var(--panel-2); padding:10px;">
+            <div style="padding:16px; text-align:center; color:var(--muted); font-size:12px;">Select an HR in "Reassign From" above to view their active requirements.</div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="field">
+            <label>Reason / Handover Note</label>
+            <input type="text" id="reassign-reason-input" placeholder="e.g. Workload balancing, immediate support, tech stack coverage..." style="font-size:12.5px;">
+          </div>
+          <div class="field">
+            <label>Reassigned By</label>
+            <input type="text" id="reassign-by-input" value="Navya Rastogi" style="font-size:12.5px;">
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+          <div class="banner" id="reassign-form-banner" style="display:none; margin:0; flex:1; margin-right:12px;"></div>
+          <button type="submit" class="btn primary" id="btn-submit-reassign-action" style="display:inline-flex; align-items:center; gap:6px;">
+            <span>🔄 Confirm & Reassign</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Active Reassignments List / Tracker Toolbar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+      <div class="report-toggle-group">
+        <button type="button" class="report-toggle-btn active" id="btn-reassign-filter-active" data-view="active">
+          <span>Active Reassignments</span>
+          <span class="report-count-badge" id="badge-reassign-count-active">0</span>
+        </button>
+        <button type="button" class="report-toggle-btn" id="btn-reassign-filter-returned" data-view="returned">
+          <span>Returned / Completed</span>
+          <span class="report-count-badge" id="badge-reassign-count-returned">0</span>
+        </button>
+        <button type="button" class="report-toggle-btn" id="btn-reassign-filter-all" data-view="all">
+          <span>All Records</span>
+          <span class="report-count-badge" id="badge-reassign-count-all">0</span>
+        </button>
+      </div>
+
+      <div style="display:flex; gap:8px; align-items:center;">
+        <input type="text" id="reassign-search-input" placeholder="Filter by HR or requirement..." style="max-width:240px; font-size:12px; padding:6px 10px;">
+        <button type="button" class="btn secondary sm" id="btn-refresh-reassignments">Refresh</button>
+      </div>
+    </div>
+
+    <div id="reassignments-cards-container">
+      <div class="loading">Loading reassignments & live progress...</div>
+    </div>
+  </div>
+
 </div>
 </div>
 
@@ -4043,126 +4148,6 @@
         </div>
       </div>
     </form>
-  </div>
-</div>
-
-<!-- SUBMIT HOLIDAY REQUEST MODAL -->
-<div class="modal-overlay" id="holiday-request-overlay">
-  <div class="modal" style="max-width: 600px; width: 95%; max-height: 90vh; overflow-y: auto;">
-    <div class="modal-header">
-      <div class="modal-title">
-        <h2>🏖️ Submit Holiday Request</h2>
-        <p>Notify Navya Rastogi to reassign your active requirements while you are away. Duties will be covered and automatically returned upon your return date.</p>
-      </div>
-      <button class="close-modal" id="btn-close-holiday-modal">&times;</button>
-    </div>
-
-    <form id="form-submit-holiday" style="margin-top: 14px;">
-      <div class="grid-2">
-        <div class="field">
-          <label>HR Executive Name *</label>
-          <input type="text" id="holiday-input-name" list="hr-holiday-name-suggestions" required placeholder="e.g. Diksha">
-          <datalist id="hr-holiday-name-suggestions">
-            <option value="Diksha">
-            <option value="Likitha">
-            <option value="Richa">
-            <option value="Kavipriya">
-            <option value="Ayushi">
-            <option value="Prachi">
-            <option value="Naagu">
-            <option value="Afsheen">
-            <option value="Vasundhara Panwar">
-            <option value="Navya Rastogi">
-          </datalist>
-        </div>
-        <div class="field">
-          <label>HR Email Address</label>
-          <input type="email" id="holiday-input-email" placeholder="name@steadyrabbit.in" style="font-family:var(--mono);">
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top: 12px;">
-        <div class="field">
-          <label>Holiday Start Date (From) *</label>
-          <input type="date" id="holiday-input-start" required>
-        </div>
-        <div class="field">
-          <label>Return Date (Back to Work) *</label>
-          <input type="date" id="holiday-input-end" required>
-        </div>
-      </div>
-
-      <div class="field" style="margin-top: 12px;">
-        <label>Reason / Notes</label>
-        <textarea id="holiday-input-reason" rows="2" placeholder="e.g. Annual leave, family trip, personal emergency..."></textarea>
-      </div>
-
-      <!-- Live Duties Preview -->
-      <div style="margin-top: 16px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <label style="font-size:11.5px; font-weight:700; color:var(--text); text-transform:uppercase; font-family:var(--mono);">
-            📋 Active Requirements Requiring Coverage (<span id="holiday-duties-count">0</span>)
-          </label>
-          <span style="font-size:11px; color:var(--muted);">Auto-detected from open assignments</span>
-        </div>
-        <div id="holiday-duties-preview-list" style="max-height: 180px; overflow-y:auto; border:1px solid var(--line); border-radius:6px; background:var(--panel-2); padding:8px;">
-          <div style="padding:10px; text-align:center; color:var(--muted); font-size:11.5px;">Select your name above to preview active requirements.</div>
-        </div>
-      </div>
-
-      <div style="background:rgba(37,99,235,0.08); border-left:3px solid #2563eb; padding:10px 14px; border-radius:4px; margin-top:16px; font-size:12px; color:#93c5fd; line-height:1.5;">
-        <b>🔔 Instant Handover Workflow:</b> Navya Rastogi (Manager) will receive an instant console notification & email to reassign your requirements to a covering HR executive. When you return, open requirements automatically hand back to you with all progress shown!
-      </div>
-
-      <div class="banner" id="holiday-modal-banner" style="margin-top: 14px;"></div>
-
-      <div class="actions" style="margin-top: 18px; display:flex; justify-content:space-between; align-items:center;">
-        <button type="button" class="btn secondary sm" id="btn-open-desk-from-req-modal">📊 Open Coverage Desk</button>
-        <div style="display:flex; gap:8px;">
-          <button type="button" class="btn secondary" id="btn-cancel-holiday-modal">Cancel</button>
-          <button type="submit" class="btn primary" id="btn-submit-holiday-action">🏖️ Submit Holiday Request</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- LEAVE & DUTY COVERAGE DESK MODAL -->
-<div class="modal-overlay" id="leave-desk-overlay">
-  <div class="modal" style="max-width: 950px; width: 95%; max-height: 92vh; overflow-y: auto;">
-    <div class="modal-header">
-      <div class="modal-title">
-        <h2>🏖️ Leave & Duty Coverage Desk</h2>
-        <p>Manager console for Navya Rastogi & Admins to reassign open requirements during HR leaves, track partial completion progress, and monitor automatic handbacks.</p>
-      </div>
-      <button class="close-modal" id="btn-close-leave-desk-modal">&times;</button>
-    </div>
-
-    <!-- Desk Navigation / Filter Tabs -->
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin: 16px 0 14px 0; border-bottom:1px solid var(--line); padding-bottom:12px;">
-      <div style="display:flex; gap:8px;">
-        <button type="button" class="pill active desk-view-toggle" id="desk-btn-tab-active" data-view="active">
-          Active Leaves & Coverage (<span id="desk-count-active">0</span>)
-        </button>
-        <button type="button" class="pill desk-view-toggle" id="desk-btn-tab-returned" data-view="returned">
-          Returned / Completed (<span id="desk-count-returned">0</span>)
-        </button>
-      </div>
-      <div style="display:flex; gap:8px;">
-        <button type="button" class="btn primary sm" id="btn-desk-new-holiday">
-          + Request Holiday
-        </button>
-      </div>
-    </div>
-
-    <!-- List of Holiday Requests & Duties -->
-    <div id="leave-desk-cards-container">
-      <div class="loading">Loading leave records & coverage status...</div>
-    </div>
-
-    <div class="actions" style="margin-top: 20px; display:flex; justify-content:flex-end;">
-      <button type="button" class="btn secondary" id="btn-close-leave-desk-action">Close Desk</button>
-    </div>
   </div>
 </div>
 
@@ -7502,7 +7487,7 @@
 
       const notifs = json.notifications || [];
       renderNotifications(notifs);
-      loadHolidays(true);
+      loadReassignments(true);
 
       if (!firstNotifLoad) {
         notifs.forEach(n => {
@@ -7551,27 +7536,14 @@
           </div>
         `;
       }
-      if (n.type === 'holiday_request') {
+      if (n.type && (n.type.includes('duty_') || n.type.includes('reassign'))) {
         return `
-          <div class="notif-item ${n.read ? '' : 'unread'}" data-id="${n.id}" data-type="holiday_desk">
+          <div class="notif-item ${n.read ? '' : 'unread'}" data-id="${n.id}" data-type="reassign_desk">
             <div class="notif-item-msg">
-              🏖️ <strong>Holiday Request:</strong> ${escapeHtml(n.hr_name || 'HR')} (${escapeHtml(n.start_date || '')} to ${escapeHtml(n.end_date || '')})
+              🔄 <strong>Duty Reassignment:</strong> ${escapeHtml(n.message || '')}
             </div>
             <div class="notif-item-meta">
-              <span>📋 ${escapeHtml(n.duties_count || 0)} duties need coverage &bull; Manager: Navya Rastogi</span> &bull; <span>${timeStr}</span>
-            </div>
-          </div>
-        `;
-      }
-      if (n.type === 'duty_assigned_cover' || n.type === 'holiday_return' || n.type === 'holiday_handover' || n.type === 'holiday_admin_update') {
-        const icon = (n.type === 'duty_assigned_cover' || n.type === 'holiday_handover') ? '📋' : '🏖️';
-        return `
-          <div class="notif-item ${n.read ? '' : 'unread'}" data-id="${n.id}" data-type="holiday_desk">
-            <div class="notif-item-msg">
-              ${icon} <strong>Leave & Handover Update:</strong> ${escapeHtml(n.message || '')}
-            </div>
-            <div class="notif-item-meta">
-              <span>Duty Coverage Desk</span> &bull; <span>${timeStr}</span>
+              <span>Duty Reassignment Workspace</span> &bull; <span>${timeStr}</span>
             </div>
           </div>
         `;
@@ -7607,9 +7579,10 @@
           return;
         }
 
-        if (item.dataset.type === 'holiday_desk') {
+        if (item.dataset.type === 'reassign_desk') {
           document.getElementById('notif-dropdown')?.classList.remove('show');
-          openLeaveDeskModal();
+          const tabReassign = document.getElementById('tab-reassign');
+          if (tabReassign) tabReassign.click();
           return;
         }
 
@@ -7626,11 +7599,11 @@
     if (!container) return;
 
     const isInterview = notif.type === 'interview_scheduled';
-    const isHoliday = notif.type && (notif.type.startsWith('holiday') || notif.type === 'duty_assigned_cover');
-    const toastIcon = isInterview ? '✉️' : (isHoliday ? '🏖️' : '🔔');
+    const isReassign = notif.type && (notif.type.includes('duty_') || notif.type.includes('reassign'));
+    const toastIcon = isInterview ? '✉️' : (isReassign ? '🔄' : '🔔');
     const toastTitle = isInterview 
       ? 'Interview Scheduled & Notification Sent' 
-      : (isHoliday ? 'Holiday & Duty Reassignment' : 'New Candidate Alert');
+      : (isReassign ? 'Duty Reassignment' : 'New Notification Alert');
 
     const toast = document.createElement('div');
     toast.className = 'notif-toast';
@@ -10451,108 +10424,105 @@ Steady Rabbit HR Team`;
   }
 
   // ========================================================
-  // Holiday & Leave Reassignment Desk System
+  // 12 DUTY REASSIGNMENT & COVERAGE WORKSPACE SYSTEM
   // ========================================================
-  let allHolidays = [];
-  let holidaysLoaded = false;
-  let deskCurrentView = 'active'; // 'active' or 'returned'
+  let allReassignments = [];
+  let reassignmentsLoaded = false;
+  let reassignFilterView = 'active'; // 'active', 'returned', 'all'
 
-  async function loadHolidays(skipRender = false) {
+  async function loadReassignments(skipRender = false) {
     try {
-      const res = await apiFetch('/api/holidays');
+      const res = await apiFetch('/api/reassignments');
       const json = await res.json();
       if (res.ok && json.success) {
-        allHolidays = json.holidays || [];
-        holidaysLoaded = true;
+        allReassignments = json.reassignments || [];
+        reassignmentsLoaded = true;
 
-        // Calculate pending requests needing Navya Rastogi's attention / assignment
-        const pendingCount = allHolidays.filter(h => {
-          if (h.status === 'Submitted' || h.status === 'Pending Reassignment') return true;
-          return (h.duties || []).some(d => d.status === 'Pending Reassignment' || d.status === 'Submitted');
-        }).length;
+        const activeList = allReassignments.filter(r => r.status === 'Active');
+        const activeCount = activeList.length;
 
-        const badge = document.getElementById('holiday-pending-badge');
-        if (badge) {
-          badge.textContent = pendingCount;
-          badge.style.display = pendingCount > 0 ? 'inline-block' : 'none';
+        const topBadge = document.getElementById('reassign-active-badge');
+        if (topBadge) {
+          topBadge.textContent = activeCount;
+          topBadge.style.display = activeCount > 0 ? 'inline-block' : 'none';
         }
 
-        if (!skipRender && document.getElementById('leave-desk-overlay')?.classList.contains('active')) {
-          renderLeaveDeskView();
+        const tabBadge = document.getElementById('reassign-tab-badge');
+        if (tabBadge) {
+          tabBadge.textContent = activeCount;
+          tabBadge.style.display = activeCount > 0 ? 'inline-block' : 'none';
+        }
+
+        const countActiveEl = document.getElementById('badge-reassign-count-active');
+        if (countActiveEl) countActiveEl.textContent = activeCount;
+        const countReturnedEl = document.getElementById('badge-reassign-count-returned');
+        if (countReturnedEl) countReturnedEl.textContent = allReassignments.filter(r => r.status === 'Returned' || r.status === 'Permanent').length;
+        const countAllEl = document.getElementById('badge-reassign-count-all');
+        if (countAllEl) countAllEl.textContent = allReassignments.length;
+
+        if (!skipRender) {
+          renderReassignmentsView();
+          populateReassignHrDropdowns();
         }
       }
     } catch (e) {
-      console.error('Error loading holidays:', e);
+      console.warn('Could not load reassignments:', e);
     }
   }
 
-  function openHolidayRequestModal() {
-    const overlay = document.getElementById('holiday-request-overlay');
-    if (!overlay) return;
+  // Alias for compatibility
+  const loadHolidays = loadReassignments;
 
-    // Prefill name & email from currentUser if available
-    const inputName = document.getElementById('holiday-input-name');
-    const inputEmail = document.getElementById('holiday-input-email');
-    if (currentUser && inputName && !inputName.value) {
-      if (currentUser.name) inputName.value = currentUser.name;
-      if (currentUser.email && inputEmail) inputEmail.value = currentUser.email;
-    }
+  function populateReassignHrDropdowns() {
+    const fromSel = document.getElementById('reassign-from-select');
+    const toSel = document.getElementById('reassign-to-select');
+    if (!fromSel || !toSel) return;
 
-    // Default dates: tomorrow to 4 days later
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const returnDate = new Date(tomorrow);
-    returnDate.setDate(returnDate.getDate() + 3);
+    const currentFromVal = fromSel.value;
+    const currentToVal = toSel.value;
 
-    const inputStart = document.getElementById('holiday-input-start');
-    const inputEnd = document.getElementById('holiday-input-end');
-    if (inputStart && !inputStart.value) {
-      inputStart.value = tomorrow.toISOString().split('T')[0];
-    }
-    if (inputEnd && !inputEnd.value) {
-      inputEnd.value = returnDate.toISOString().split('T')[0];
-    }
+    const hrSet = new Set(['Diksha', 'Likitha', 'Richa', 'Kavipriya', 'Ayushi', 'Prachi', 'Naagu', 'Afsheen', 'Vasundhara Panwar', 'Navya Rastogi']);
+    allRequirements.forEach(r => {
+      if (r.assignee && r.assignee !== '—' && r.assignee !== 'Unassigned') {
+        hrSet.add(r.assignee.trim());
+      }
+    });
 
-    const banner = document.getElementById('holiday-modal-banner');
-    if (banner) {
-      banner.className = 'banner';
-      banner.textContent = '';
-    }
+    const hrList = Array.from(hrSet).sort();
 
-    updateHolidayDutiesPreview();
-    overlay.classList.add('active');
+    fromSel.innerHTML = '<option value="">-- Choose Current Recruiter --</option>' + 
+      hrList.map(h => `<option value="${escapeHtml(h)}">${escapeHtml(h)}</option>`).join('');
+    toSel.innerHTML = '<option value="">-- Choose New / Covering Recruiter --</option>' + 
+      hrList.map(h => `<option value="${escapeHtml(h)}">${escapeHtml(h)}</option>`).join('');
+
+    if (currentFromVal && hrList.includes(currentFromVal)) fromSel.value = currentFromVal;
+    if (currentToVal && hrList.includes(currentToVal)) toSel.value = currentToVal;
   }
 
-  function closeHolidayRequestModal() {
-    const overlay = document.getElementById('holiday-request-overlay');
-    if (overlay) overlay.classList.remove('active');
-  }
+  function updateReassignReqsSelection() {
+    const fromSel = document.getElementById('reassign-from-select');
+    const listEl = document.getElementById('reassign-reqs-selection-list');
+    const countEl = document.getElementById('reassign-reqs-count');
+    if (!fromSel || !listEl) return;
 
-  function updateHolidayDutiesPreview() {
-    const inputName = document.getElementById('holiday-input-name');
-    const hrName = (inputName ? inputName.value : '').trim();
-    const countEl = document.getElementById('holiday-duties-count');
-    const listEl = document.getElementById('holiday-duties-preview-list');
-    if (!listEl) return;
-
-    if (!hrName) {
+    const fromHR = fromSel.value.trim();
+    if (!fromHR) {
       if (countEl) countEl.textContent = '0';
-      listEl.innerHTML = '<div style="padding:10px; text-align:center; color:var(--muted); font-size:11.5px;">Type or select your HR name above to auto-detect open requirements.</div>';
+      listEl.innerHTML = '<div style="padding:16px; text-align:center; color:var(--muted); font-size:12px;">Select an HR in "Reassign From" above to view their active requirements.</div>';
       return;
     }
 
     // Filter open/active requirements assigned to this HR
     const activeReqs = allRequirements.filter(r => {
-      const isAssignee = isUserAssignee(r.assignee, { name: hrName }) || (r.assignee || '').toLowerCase() === hrName.toLowerCase();
-      const isOpen = r.status !== 'Filled' && r.status !== 'Requirement Closed';
+      const isAssignee = isUserAssignee(r.assignee, { name: fromHR }) || (r.assignee || '').toLowerCase() === fromHR.toLowerCase();
+      const isOpen = r.status !== 'Filled' && r.status !== 'Requirement Closed' && r.status !== 'Closed';
       return isAssignee && isOpen;
     });
 
     if (countEl) countEl.textContent = activeReqs.length;
 
     if (activeReqs.length === 0) {
-      listEl.innerHTML = `<div style="padding:12px; text-align:center; color:var(--muted); font-size:11.5px;">No active open requirements currently assigned to "${escapeHtml(hrName)}".</div>`;
+      listEl.innerHTML = `<div style="padding:16px; text-align:center; color:var(--muted); font-size:12px;">No active open requirements currently assigned to "${escapeHtml(fromHR)}".</div>`;
       return;
     }
 
@@ -10560,426 +10530,365 @@ Steady Rabbit HR Team`;
       const reqId = r.req_id || 'REQ';
       const candCount = allCandidates.filter(c => (c.req_id && c.req_id === r.req_id) || (c.requirement_name && c.requirement_name.toLowerCase() === (r.requirement || '').toLowerCase())).length;
       return `
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:7px 10px; background:var(--panel); border:1px solid var(--line); border-radius:4px; margin-bottom:6px; font-size:11.5px;">
-          <div>
-            <span class="req-id-badge" style="font-size:9.5px;">${escapeHtml(reqId)}</span>
-            <strong style="margin-left:6px; color:var(--text);">${escapeHtml(r.requirement)}</strong>
-            <span style="color:var(--muted); margin-left:6px;">(${escapeHtml(r.client_name || 'Client')} &bull; ${escapeHtml(r.priority || 'Medium')})</span>
-          </div>
+        <label style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:var(--panel); border:1px solid var(--line); border-radius:6px; margin-bottom:6px; cursor:pointer; font-size:12px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="font-size:10.5px; color:var(--muted); font-family:var(--mono);">👥 ${candCount} cands</span>
-            <span class="badge-holiday-status submitted" style="font-size:9px; padding:1px 6px;">Needs Cover</span>
+            <input type="checkbox" class="chk-reassign-req" value="${escapeHtml(r.requirement)}" data-id="${escapeHtml(r.req_id || '')}" style="cursor:pointer;" checked>
+            <div>
+              <span class="req-id-badge" style="font-size:9.5px;">${escapeHtml(reqId)}</span>
+              <strong style="margin-left:6px; color:var(--text);">${escapeHtml(r.requirement)}</strong>
+              <div style="font-size:11px; color:var(--muted); margin-top:2px;">
+                Client: <b>${escapeHtml(r.client_name || 'Direct')}</b> &bull; Priority: <b>${escapeHtml(r.priority || 'Medium')}</b>
+              </div>
+            </div>
           </div>
-        </div>
+          <div style="text-align:right;">
+            <span style="font-size:11px; color:var(--accent); font-family:var(--mono);">👥 ${candCount} candidates</span>
+          </div>
+        </label>
       `;
     }).join('');
   }
 
-  async function openLeaveDeskModal() {
-    const overlay = document.getElementById('leave-desk-overlay');
-    if (!overlay) return;
-    overlay.classList.add('active');
-    await loadHolidays();
-    renderLeaveDeskView();
-  }
-
-  function closeLeaveDeskModal() {
-    const overlay = document.getElementById('leave-desk-overlay');
-    if (overlay) overlay.classList.remove('active');
-  }
-
-  function renderLeaveDeskView() {
-    const container = document.getElementById('leave-desk-cards-container');
-    const countActiveEl = document.getElementById('desk-count-active');
-    const countReturnedEl = document.getElementById('desk-count-returned');
+  function renderReassignmentsView() {
+    const container = document.getElementById('reassignments-cards-container');
     if (!container) return;
 
-    const activeList = allHolidays.filter(h => h.status !== 'Returned' && h.status !== 'Completed');
-    const returnedList = allHolidays.filter(h => h.status === 'Returned' || h.status === 'Completed');
+    const query = (document.getElementById('reassign-search-input')?.value || '').trim().toLowerCase();
 
-    if (countActiveEl) countActiveEl.textContent = activeList.length;
-    if (countReturnedEl) countReturnedEl.textContent = returnedList.length;
+    let list = allReassignments;
+    if (reassignFilterView === 'active') {
+      list = allReassignments.filter(r => r.status === 'Active');
+    } else if (reassignFilterView === 'returned') {
+      list = allReassignments.filter(r => r.status === 'Returned' || r.status === 'Permanent');
+    }
 
-    const displayedList = deskCurrentView === 'active' ? activeList : returnedList;
+    if (query) {
+      list = list.filter(r => 
+        (r.requirement_name || '').toLowerCase().includes(query) ||
+        (r.original_assignee || '').toLowerCase().includes(query) ||
+        (r.temporary_assignee || '').toLowerCase().includes(query) ||
+        (r.reason || '').toLowerCase().includes(query)
+      );
+    }
 
-    if (displayedList.length === 0) {
+    if (list.length === 0) {
       container.innerHTML = `
         <div style="padding:40px 20px; text-align:center; color:var(--muted); background:var(--panel-2); border-radius:8px; border:1px dashed var(--line); margin-top:12px;">
-          <div style="font-size:32px; margin-bottom:8px;">🏖️</div>
-          <div style="font-weight:600; font-size:14px; color:var(--text);">No ${deskCurrentView === 'active' ? 'active' : 'returned'} leave records found.</div>
-          <div style="font-size:12px; margin-top:4px;">When an HR executive submits a holiday request, Navya Rastogi receives an instant notification to assign coverage.</div>
-          <button type="button" class="btn primary sm" id="btn-empty-desk-new-req" style="margin-top:14px;">+ Submit New Holiday Request</button>
+          <div style="font-size:32px; margin-bottom:8px;">🔄</div>
+          <div style="font-weight:600; font-size:14.5px; color:var(--text);">No ${reassignFilterView === 'active' ? 'active' : ''} reassignments found.</div>
+          <div style="font-size:12px; margin-top:4px;">Use the form above to reassign requirements between recruiters at any time.</div>
         </div>
       `;
-      const btnEmpty = document.getElementById('btn-empty-desk-new-req');
-      if (btnEmpty) {
-        btnEmpty.addEventListener('click', () => {
-          closeLeaveDeskModal();
-          openHolidayRequestModal();
-        });
-      }
       return;
     }
 
-    // HR options for assignment
-    const availableHRs = ['Diksha', 'Likitha', 'Richa', 'Kavipriya', 'Ayushi', 'Prachi', 'Naagu', 'Afsheen', 'Vasundhara Panwar', 'Navya Rastogi'];
-    allRequirements.forEach(r => {
-      if (r.assignee && !availableHRs.includes(r.assignee) && r.assignee !== '—' && r.assignee !== 'Unassigned') {
-        availableHRs.push(r.assignee);
+    container.innerHTML = list.map(r => {
+      const isActive = r.status === 'Active';
+      const isReturned = r.status === 'Returned';
+      const isPermanent = r.status === 'Permanent';
+
+      let statusBadge = '';
+      if (isActive) {
+        statusBadge = `<span class="badge-reassign-status active">🔄 Reassigned to ${escapeHtml(r.temporary_assignee)}</span>`;
+      } else if (isReturned) {
+        statusBadge = `<span class="badge-reassign-status returned">↩️ Returned to ${escapeHtml(r.original_assignee)}</span>`;
+      } else {
+        statusBadge = `<span class="badge-reassign-status permanent">⭐ Permanent (${escapeHtml(r.temporary_assignee)})</span>`;
       }
-    });
 
-    const cardsHtml = displayedList.map(hol => {
-      const isPending = hol.status === 'Submitted' || hol.status === 'Pending Reassignment';
-      const isReturned = hol.status === 'Returned' || hol.status === 'Completed';
+      const initialCands = r.initial_candidates_count || 0;
+      const currentCands = r.current_candidates_count || initialCands;
+      const addedWhileReassigned = r.candidates_added_while_reassigned || Math.max(0, currentCands - initialCands);
 
-      const statusBadgeClass = isReturned ? 'returned' : (isPending ? 'submitted' : 'covering');
-      const statusLabel = isReturned ? '✓ Returned / Resumed' : (isPending ? '⏳ Awaiting Navya Assignment' : '🔄 Covered / In Progress');
-
-      const dutiesHtml = (hol.duties || []).map(duty => {
-        const dutyReqId = duty.req_id || 'REQ';
-        const candAdded = duty.candidates_added_during_leave || 0;
-        const initialCands = duty.initial_candidate_count || 0;
-        const currentCands = duty.current_candidate_count || initialCands;
-
-        let dutyStatusBadge = '';
-        let dutyActions = '';
-
-        if (duty.status === 'Returned' || isReturned) {
-          dutyStatusBadge = `<span class="badge-holiday-status returned">↩️ Returned to ${escapeHtml(duty.original_assignee)}</span>`;
-          dutyActions = `
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px; font-size:11px;">
-              <span style="color:#10b981; font-weight:600;">✓ Restored to ${escapeHtml(duty.original_assignee)}</span>
-              ${duty.returned_automatically ? '<span style="font-size:10px; color:var(--muted);">⚡ Auto-returned on return date</span>' : '<span style="font-size:10px; color:var(--muted);">Early handback</span>'}
-            </div>
-          `;
-        } else if (duty.status === 'Covering') {
-          dutyStatusBadge = `<span class="badge-holiday-status covering">👤 Covered by ${escapeHtml(duty.temporary_assignee || 'Covering HR')}</span>`;
-          dutyActions = `
-            <div style="display:flex; align-items:center; gap:6px;">
-              <button type="button" class="btn secondary sm btn-desk-handback-duty" 
-                data-holid="${escapeHtml(hol.id)}" 
-                data-reqid="${escapeHtml(duty.req_id || '')}" 
-                data-reqname="${escapeHtml(duty.requirement_name)}" 
-                data-orig="${escapeHtml(duty.original_assignee)}"
-                style="color:#a78bfa; border-color:rgba(167,139,250,0.4); padding:4px 8px; font-size:11px;"
-                title="Return duty back to ${escapeHtml(duty.original_assignee)} with progress preserved">
-                ↩️ Hand Back to ${escapeHtml(duty.original_assignee)}
-              </button>
-            </div>
-          `;
-        } else {
-          // Pending Reassignment
-          dutyStatusBadge = `<span class="badge-holiday-status submitted">⚠️ Needs Covering HR</span>`;
-
-          const optionsHtml = availableHRs
-            .filter(hr => hr.toLowerCase() !== (hol.hr_name || '').toLowerCase())
-            .map(hr => `<option value="${escapeHtml(hr)}">${escapeHtml(hr)}</option>`)
-            .join('');
-
-          dutyActions = `
-            <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-              <select class="desk-duty-cover-select" style="font-size:11px; padding:3px 6px; border-radius:4px; border:1px solid var(--line); background:var(--panel);">
-                <option value="">-- Assign Covering HR --</option>
-                ${optionsHtml}
-              </select>
-              <button type="button" class="btn primary sm btn-desk-assign-cover" 
-                data-holid="${escapeHtml(hol.id)}" 
-                data-reqid="${escapeHtml(duty.req_id || '')}" 
-                data-reqname="${escapeHtml(duty.requirement_name)}"
-                style="padding:4px 8px; font-size:11px;">
-                👤 Assign Coverage
-              </button>
-            </div>
-          `;
-        }
-
-        return `
-          <div class="holiday-duty-item" style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:10px 12px; margin-top:8px; gap:10px; flex-wrap:wrap;">
-            <div style="flex:1; min-width:240px;">
-              <div style="display:flex; align-items:center; gap:6px;">
-                <span class="req-id-badge" style="font-size:9.5px;">${escapeHtml(dutyReqId)}</span>
-                <strong style="font-size:12.5px; color:var(--text);">${escapeHtml(duty.requirement_name)}</strong>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px; margin-top:4px; font-size:11px; color:var(--muted); flex-wrap:wrap;">
-                <span>Original: <strong style="color:var(--text);">${escapeHtml(duty.original_assignee)}</strong></span>
-                <span>Client: <b>${escapeHtml(duty.client_name || '—')}</b></span>
-                <span>Priority: <b>${escapeHtml(duty.priority || 'Medium')}</b></span>
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; margin-top:6px; font-size:11px; flex-wrap:wrap;">
-                <span style="font-family:var(--mono); color:var(--muted);">Initial cands: ${initialCands}</span>
-                <span style="font-family:var(--mono); color:var(--muted);">&bull;</span>
-                <span style="font-family:var(--mono); color:var(--text);">Current cands: <b>${currentCands}</b></span>
-                ${candAdded > 0 ? `<span style="background:rgba(16,185,129,0.15); color:#10b981; font-weight:700; padding:1px 6px; border-radius:4px; border:1px solid rgba(16,185,129,0.3); font-size:10.5px;">📈 +${candAdded} candidate(s) added during leave</span>` : '<span style="color:var(--muted); font-size:10px;">(0 added during leave)</span>'}
-              </div>
-            </div>
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-              ${dutyStatusBadge}
-              ${dutyActions}
-            </div>
+      let actionButtons = '';
+      if (isActive) {
+        actionButtons = `
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button type="button" class="btn secondary sm btn-reassign-return-action" 
+              data-id="${escapeHtml(r.id)}" 
+              data-reqid="${escapeHtml(r.req_id || '')}" 
+              data-reqname="${escapeHtml(r.requirement_name)}" 
+              data-orig="${escapeHtml(r.original_assignee)}"
+              style="color:#38bdf8; border-color:rgba(56,189,248,0.4); padding:4px 10px; font-size:11px;"
+              title="Return requirement back to ${escapeHtml(r.original_assignee)} with candidate progress preserved">
+              ↩️ Return to ${escapeHtml(r.original_assignee)}
+            </button>
+            <button type="button" class="btn secondary sm btn-reassign-perm-action" 
+              data-id="${escapeHtml(r.id)}" 
+              data-reqid="${escapeHtml(r.req_id || '')}" 
+              data-to="${escapeHtml(r.temporary_assignee)}"
+              style="color:#a855f7; border-color:rgba(168,85,247,0.4); padding:4px 8px; font-size:11px;"
+              title="Make ${escapeHtml(r.temporary_assignee)} the permanent owner">
+              ⭐ Make Permanent
+            </button>
           </div>
         `;
-      }).join('');
+      } else if (isReturned) {
+        actionButtons = `
+          <div style="font-size:11px; color:#10b981; font-weight:600;">
+            ✓ Completed & Handed Back
+          </div>
+        `;
+      } else {
+        actionButtons = `
+          <div style="font-size:11px; color:#a855f7; font-weight:600;">
+            ⭐ Permanently Reassigned
+          </div>
+        `;
+      }
+
+      const dateDisplay = r.reassigned_at ? new Date(r.reassigned_at).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recently';
 
       return `
-        <div class="holiday-duty-card" style="background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-bottom:14px;">
+        <div class="reassign-duty-card" data-id="${escapeHtml(r.id)}">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; border-bottom:1px solid var(--line); padding-bottom:10px;">
             <div>
               <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:18px;">🏖️</span>
-                <h3 style="margin:0; font-size:15px; color:var(--text); font-weight:700;">${escapeHtml(hol.hr_name)}</h3>
-                <span class="badge-holiday-status ${statusBadgeClass}">${statusLabel}</span>
+                ${r.req_id ? `<span class="req-id-badge">${escapeHtml(r.req_id)}</span>` : ''}
+                <strong style="font-size:13.5px; color:var(--text);">${escapeHtml(r.requirement_name)}</strong>
               </div>
               <div style="font-size:11.5px; color:var(--muted); margin-top:4px;">
-                📅 <strong>Leave Period:</strong> <span style="font-family:var(--mono); color:var(--text);">${escapeHtml(hol.start_date)}</span> to <span style="font-family:var(--mono); color:var(--text);">${escapeHtml(hol.end_date)}</span>
-                ${hol.reason ? `<span style="margin-left:8px;">&bull; <i>${escapeHtml(hol.reason)}</i></span>` : ''}
+                Reassigned: <b>${escapeHtml(r.original_assignee)}</b> &rarr; <b style="color:var(--accent);">${escapeHtml(r.temporary_assignee)}</b>
+                ${r.reason ? `&bull; <i>${escapeHtml(r.reason)}</i>` : ''}
+                &bull; <span>📅 ${dateDisplay}</span>
               </div>
             </div>
-            <div style="font-size:11px; color:#93c5fd; background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.25); border-radius:4px; padding:4px 8px;">
-              🔔 Notified: <strong>Navya Rastogi</strong> (${escapeHtml(hol.notified_email || 'navya.rastogi@steady-rabbit.com')})
+            <div>
+              ${statusBadge}
             </div>
           </div>
 
-          <div style="margin-top:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-size:11.5px; font-weight:700; color:var(--text); text-transform:uppercase; font-family:var(--mono);">
-                📋 Assigned Requirements & Live Handover Progress (${(hol.duties || []).length})
-              </span>
-              <span style="font-size:10.5px; color:var(--muted);">
-                Auto-returns back to ${escapeHtml(hol.hr_name)} upon return date (${escapeHtml(hol.end_date)})
-              </span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:10px;">
+            <!-- Progress Metrics -->
+            <div style="display:flex; align-items:center; gap:12px; font-size:11.5px; flex-wrap:wrap;">
+              <span style="color:var(--muted);">Initial: <b>${initialCands}</b> cands</span>
+              <span style="color:var(--text);">Current: <b>${currentCands}</b> cands</span>
+              ${addedWhileReassigned > 0 
+                ? `<span style="background:rgba(16,185,129,0.15); color:#10b981; font-weight:700; padding:2px 8px; border-radius:4px; border:1px solid rgba(16,185,129,0.3); font-size:11px;">
+                     📈 +${addedWhileReassigned} candidate(s) added during reassignment
+                   </span>` 
+                : `<span style="color:var(--muted); font-size:10.5px;">(0 candidates added since reassignment)</span>`
+              }
             </div>
-            ${dutiesHtml || '<div style="font-size:11.5px; color:var(--muted); padding:6px 0;">No duties recorded on this request.</div>'}
+
+            <!-- Actions -->
+            <div>
+              ${actionButtons}
+            </div>
           </div>
         </div>
       `;
     }).join('');
 
-    container.innerHTML = cardsHtml;
-
-    // Attach event listeners to "Assign Coverage" buttons in desk
-    container.querySelectorAll('.btn-desk-assign-cover').forEach(btn => {
+    // Attach listeners for return duty buttons
+    container.querySelectorAll('.btn-reassign-return-action').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const holId = btn.dataset.holid;
+        const id = btn.dataset.id;
         const reqId = btn.dataset.reqid;
         const reqName = btn.dataset.reqname;
-        const parent = btn.closest('.holiday-duty-item');
-        const selectEl = parent ? parent.querySelector('.desk-duty-cover-select') : null;
-        const coveringHR = selectEl ? selectEl.value : '';
+        const orig = btn.dataset.orig;
 
-        if (!coveringHR) {
-          alert('Please select a covering HR executive from the dropdown.');
+        if (!confirm(`Return requirement "${reqName}" back to ${orig}? Candidate progress will be preserved.`)) {
           return;
         }
 
         btn.disabled = true;
-        btn.textContent = 'Assigning...';
+        btn.textContent = 'Returning...';
 
         try {
-          const res = await apiFetch('/api/reassign-holiday-duties', {
+          const res = await apiFetch('/api/return-duties', {
             method: 'POST',
-            body: JSON.stringify({
-              holiday_id: holId,
-              assignments: [{
-                req_id: reqId,
-                requirement_name: reqName,
-                temporary_assignee: coveringHR
-              }]
-            })
+            body: JSON.stringify({ reassignment_id: id, req_id: reqId || reqName })
           });
-
           const json = await res.json();
           if (res.ok && json.success) {
             showNotificationToast({
-              type: 'duty_assigned_cover',
-              message: `📋 Requirement "${reqName}" assigned to ${coveringHR} to cover while on leave.`
+              type: 'duty_returned',
+              message: `↩️ "${reqName}" returned back to ${orig}!`
             });
-            await loadHolidays();
-            renderLeaveDeskView();
+            await loadReassignments();
             loadRequirements(true);
           } else {
-            alert('Failed to reassign duty: ' + (json.message || 'Unknown error'));
+            alert('Failed: ' + (json.message || 'Error returning duty'));
             btn.disabled = false;
-            btn.textContent = '👤 Assign Coverage';
+            btn.textContent = `↩️ Return to ${orig}`;
           }
         } catch (e) {
           alert('Network error: ' + e.message);
           btn.disabled = false;
-          btn.textContent = '👤 Assign Coverage';
+          btn.textContent = `↩️ Return to ${orig}`;
         }
       });
     });
 
-    // Attach event listeners to "Hand Back" buttons in desk
-    container.querySelectorAll('.btn-desk-handback-duty').forEach(btn => {
+    // Attach listeners for make permanent buttons
+    container.querySelectorAll('.btn-reassign-perm-action').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const holId = btn.dataset.holid;
+        const id = btn.dataset.id;
         const reqId = btn.dataset.reqid;
-        const reqName = btn.dataset.reqname;
-        const origAssignee = btn.dataset.orig;
+        const toHR = btn.dataset.to;
 
-        if (!confirm(`Hand back "${reqName}" to ${origAssignee}? Candidates added during leave will be summarized and preserved.`)) {
+        if (!confirm(`Make ${toHR} the permanent assignee for this requirement?`)) {
           return;
         }
 
         btn.disabled = true;
-        btn.textContent = 'Handing back...';
+        btn.textContent = 'Updating...';
 
         try {
-          const res = await apiFetch('/api/return-holiday-duties', {
+          const res = await apiFetch('/api/make-reassignment-permanent', {
             method: 'POST',
-            body: JSON.stringify({
-              holiday_id: holId,
-              req_id: reqId || reqName
-            })
+            body: JSON.stringify({ reassignment_id: id, req_id: reqId })
           });
-
           const json = await res.json();
           if (res.ok && json.success) {
             showNotificationToast({
-              type: 'holiday_handover',
-              message: `↩️ Handed back "${reqName}" to ${origAssignee}! Progress preserved.`
+              type: 'duty_permanent',
+              message: `⭐ Assignment finalized permanently to ${toHR}!`
             });
-            await loadHolidays();
-            renderLeaveDeskView();
+            await loadReassignments();
             loadRequirements(true);
           } else {
-            alert('Failed to hand back: ' + (json.message || 'Unknown error'));
+            alert('Failed: ' + (json.message || 'Error updating assignment'));
             btn.disabled = false;
-            btn.textContent = `↩️ Hand Back to ${origAssignee}`;
+            btn.textContent = '⭐ Make Permanent';
           }
         } catch (e) {
           alert('Network error: ' + e.message);
           btn.disabled = false;
-          btn.textContent = `↩️ Hand Back to ${origAssignee}`;
+          btn.textContent = '⭐ Make Permanent';
         }
       });
     });
   }
 
-  async function handleManualHandbackDuty(reqId, reqName, origAssignee) {
-    if (!confirm(`Hand duty "${reqName}" back to original HR (${origAssignee || 'Original Assignee'})? All candidate progress will be preserved.`)) {
-      return;
-    }
+  // Hook Reassignment Workspace event listeners
+  const btnOpenReassignMenu = document.getElementById('btn-open-reassign-menu');
+  if (btnOpenReassignMenu) {
+    btnOpenReassignMenu.addEventListener('click', () => {
+      const tab = document.getElementById('tab-reassign');
+      if (tab) tab.click();
+    });
+  }
 
-    try {
-      const res = await apiFetch('/api/return-holiday-duties', {
-        method: 'POST',
-        body: JSON.stringify({
-          req_id: reqId || reqName
-        })
-      });
+  const tabReassignEl = document.getElementById('tab-reassign');
+  if (tabReassignEl) {
+    tabReassignEl.addEventListener('click', () => {
+      loadReassignments();
+    });
+  }
 
-      const json = await res.json();
-      if (res.ok && json.success) {
-        showNotificationToast({
-          type: 'holiday_handover',
-          message: `↩️ "${reqName}" has been handed back to ${origAssignee || 'original HR'}.`
-        });
-        await loadHolidays(true);
-        loadRequirements(true);
-      } else {
-        alert('Failed to hand back duty: ' + (json.message || 'Unknown error'));
+  const btnToggleReassignForm = document.getElementById('btn-toggle-reassign-form');
+  if (btnToggleReassignForm) {
+    btnToggleReassignForm.addEventListener('click', () => {
+      const card = document.getElementById('reassign-action-card');
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('reassign-from-select')?.focus();
       }
-    } catch (e) {
-      alert('Network error: ' + e.message);
-    }
-  }
-
-  // Holiday Modal & Desk Event Listeners
-  const btnOpenHolidayMenu = document.getElementById('btn-open-holiday-menu');
-  if (btnOpenHolidayMenu) {
-    btnOpenHolidayMenu.addEventListener('click', () => {
-      openLeaveDeskModal();
     });
   }
 
-  const btnCloseHolidayModal = document.getElementById('btn-close-holiday-modal');
-  if (btnCloseHolidayModal) btnCloseHolidayModal.addEventListener('click', closeHolidayRequestModal);
+  const reassignFromSelect = document.getElementById('reassign-from-select');
+  if (reassignFromSelect) {
+    reassignFromSelect.addEventListener('change', updateReassignReqsSelection);
+  }
 
-  const btnCancelHolidayModal = document.getElementById('btn-cancel-holiday-modal');
-  if (btnCancelHolidayModal) btnCancelHolidayModal.addEventListener('click', closeHolidayRequestModal);
-
-  const btnOpenDeskFromReq = document.getElementById('btn-open-desk-from-req-modal');
-  if (btnOpenDeskFromReq) {
-    btnOpenDeskFromReq.addEventListener('click', () => {
-      closeHolidayRequestModal();
-      openLeaveDeskModal();
+  const btnReassignSelectAll = document.getElementById('btn-reassign-select-all');
+  if (btnReassignSelectAll) {
+    btnReassignSelectAll.addEventListener('click', () => {
+      const chks = document.querySelectorAll('.chk-reassign-req');
+      const allChecked = Array.from(chks).every(c => c.checked);
+      chks.forEach(c => c.checked = !allChecked);
+      btnReassignSelectAll.textContent = allChecked ? 'Select All' : 'Deselect All';
     });
   }
 
-  const btnCloseLeaveDeskModal = document.getElementById('btn-close-leave-desk-modal');
-  if (btnCloseLeaveDeskModal) btnCloseLeaveDeskModal.addEventListener('click', closeLeaveDeskModal);
-
-  const btnCloseLeaveDeskAction = document.getElementById('btn-close-leave-desk-action');
-  if (btnCloseLeaveDeskAction) btnCloseLeaveDeskAction.addEventListener('click', closeLeaveDeskModal);
-
-  const btnDeskNewHoliday = document.getElementById('btn-desk-new-holiday');
-  if (btnDeskNewHoliday) {
-    btnDeskNewHoliday.addEventListener('click', () => {
-      closeLeaveDeskModal();
-      openHolidayRequestModal();
+  // Filter Buttons (Active, Returned, All)
+  const btnReassignActive = document.getElementById('btn-reassign-filter-active');
+  const btnReassignReturned = document.getElementById('btn-reassign-filter-returned');
+  const btnReassignAll = document.getElementById('btn-reassign-filter-all');
+  if (btnReassignActive && btnReassignReturned && btnReassignAll) {
+    btnReassignActive.addEventListener('click', () => {
+      reassignFilterView = 'active';
+      btnReassignActive.classList.add('active');
+      btnReassignReturned.classList.remove('active');
+      btnReassignAll.classList.remove('active');
+      renderReassignmentsView();
+    });
+    btnReassignReturned.addEventListener('click', () => {
+      reassignFilterView = 'returned';
+      btnReassignReturned.classList.add('active');
+      btnReassignActive.classList.remove('active');
+      btnReassignAll.classList.remove('active');
+      renderReassignmentsView();
+    });
+    btnReassignAll.addEventListener('click', () => {
+      reassignFilterView = 'all';
+      btnReassignAll.classList.add('active');
+      btnReassignActive.classList.remove('active');
+      btnReassignReturned.classList.remove('active');
+      renderReassignmentsView();
     });
   }
 
-  // Leave desk view toggles (Active vs Returned)
-  const deskTabActive = document.getElementById('desk-btn-tab-active');
-  const deskTabReturned = document.getElementById('desk-btn-tab-returned');
-  if (deskTabActive && deskTabReturned) {
-    deskTabActive.addEventListener('click', () => {
-      deskTabActive.classList.add('active');
-      deskTabReturned.classList.remove('active');
-      deskCurrentView = 'active';
-      renderLeaveDeskView();
-    });
-
-    deskTabReturned.addEventListener('click', () => {
-      deskTabReturned.classList.add('active');
-      deskTabActive.classList.remove('active');
-      deskCurrentView = 'returned';
-      renderLeaveDeskView();
-    });
+  const reassignSearchInput = document.getElementById('reassign-search-input');
+  if (reassignSearchInput) {
+    reassignSearchInput.addEventListener('input', renderReassignmentsView);
   }
 
-  // Dynamic preview when HR types or changes name
-  const holidayInputName = document.getElementById('holiday-input-name');
-  if (holidayInputName) {
-    holidayInputName.addEventListener('input', updateHolidayDutiesPreview);
-    holidayInputName.addEventListener('change', updateHolidayDutiesPreview);
+  const btnRefreshReassignments = document.getElementById('btn-refresh-reassignments');
+  if (btnRefreshReassignments) {
+    btnRefreshReassignments.addEventListener('click', () => loadReassignments());
   }
 
-  // Submit Holiday Request Form Handler
-  const formSubmitHoliday = document.getElementById('form-submit-holiday');
-  if (formSubmitHoliday) {
-    formSubmitHoliday.addEventListener('submit', async (e) => {
+  // Form Submit Handler
+  const formDoReassign = document.getElementById('form-do-reassign');
+  if (formDoReassign) {
+    formDoReassign.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const hrName = (document.getElementById('holiday-input-name')?.value || '').trim();
-      const hrEmail = (document.getElementById('holiday-input-email')?.value || '').trim();
-      const startDate = document.getElementById('holiday-input-start')?.value || '';
-      const endDate = document.getElementById('holiday-input-end')?.value || '';
-      const reason = (document.getElementById('holiday-input-reason')?.value || '').trim();
-      const banner = document.getElementById('holiday-modal-banner');
-      const submitBtn = document.getElementById('btn-submit-holiday-action');
+      const fromHR = (document.getElementById('reassign-from-select')?.value || '').trim();
+      const toHR = (document.getElementById('reassign-to-select')?.value || '').trim();
+      const reason = (document.getElementById('reassign-reason-input')?.value || '').trim();
+      const reassignedBy = (document.getElementById('reassign-by-input')?.value || '').trim() || (currentUser ? (currentUser.name || currentUser.email) : 'Navya Rastogi');
+      const banner = document.getElementById('reassign-form-banner');
+      const submitBtn = document.getElementById('btn-submit-reassign-action');
 
-      if (!hrName || !startDate || !endDate) {
+      if (!fromHR || !toHR) {
         if (banner) {
           banner.className = 'banner show err';
-          banner.textContent = 'Please provide your HR executive name, holiday start date, and return date.';
+          banner.textContent = 'Please select both current and new recruiter.';
         }
         return;
       }
 
-      if (endDate < startDate) {
+      if (fromHR.toLowerCase() === toHR.toLowerCase()) {
         if (banner) {
           banner.className = 'banner show err';
-          banner.textContent = 'Return date cannot be earlier than holiday start date.';
+          banner.textContent = 'Cannot reassign to the same recruiter. Please select a different HR.';
+        }
+        return;
+      }
+
+      const selectedReqs = [];
+      document.querySelectorAll('.chk-reassign-req:checked').forEach(chk => {
+        selectedReqs.push({
+          req_id: chk.dataset.id || '',
+          requirement_name: chk.value
+        });
+      });
+
+      if (selectedReqs.length === 0) {
+        if (banner) {
+          banner.className = 'banner show err';
+          banner.textContent = 'Please select at least one requirement to reassign.';
         }
         return;
       }
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '🏖️ Notifying Navya Rastogi...';
+        submitBtn.innerHTML = '🔄 Reassigning...';
       }
       if (banner) {
         banner.className = 'banner';
@@ -10987,14 +10896,14 @@ Steady Rabbit HR Team`;
       }
 
       try {
-        const res = await apiFetch('/api/submit-holiday', {
+        const res = await apiFetch('/api/reassign-duties', {
           method: 'POST',
           body: JSON.stringify({
-            hr_name: hrName,
-            hr_email: hrEmail,
-            start_date: startDate,
-            end_date: endDate,
-            reason: reason
+            from_hr: fromHR,
+            to_hr: toHR,
+            requirements: selectedReqs,
+            reason: reason,
+            reassigned_by: reassignedBy
           })
         });
 
@@ -11002,22 +10911,24 @@ Steady Rabbit HR Team`;
         if (res.ok && json.success) {
           if (banner) {
             banner.className = 'banner show succ';
-            banner.textContent = json.message || 'Holiday request submitted! Navya Rastogi has been notified.';
+            banner.textContent = json.message || `Successfully reassigned ${selectedReqs.length} requirement(s) to ${toHR}.`;
           }
           showNotificationToast({
-            type: 'holiday_request',
-            message: `🏖️ Holiday request submitted! Navya Rastogi has been notified to reassign your active requirements.`
+            type: 'duty_reassigned',
+            message: `🔄 ${selectedReqs.length} requirement(s) reassigned from ${fromHR} to ${toHR}!`
           });
+
+          updateReassignReqsSelection();
+          await loadReassignments();
+          loadRequirements(true);
+
           setTimeout(() => {
-            closeHolidayRequestModal();
-            loadHolidays();
-            loadRequirements(true);
-            openLeaveDeskModal();
-          }, 900);
+            if (banner) banner.className = 'banner';
+          }, 3500);
         } else {
           if (banner) {
             banner.className = 'banner show err';
-            banner.textContent = json.message || 'Submission failed. Please check entries.';
+            banner.textContent = json.message || 'Failed to reassign requirements.';
           }
         }
       } catch (err) {
@@ -11028,11 +10939,12 @@ Steady Rabbit HR Team`;
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '🏖️ Submit Holiday Request';
+          submitBtn.innerHTML = '<span>🔄 Confirm & Reassign</span>';
         }
       }
     });
   }
+
 
   // Tab 10 click event listener
   const tabHrInterviews = document.getElementById('tab-hr-interviews');
@@ -11749,12 +11661,13 @@ Steady Rabbit HR Team`;
     const tabInterviewReport = document.getElementById('tab-interview-report');
     const tabHrInterviews = document.getElementById('tab-hr-interviews');
     const tabInterviewer = document.getElementById('tab-interviewer');
+    const tabReassign = document.getElementById('tab-reassign');
 
     // De-activate all tabs and views first
     document.querySelectorAll('.tabs .tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
 
-    // HR tabs: Open Requirements (01), View Requirements (02), Find Suitable Candidates (03), Shortlisted Candidates (04), Schedule & AI Interviews (05), Interview Report (06), Interviewer Workspace (07)
+    // HR tabs: Open Requirements (01), View Requirements (02), Find Suitable Candidates (03), Shortlisted Candidates (04), Schedule & AI Interviews (05), Interview Report (06), Interviewer Workspace (07), Reassign Duties (12)
     if (role === 'HR') {
       tabPending.classList.remove('hidden');
       tabList.classList.remove('hidden');
@@ -11763,6 +11676,7 @@ Steady Rabbit HR Team`;
       if (tabHrInterviews) tabHrInterviews.classList.remove('hidden');
       if (tabInterviewReport) tabInterviewReport.classList.remove('hidden');
       if (tabInterviewer) tabInterviewer.classList.remove('hidden');
+      if (tabReassign) tabReassign.classList.remove('hidden');
       tabMarketing.classList.add('hidden');
       tabCandidates.classList.add('hidden');
       if (tabSendInterview) tabSendInterview.classList.add('hidden');
@@ -11786,11 +11700,13 @@ Steady Rabbit HR Team`;
         tabList.classList.remove('hidden');
         tabFind.classList.remove('hidden');
         if (tabShortlist) tabShortlist.classList.remove('hidden');
+        if (tabReassign) tabReassign.classList.remove('hidden');
       } else {
         tabPending.classList.add('hidden');
         tabList.classList.add('hidden');
         tabFind.classList.add('hidden');
         if (tabShortlist) tabShortlist.classList.add('hidden');
+        if (tabReassign) tabReassign.classList.add('hidden');
       }
       tabMarketing.classList.add('hidden');
       tabCandidates.classList.add('hidden');
@@ -11812,6 +11728,7 @@ Steady Rabbit HR Team`;
       tabFind.classList.add('hidden');
       if (tabShortlist) tabShortlist.classList.add('hidden');
       if (tabInterviewer) tabInterviewer.classList.add('hidden');
+      if (tabReassign) tabReassign.classList.add('hidden');
       tabList.classList.remove('hidden');
       tabHrInterviews.classList.remove('hidden');
       tabInterviewReport.classList.remove('hidden');
@@ -11843,6 +11760,7 @@ Steady Rabbit HR Team`;
       if (tabHrInterviews) tabHrInterviews.classList.remove('hidden');
       if (tabInterviewReport) tabInterviewReport.classList.remove('hidden');
       if (tabInterviewer) tabInterviewer.classList.remove('hidden');
+      if (tabReassign) tabReassign.classList.remove('hidden');
       tabMarketing.classList.remove('hidden');
       tabCandidates.classList.remove('hidden');
       if (tabSendInterview) tabSendInterview.classList.remove('hidden');
@@ -11870,7 +11788,7 @@ Steady Rabbit HR Team`;
     });
   });
 
-  // ---- 11 System Tabs & Subtabs Metadata ----
+  // ---- 12 System Tabs & Subtabs Metadata ----
   const SYSTEM_TABS = [
     {
       key: 'pending',
@@ -12002,6 +11920,19 @@ Steady Rabbit HR Team`;
       subtabs: [
         { key: 'status_toggle', label: 'Status Filters (Scheduled, Feedback, Result)' },
         { key: 'status_action', label: 'Edit Remarks & Status Actions' }
+      ]
+    },
+    {
+      key: 'reassign',
+      tabId: 'tab-reassign',
+      viewId: 'view-reassign',
+      num: '12',
+      label: 'Reassign Duties',
+      category: 'Both',
+      subtabs: [
+        { key: 'reassign_view', label: 'View Active Reassignments & Coverage' },
+        { key: 'reassign_action', label: 'Reassign Requirements Between Recruiters' },
+        { key: 'reassign_return', label: 'Hand Back Duties & Track Progress' }
       ]
     }
   ];
@@ -12671,7 +12602,7 @@ Steady Rabbit HR Team`;
     loadHRInterviews();
     loadShortlistedCandidates();
     loadCustomUsers();
-    loadHolidays();
+    loadReassignments();
   }
 
   let pendingUserObject = null;

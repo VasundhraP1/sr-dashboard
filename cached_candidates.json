@@ -21,7 +21,8 @@
     "remarks": "—",
     "submitted_by": "Diksha",
     "submitted_at": "2026-10-22T19:36:49.062Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": "Client put requirement on temporary hold"
   },
   {
     "id": "cand_1792697809062_5luty",
@@ -45,7 +46,8 @@
     "remarks": "—",
     "submitted_by": "Diksha",
     "submitted_at": "2026-10-22T19:36:49.062Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697791589_gulbt",
@@ -69,7 +71,8 @@
     "remarks": "—",
     "submitted_by": "Kavipriya",
     "submitted_at": "2026-10-22T19:36:31.589Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697791589_ro3qx",
@@ -93,7 +96,8 @@
     "remarks": "—",
     "submitted_by": "Kavipriya",
     "submitted_at": "2026-10-22T19:36:31.589Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697773388_2p9sp",
@@ -117,7 +121,8 @@
     "remarks": "—",
     "submitted_by": "Kavipriya",
     "submitted_at": "2026-10-22T19:36:13.388Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697773388_9ko15",
@@ -141,7 +146,8 @@
     "remarks": "—",
     "submitted_by": "Kavipriya",
     "submitted_at": "2026-10-22T19:36:13.388Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697739247_0cglz",
@@ -165,7 +171,8 @@
     "remarks": "—",
     "submitted_by": "Diksha",
     "submitted_at": "2026-10-22T19:35:39.247Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697703820_il06w",
@@ -189,7 +196,8 @@
     "remarks": "—",
     "submitted_by": "Diksha",
     "submitted_at": "2026-10-22T19:35:03.820Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792697656610_xzf50",
@@ -213,7 +221,8 @@
     "remarks": "—",
     "submitted_by": "Diksha",
     "submitted_at": "2026-10-22T19:34:16.610Z",
-    "status": "Submitted"
+    "status": "Submitted",
+    "not_submitted_reason": ""
   },
   {
     "id": "cand_1792083886099_mt93v",
@@ -241,7 +250,8 @@
     "interview_result": "Shortlisted",
     "decision_remarks": "Impressive backend background, approved for client presentation",
     "decided_by": "Vasundhara Panwar",
-    "decided_at": "2026-10-15T17:04:46.108Z"
+    "decided_at": "2026-10-15T17:04:46.108Z",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-08-10",
@@ -315,7 +325,8 @@
     "notice_period": "—",
     "ctc": "—",
     "remarks": "—",
-    "submitted_by": "Vasundhara Panwar"
+    "submitted_by": "Vasundhara Panwar",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-08-25",
@@ -325,7 +336,8 @@
     "notice_period": "—",
     "ctc": "—",
     "remarks": "—",
-    "submitted_by": "Vasundhara Panwar"
+    "submitted_by": "Vasundhara Panwar",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-08-25",
@@ -345,7 +357,8 @@
     "notice_period": "—",
     "ctc": "—",
     "remarks": "—",
-    "submitted_by": "Vasundhara Panwar"
+    "submitted_by": "Vasundhara Panwar",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-08-30",
@@ -355,7 +368,8 @@
     "notice_period": "Immediate",
     "ctc": "3.2",
     "remarks": "—",
-    "submitted_by": "Ayushi"
+    "submitted_by": "Ayushi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-09-08",
@@ -365,7 +379,8 @@
     "notice_period": "—",
     "ctc": "—",
     "remarks": "Gaurav,rate-3lpm,yoe-16 years",
-    "submitted_by": "Shinjini"
+    "submitted_by": "Shinjini",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-09-08",
@@ -375,7 +390,8 @@
     "notice_period": "Immediate",
     "ctc": "—",
     "remarks": "Ratnesh, yoe - 13y, vendor rate - 2.8lpm ( Cloudmerge)",
-    "submitted_by": "Shinjini"
+    "submitted_by": "Shinjini",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-09-08",
@@ -385,7 +401,8 @@
     "notice_period": "Immediate",
     "ctc": "—",
     "remarks": "Asi Rabi, yoe - 9y, vendor rate - 1.8lpm ( Ganesh), IA on 25th august - selected by Srujana",
-    "submitted_by": "Shinjini"
+    "submitted_by": "Shinjini",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-09-08",
@@ -395,7 +412,8 @@
     "notice_period": "LWD- 18TH September",
     "ctc": "Current CTC- 14LPA, Expected- 19LPA",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-09-09",
@@ -405,7 +423,8 @@
     "notice_period": "Immediate",
     "ctc": "—",
     "remarks": "Vamsi, yoe - 9y, vendor rate - 2.9lpm ( Ganesh)",
-    "submitted_by": "Shinjini"
+    "submitted_by": "Shinjini",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-10-08",
@@ -415,7 +434,8 @@
     "notice_period": "30-40 Days",
     "ctc": "21LPA",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-10-13",
@@ -425,7 +445,8 @@
     "notice_period": "LWD- 1st Nov",
     "ctc": "8.5LPA, 20-22LPA",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-10-14",
@@ -435,7 +456,8 @@
     "notice_period": "LWD: 7th Jan, Buyout Available, Can join 30 days after receiving the offer",
     "ctc": "5.79LPA, 12-13LPA",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-10-14",
@@ -445,7 +467,8 @@
     "notice_period": "LWD- 20th Nov, (Hybrid)",
     "ctc": "18.13LPA, 26LPA",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   },
   {
     "date": "2026-10-15",
@@ -455,6 +478,29 @@
     "notice_period": "60 Days, Negotiable, Buyout Available",
     "ctc": "10.34LPA, 22LPA (Negotiable), Hyderabad",
     "remarks": "—",
-    "submitted_by": "Siddhi"
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
+  },
+  {
+    "date": "2026-10-25",
+    "requirement_name": "D365 F&O Technical Consultant",
+    "candidate_name": "Uday",
+    "resume_link": "https://drive.google.com/file/d/1XGxNpDdg9ONUYxq2ijSeAkv4VYnOC2Gr/view?usp=sharing",
+    "notice_period": "Immediate Joiner",
+    "ctc": "15LPA, 19LPA (Fixed), He has a 22 LPA offer in Delhi but is okay with 19 LPA for Hyderabad.",
+    "remarks": "—",
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
+  },
+  {
+    "date": "2026-10-26",
+    "requirement_name": "SAP ECT consultant",
+    "candidate_name": "Kavitha",
+    "resume_link": "https://drive.google.com/file/d/1XT3PkfiNPKrV7utR5_frxEcPLFkwUvxh/view?usp=drive_link",
+    "notice_period": "Immediate Joiner",
+    "ctc": "2LPM",
+    "remarks": "—",
+    "submitted_by": "Siddhi",
+    "not_submitted_reason": ""
   }
 ]

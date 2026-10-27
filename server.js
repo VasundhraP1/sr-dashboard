@@ -202,8 +202,9 @@ const shortlistCacheFile = path.join(__dirname, 'cached_shortlisted.json');
 const usersCacheFile = path.join(__dirname, 'cached_users.json');
 const notifCacheFile = path.join(__dirname, 'cached_notifications.json');
 const holidaysCacheFile = path.join(__dirname, 'cached_holidays.json');
+const reassignmentsCacheFile = path.join(__dirname, 'cached_reassignments.json');
 
-const ALL_TABS = ['marketing', 'find', 'list', 'shortlist', 'pending', 'candidates', 'send-interview', 'interview-status', 'interview-report', 'hr-interviews', 'interviewer'];
+const ALL_TABS = ['marketing', 'find', 'list', 'shortlist', 'pending', 'candidates', 'send-interview', 'interview-status', 'interview-report', 'hr-interviews', 'interviewer', 'reassign'];
 
 const ALL_SUBTABS = [
   'post_req',
@@ -216,7 +217,8 @@ const ALL_SUBTABS = [
   'status_toggle', 'status_action',
   'report_view',
   'interview_sched', 'interview_drive', 'interview_groq',
-  'interviewer_view', 'interviewer_decide'
+  'interviewer_view', 'interviewer_decide',
+  'reassign_view', 'reassign_action', 'reassign_return'
 ];
 
 const defaultUsersList = [
@@ -460,11 +462,51 @@ try {
   holidays = [];
 }
 
+let reassignments = [];
+try {
+  if (fs.existsSync(reassignmentsCacheFile)) {
+    reassignments = JSON.parse(fs.readFileSync(reassignmentsCacheFile, 'utf8'));
+    console.log(`[Storage] Loaded ${reassignments.length} reassignment records from disk cache.`);
+  } else if (fs.existsSync(holidaysCacheFile)) {
+    holidays.forEach(h => {
+      (h.duties || []).forEach(d => {
+        if (d.temporary_assignee) {
+          reassignments.push({
+            id: 'reassign_' + (d.req_id || Math.random().toString(36).substr(2, 6)),
+            req_id: d.req_id || '',
+            requirement_name: d.requirement_name || '',
+            original_assignee: d.original_assignee || h.hr_name,
+            temporary_assignee: d.temporary_assignee,
+            reason: h.reason || 'Duty Reassignment',
+            status: d.status === 'Returned' ? 'Returned' : 'Active',
+            reassigned_at: d.reassigned_at || h.submitted_at || new Date().toISOString(),
+            reassigned_by: 'Navya Rastogi',
+            initial_candidates_count: d.initial_candidate_count || 0,
+            notes: d.progress_notes || ''
+          });
+        }
+      });
+    });
+    fs.writeFileSync(reassignmentsCacheFile, JSON.stringify(reassignments, null, 2));
+    console.log(`[Storage] Migrated ${reassignments.length} reassignment records from legacy cache.`);
+  }
+} catch (e) {
+  reassignments = [];
+}
+
 function saveHolidaysToDisk() {
   try {
     fs.writeFileSync(holidaysCacheFile, JSON.stringify(holidays, null, 2));
   } catch (e) {
     console.warn('Could not write cached_holidays.json:', e);
+  }
+}
+
+function saveReassignmentsToDisk() {
+  try {
+    fs.writeFileSync(reassignmentsCacheFile, JSON.stringify(reassignments, null, 2));
+  } catch (e) {
+    console.warn('Could not write cached_reassignments.json:', e);
   }
 }
 
@@ -1209,322 +1251,281 @@ app.post('/mark-notifications-read', (req, res) => {
 });
 
 // ========================================================
-// Holiday & Duty Reassignment System
+// Duty Reassignment & Coverage Workspace System
 // ========================================================
 
-// 1. List holidays & live duty coverage progress
-app.get('/api/holidays', (req, res) => {
-  checkAndAutoReturnHolidays();
-
-  // Update live candidate progress for each holiday duty
-  holidays.forEach(hol => {
-    (hol.duties || []).forEach(duty => {
-      const currentCands = candidates.filter(c => 
-        (duty.req_id && c.req_id === duty.req_id) ||
-        (duty.requirement_name && c.requirement_name && c.requirement_name.toLowerCase() === duty.requirement_name.toLowerCase())
-      );
-      duty.current_candidate_count = currentCands.length;
-      duty.candidates_added_during_leave = Math.max(0, currentCands.length - (duty.initial_candidate_count || 0));
-
-      const reqItem = requirements.find(r => 
-        (duty.req_id && r.req_id === duty.req_id) || 
-        (duty.requirement_name && r.requirement === duty.requirement_name)
-      );
-      if (reqItem) {
-        duty.requirement_status = reqItem.status;
-        duty.is_covered = reqItem.is_covered;
-        duty.current_assignee = reqItem.assignee;
-      }
-    });
-  });
-  saveHolidaysToDisk();
-  res.json({ success: true, holidays: holidays });
-});
-
-// 2. Submit new holiday request & instantly notify Navya Rastogi
-app.post('/api/submit-holiday', async (req, res) => {
-  const { hr_name, hr_email, start_date, end_date, reason } = req.body;
-  if (!hr_name || !start_date || !end_date) {
-    return res.status(400).json({ success: false, message: 'HR name, start date, and return date are required.' });
-  }
-
-  // Find all active, open requirements currently assigned to this HR
-  const activeReqs = requirements.filter(r => 
-    matchAssignee(r.assignee, hr_name) &&
-    r.status !== 'Filled' &&
-    r.status !== 'Requirement Closed' &&
-    r.status !== 'Closed'
-  );
-
-  const duties = activeReqs.map(r => {
-    const candCount = candidates.filter(c => 
+// 1. List all active & past duty reassignments with live candidate progress
+app.get('/api/reassignments', (req, res) => {
+  reassignments.forEach(r => {
+    const currentCands = candidates.filter(c => 
       (r.req_id && c.req_id === r.req_id) ||
-      (c.requirement_name && c.requirement_name.toLowerCase() === (r.requirement || '').toLowerCase())
-    ).length;
-    return {
-      req_id: r.req_id || '',
-      requirement_name: r.requirement || '',
-      client_name: r.client_name || '',
-      priority: r.priority || 'Medium',
-      original_assignee: hr_name,
-      temporary_assignee: '',
-      status: 'Pending Reassignment',
-      initial_candidate_count: candCount,
-      current_candidate_count: candCount,
-      candidates_added_during_leave: 0,
-      progress_notes: '',
-      reassigned_at: null,
-      returned_at: null
-    };
+      (r.requirement_name && c.requirement_name && c.requirement_name.toLowerCase() === r.requirement_name.toLowerCase())
+    );
+    r.current_candidates_count = currentCands.length;
+    r.candidates_added_while_reassigned = Math.max(0, currentCands.length - (r.initial_candidates_count || 0));
+
+    const reqItem = requirements.find(item => 
+      (r.req_id && item.req_id === r.req_id) || 
+      (r.requirement_name && item.requirement === r.requirement_name)
+    );
+    if (reqItem) {
+      r.requirement_status = reqItem.status;
+      r.current_assignee = reqItem.assignee;
+      r.priority = reqItem.priority || 'Medium';
+      r.client_name = reqItem.client_name || '';
+      r.date = reqItem.date || '';
+    }
   });
-
-  const newHoliday = {
-    id: 'hol_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
-    hr_name: hr_name.trim(),
-    hr_email: (hr_email || '').trim() || resolveInterviewerEmail(hr_name),
-    start_date: start_date,
-    end_date: end_date,
-    reason: (reason || 'Personal Leave').trim(),
-    status: duties.length > 0 ? 'Submitted' : 'Approved (No Active Duties)',
-    submitted_at: new Date().toISOString(),
-    notified_manager: 'Navya Rastogi',
-    notified_email: 'navya.rastogi@steady-rabbit.com',
-    duties: duties
-  };
-
-  holidays.unshift(newHoliday);
-  saveHolidaysToDisk();
-
-  // 1. In-app Notification specifically for Navya Rastogi
-  const notifMsg = `🏖️ Holiday Request: ${newHoliday.hr_name} submitted leave from ${start_date} to ${end_date}. ${duties.length} open duty(ies) need temporary reassignment.`;
-  notifications.unshift({
-    id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-    type: 'holiday_request',
-    holiday_id: newHoliday.id,
-    hr_name: newHoliday.hr_name,
-    start_date: start_date,
-    end_date: end_date,
-    duties_count: duties.length,
-    recipient: 'Navya Rastogi',
-    recipient_email: 'navya.rastogi@steady-rabbit.com',
-    message: notifMsg,
-    timestamp: new Date().toISOString(),
-    read: false
-  });
-  saveNotificationsToDisk();
-
-  // 2. Email Notification to Navya Rastogi
-  sendInterviewerEmailDirect({
-    to: 'navya.rastogi@steady-rabbit.com',
-    candidateName: newHoliday.hr_name,
-    candidateEmail: newHoliday.hr_email,
-    requirementName: `Holiday Request (${start_date} to ${end_date})`,
-    scheduledDate: start_date,
-    scheduledTime: end_date,
-    round: 'Leave Reassignment',
-    interviewerName: 'Navya Rastogi',
-    meetLink: 'http://localhost:5000',
-    notes: `Reason: ${newHoliday.reason}. ${duties.length} requirement(s) requiring coverage: ${duties.map(d => d.requirement_name).join(', ')}`
-  }).catch(() => {});
-
-  console.log(`[Holiday Submitted] ${newHoliday.hr_name} (${start_date} to ${end_date}). Navya Rastogi notified!`);
-
-  res.json({
-    success: true,
-    holiday: newHoliday,
-    message: `Holiday request submitted successfully! Navya Rastogi has been notified to reassign your ${duties.length} active duties.`
-  });
+  saveReassignmentsToDisk();
+  res.json({ success: true, reassignments });
 });
 
-// 3. Reassign duties to covering HR (Actioned by Navya / Admin)
-app.post('/api/reassign-holiday-duties', (req, res) => {
-  const { holiday_id, assignments } = req.body;
-  if (!holiday_id || !Array.isArray(assignments) || assignments.length === 0) {
-    return res.status(400).json({ success: false, message: 'Holiday ID and assignments array are required.' });
+// Alias for backwards compatibility
+app.get('/api/holidays', (req, res) => {
+  res.json({ success: true, holidays: holidays, reassignments: reassignments });
+});
+
+// 2. Reassign duties between HR recruiters (regardless of holidays)
+app.post('/api/reassign-duties', (req, res) => {
+  const { from_hr, to_hr, requirements: reqList, reason, reassigned_by } = req.body;
+  const targetHR = (to_hr || '').trim();
+  if (!targetHR) {
+    return res.status(400).json({ success: false, message: 'Please select a recipient HR to reassign requirements to.' });
+  }
+  if (!Array.isArray(reqList) || reqList.length === 0) {
+    return res.status(400).json({ success: false, message: 'Please select at least one requirement to reassign.' });
   }
 
-  const hol = holidays.find(h => h.id === holiday_id);
-  if (!hol) {
-    return res.status(404).json({ success: false, message: 'Holiday record not found.' });
-  }
+  let updatedCount = 0;
+  const newRecords = [];
 
-  let reassignedCount = 0;
-
-  assignments.forEach(asgn => {
-    const tempAssignee = (asgn.temporary_assignee || '').trim();
-    if (!tempAssignee) return;
-
-    const duty = (hol.duties || []).find(d => 
-      (asgn.req_id && d.req_id === asgn.req_id) || 
-      (asgn.requirement_name && d.requirement_name === asgn.requirement_name)
-    );
+  reqList.forEach(item => {
+    const reqIdentifier = typeof item === 'string' ? item : (item.req_id || item.requirement_name);
+    const itemNotes = typeof item === 'object' ? (item.notes || '') : '';
 
     const reqItem = requirements.find(r => 
-      (asgn.req_id && r.req_id === asgn.req_id) || 
-      (asgn.requirement_name && r.requirement === asgn.requirement_name)
+      (item.req_id && r.req_id === item.req_id) ||
+      (r.req_id && r.req_id === reqIdentifier) ||
+      (r.requirement && r.requirement.toLowerCase() === reqIdentifier.toLowerCase())
     );
 
     if (reqItem) {
-      const origAssignee = duty ? duty.original_assignee : (reqItem.original_assignee || reqItem.assignee || hol.hr_name);
+      const origAssignee = (from_hr || reqItem.original_assignee || reqItem.assignee || 'Unassigned').trim();
       const currentCands = candidates.filter(c => 
         (reqItem.req_id && c.req_id === reqItem.req_id) ||
         (c.requirement_name && c.requirement_name.toLowerCase() === (reqItem.requirement || '').toLowerCase())
       ).length;
 
+      // Update requirement object
       reqItem.original_assignee = origAssignee;
-      reqItem.assignee = tempAssignee;
+      reqItem.assignee = targetHR;
       reqItem.is_covered = true;
-      reqItem.covered_by = tempAssignee;
-      reqItem.holiday_id = hol.id;
-      reqItem.holiday_start_date = hol.start_date;
-      reqItem.holiday_end_date = hol.end_date;
+      reqItem.covered_by = targetHR;
       reqItem.coverage_initial_cand_count = currentCands;
-      reqItem.coverage_notes = asgn.notes || '';
-      reqItem.covered_at = new Date().toISOString();
+      reqItem.reassignment_reason = reason || 'Duty Reassignment';
+      reqItem.reassigned_at = new Date().toISOString();
 
-      if (duty) {
-        duty.temporary_assignee = tempAssignee;
-        duty.status = 'Covering';
-        duty.progress_notes = asgn.notes || '';
-        duty.reassigned_at = new Date().toISOString();
-        duty.initial_candidate_count = currentCands;
-        duty.current_candidate_count = currentCands;
-        duty.candidates_added_during_leave = 0;
-      }
+      const record = {
+        id: 'reassign_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        req_id: reqItem.req_id || '',
+        requirement_name: reqItem.requirement || '',
+        client_name: reqItem.client_name || '',
+        original_assignee: origAssignee,
+        temporary_assignee: targetHR,
+        reason: reason || 'Duty Reassignment',
+        notes: itemNotes,
+        status: 'Active',
+        reassigned_at: new Date().toISOString(),
+        reassigned_by: reassigned_by || 'Navya Rastogi',
+        initial_candidates_count: currentCands,
+        current_candidates_count: currentCands,
+        candidates_added_while_reassigned: 0
+      };
 
-      reassignedCount++;
+      reassignments.unshift(record);
+      newRecords.push(record);
+      updatedCount++;
 
-      // In-app Notification to Covering HR
+      // In-app Notification to target HR
       notifications.unshift({
         id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-        type: 'duty_assigned_cover',
-        recipient: tempAssignee,
-        message: `📋 Duty Assignment: You have been assigned by Navya to cover "${reqItem.requirement}" while ${hol.hr_name} is on holiday until ${hol.end_date}.`,
+        type: 'duty_reassigned',
+        recipient: targetHR,
+        message: `🔄 Duty Reassigned: "${reqItem.requirement}" has been reassigned to you (previously handled by ${origAssignee}). Reason: ${reason || 'Duty Reassignment'}.`,
+        timestamp: new Date().toISOString(),
+        read: false
+      });
+
+      // Notification to Navya Rastogi
+      notifications.unshift({
+        id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        type: 'duty_reassigned_admin',
+        recipient: 'Navya Rastogi',
+        recipient_email: 'navya.rastogi@steady-rabbit.com',
+        message: `🔄 Requirement Reassigned: "${reqItem.requirement}" reassigned from ${origAssignee} to ${targetHR} by ${reassigned_by || 'Manager'}.`,
         timestamp: new Date().toISOString(),
         read: false
       });
     }
   });
 
-  hol.status = 'Reassigned';
-  hol.reassigned_at = new Date().toISOString();
-  saveHolidaysToDisk();
+  saveReassignmentsToDisk();
   saveRequirementsToDisk();
   saveNotificationsToDisk();
 
   res.json({
     success: true,
-    message: `Successfully reassigned ${reassignedCount} duty(ies) to cover while ${hol.hr_name} is on holiday.`,
-    holiday: hol
+    message: `Successfully reassigned ${updatedCount} requirement(s) to ${targetHR}.`,
+    reassignments: newRecords
   });
 });
 
-// 4. Return duties back to original HR (Automatic on date OR manual early return)
-app.post('/api/return-holiday-duties', (req, res) => {
-  const { holiday_id, req_id } = req.body;
-  if (!holiday_id && !req_id) {
-    return res.status(400).json({ success: false, message: 'Holiday ID or Requirement ID is required.' });
+// Alias for legacy calls
+app.post('/api/reassign-holiday-duties', (req, res) => {
+  const { holiday_id, assignments } = req.body;
+  const hol = holidays.find(h => h.id === holiday_id);
+  const from_hr = hol ? hol.hr_name : '';
+  const to_hr = assignments && assignments[0] ? assignments[0].temporary_assignee : '';
+  const reqList = (assignments || []).map(a => ({ req_id: a.req_id, requirement_name: a.requirement_name, notes: a.notes }));
+  
+  // Forward to /api/reassign-duties logic
+  req.body = { from_hr, to_hr, requirements: reqList, reason: 'Duty Coverage', reassigned_by: 'Navya Rastogi' };
+  return app._router.handle(req, res);
+});
+
+// 3. Return duties back to original HR
+app.post('/api/return-duties', (req, res) => {
+  const { reassignment_id, req_id } = req.body;
+  if (!reassignment_id && !req_id) {
+    return res.status(400).json({ success: false, message: 'Reassignment ID or Requirement ID is required.' });
   }
 
   let returnedCount = 0;
+  reassignments.forEach(r => {
+    if (reassignment_id && r.id !== reassignment_id) return;
+    if (req_id && r.req_id !== req_id && r.requirement_name !== req_id) return;
+    if (r.status === 'Returned') return;
 
-  holidays.forEach(hol => {
-    if (holiday_id && hol.id !== holiday_id) return;
+    const reqItem = requirements.find(item => 
+      (r.req_id && item.req_id === r.req_id) || 
+      (r.requirement_name && item.requirement === r.requirement_name)
+    );
 
-    (hol.duties || []).forEach(duty => {
-      if (req_id && duty.req_id !== req_id && duty.requirement_name !== req_id) return;
-      if (duty.status === 'Returned') return;
+    const currentCands = candidates.filter(c => 
+      (r.req_id && c.req_id === r.req_id) ||
+      (c.requirement_name && c.requirement_name.toLowerCase() === (r.requirement_name || '').toLowerCase())
+    ).length;
+    const addedDuringReassign = Math.max(0, currentCands - (r.initial_candidates_count || 0));
 
-      const reqItem = requirements.find(r => 
-        (duty.req_id && r.req_id === duty.req_id) || 
-        (duty.requirement_name && r.requirement === duty.requirement_name)
-      );
+    if (reqItem) {
+      reqItem.assignee = r.original_assignee;
+      reqItem.is_covered = false;
+      reqItem.covered_by = '';
+      reqItem.last_returned_at = new Date().toISOString();
+      reqItem.last_returned_from = r.temporary_assignee;
+      reqItem.handover_summary = `Returned to ${r.original_assignee} on ${new Date().toISOString().split('T')[0]}. Work completed while reassigned to ${r.temporary_assignee}: ${addedDuringReassign} candidate(s) added.`;
+    }
 
-      const currentCands = candidates.filter(c => 
-        (duty.req_id && c.req_id === duty.req_id) ||
-        (duty.requirement_name && c.requirement_name && c.requirement_name.toLowerCase() === duty.requirement_name.toLowerCase())
-      );
-      const initialCount = duty.initial_candidate_count || 0;
-      const addedDuringLeave = Math.max(0, currentCands.length - initialCount);
-      duty.current_candidate_count = currentCands.length;
-      duty.candidates_added_during_leave = addedDuringLeave;
+    r.status = 'Returned';
+    r.returned_at = new Date().toISOString();
+    r.candidates_added_while_reassigned = addedDuringReassign;
+    r.current_candidates_count = currentCands;
+    returnedCount++;
 
-      if (reqItem) {
-        const coveringHR = duty.temporary_assignee || reqItem.covered_by || (reqItem.assignee !== duty.original_assignee ? reqItem.assignee : '') || 'Covering HR';
-        reqItem.assignee = duty.original_assignee;
-        reqItem.is_covered = false;
-        reqItem.covered_by = '';
-        reqItem.handover_summary = `Returned to ${duty.original_assignee} on ${new Date().toISOString().split('T')[0]}. Work completed during leave by ${coveringHR}: ${addedDuringLeave} candidate(s) added.`;
-        reqItem.last_returned_at = new Date().toISOString();
-        reqItem.last_returned_from = coveringHR;
-
-        duty.status = 'Returned';
-        duty.returned_at = new Date().toISOString();
-        duty.returned_automatically = false;
-        returnedCount++;
-
-        // Notify Original HR
-        notifications.unshift({
-          id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-          type: 'holiday_return',
-          recipient: duty.original_assignee,
-          recipient_email: hol.hr_email,
-          message: `🏖️ Welcome back! Requirement "${duty.requirement_name}" has been reassigned to you. ${coveringHR} added ${addedDuringLeave} candidate(s) while you were away.`,
-          timestamp: new Date().toISOString(),
-          read: false
-        });
-
-        // Notify Covering HR
-        notifications.unshift({
-          id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-          type: 'holiday_handover',
-          recipient: coveringHR,
-          message: `📋 Handover complete: "${duty.requirement_name}" returned back to ${duty.original_assignee}. Thank you for your coverage!`,
-          timestamp: new Date().toISOString(),
-          read: false
-        });
-      }
+    // Notify Original HR
+    notifications.unshift({
+      id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      type: 'duty_returned',
+      recipient: r.original_assignee,
+      message: `↩️ Requirement Returned: "${r.requirement_name}" has been returned to you. ${r.temporary_assignee} added ${addedDuringReassign} candidate(s) while covering.`,
+      timestamp: new Date().toISOString(),
+      read: false
     });
 
-    const allReturned = (hol.duties || []).every(d => d.status === 'Returned' || d.status === 'Completed' || d.status === 'Filled During Leave');
-    if (allReturned) hol.status = 'Returned';
+    // Notify Covering HR
+    notifications.unshift({
+      id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      type: 'duty_handover',
+      recipient: r.temporary_assignee,
+      message: `✅ Handover Complete: "${r.requirement_name}" returned back to ${r.original_assignee}. Thank you for your coverage!`,
+      timestamp: new Date().toISOString(),
+      read: false
+    });
+
+    // Notify Navya Rastogi
+    notifications.unshift({
+      id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+      type: 'duty_admin_update',
+      recipient: 'Navya Rastogi',
+      recipient_email: 'navya.rastogi@steady-rabbit.com',
+      message: `↩️ Duty Returned: "${r.requirement_name}" returned back to ${r.original_assignee} (+${addedDuringReassign} candidates added by ${r.temporary_assignee}).`,
+      timestamp: new Date().toISOString(),
+      read: false
+    });
   });
 
-  saveHolidaysToDisk();
+  saveReassignmentsToDisk();
   saveRequirementsToDisk();
   saveNotificationsToDisk();
 
   res.json({
     success: true,
-    message: `Returned ${returnedCount} duty(ies) back to original HR assignee with progress tracked.`
+    message: `Successfully returned ${returnedCount} duty(ies) back to original recruiter.`
   });
 });
 
-// 5. Update duty coverage progress notes
-app.post('/api/update-duty-progress', (req, res) => {
-  const { holiday_id, req_id, notes, progress_percent } = req.body;
-  if (!holiday_id || !req_id) {
-    return res.status(400).json({ success: false, message: 'Holiday ID and Requirement ID are required.' });
+// Alias for legacy return
+app.post('/api/return-holiday-duties', (req, res) => {
+  const { req_id } = req.body;
+  req.body = { req_id };
+  // Check in reassignments
+  const found = reassignments.find(r => r.req_id === req_id || r.requirement_name === req_id);
+  if (found) {
+    found.status = 'Returned';
+    saveReassignmentsToDisk();
+  }
+  return res.json({ success: true, message: 'Duty returned successfully.' });
+});
+
+// 4. Make reassignment permanent
+app.post('/api/make-reassignment-permanent', (req, res) => {
+  const { reassignment_id, req_id } = req.body;
+  const r = reassignments.find(item => item.id === reassignment_id || (req_id && item.req_id === req_id));
+  if (!r) {
+    return res.status(404).json({ success: false, message: 'Reassignment record not found.' });
   }
 
-  const hol = holidays.find(h => h.id === holiday_id);
-  if (!hol) return res.status(404).json({ success: false, message: 'Holiday not found.' });
-
-  const duty = (hol.duties || []).find(d => d.req_id === req_id || d.requirement_name === req_id);
-  if (!duty) return res.status(404).json({ success: false, message: 'Duty not found.' });
-
-  if (notes) duty.progress_notes = notes;
-  if (progress_percent !== undefined) duty.progress_percent = parseInt(progress_percent, 10);
-
-  const reqItem = requirements.find(r => r.req_id === req_id || r.requirement === req_id);
+  const reqItem = requirements.find(item => 
+    (r.req_id && item.req_id === r.req_id) || 
+    (r.requirement_name && item.requirement === r.requirement_name)
+  );
   if (reqItem) {
-    reqItem.coverage_notes = notes || reqItem.coverage_notes;
+    reqItem.assignee = r.temporary_assignee;
+    reqItem.original_assignee = r.temporary_assignee;
+    reqItem.is_covered = false;
+    reqItem.covered_by = '';
   }
 
-  saveHolidaysToDisk();
-  saveRequirementsToDisk();
+  r.status = 'Permanent';
+  r.permanent_at = new Date().toISOString();
 
-  res.json({ success: true, duty, message: 'Progress updated.' });
+  notifications.unshift({
+    id: 'notif_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+    type: 'duty_permanent',
+    recipient: r.temporary_assignee,
+    message: `⭐ Assignment Permanent: "${r.requirement_name}" is now permanently assigned to you.`,
+    timestamp: new Date().toISOString(),
+    read: false
+  });
+
+  saveReassignmentsToDisk();
+  saveRequirementsToDisk();
+  saveNotificationsToDisk();
+
+  res.json({
+    success: true,
+    message: `Reassignment for "${r.requirement_name}" is now marked as permanent.`
+  });
 });
 
 // Secure file upload for recordings and CVs (Phase 1)
