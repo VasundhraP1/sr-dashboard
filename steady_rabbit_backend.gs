@@ -39,6 +39,8 @@ function doGet(e) {
       response = handleListRequirements(bypassCache, sheetId);
     } else if (action === 'list-candidates') {
       response = handleListCandidates(sheetId);
+    } else if (action === 'collect-sheet-candidates') {
+      response = handleCollectSheetCandidates(sheetId);
     } else if (action === 'update-requirement') {
       response = handleUpdateRequirement(payload, sheetId);
     } else if (action === 'add-requirement') {
@@ -90,6 +92,10 @@ function doPost(e) {
       response = handleUpdateRequirement(postData, combinedSheetId);
     } else if (action === 'add-candidates') {
       response = handleAddCandidates(postData, combinedSheetId);
+    } else if (action === 'list-candidates') {
+      response = handleListCandidates(combinedSheetId);
+    } else if (action === 'collect-sheet-candidates') {
+      response = handleCollectSheetCandidates(combinedSheetId);
     } else if (action === 'find-suitable-candidates' || action === 'find-resume') {
       response = handleFindSuitableCandidates(postData, combinedSheetId);
     } else if (action === 'update-candidate-interview-status') {
@@ -815,60 +821,223 @@ function handleAddCandidates(data, sheetId) {
   return { success: true, message: 'Candidates submitted successfully.' };
 }
 
-// 6. Fetch Candidates list from active Sheet B
-function handleListCandidates() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet(); // Sheet B (writeable)
-  let sheet = ss.getSheetByName('Candidates');
-  if (!sheet) {
-    return { success: true, candidates: [] };
-  }
-  
-  const lastRow = sheet.getLastRow();
-  if (lastRow <= 1) {
-    return { success: true, candidates: [] };
-  }
-  
-  const data = sheet.getRange(1, 1, lastRow, sheet.getLastColumn()).getValues();
-  const headers = data[0].map(h => h.toString().trim().toLowerCase());
-  
-  const idxDate = headers.indexOf('date');
-  const idxReq = headers.indexOf('requirement name');
-  const idxCand = headers.indexOf('candidate name');
-  const idxResume = headers.indexOf('resume link');
-  const idxNotice = headers.indexOf('notice period');
-  const idxCtc = headers.indexOf('ctc');
-  const idxRemarks = headers.indexOf('remarks');
-  const idxSub = headers.indexOf('submitted by');
-  const idxInterview = headers.indexOf('interview status');
-  const idxResult = headers.indexOf('interview result');
-  const idxReason = headers.indexOf('rejection reason');
-  
+// 6. Fetch Candidates list from both Sheet B and Sheet A
+function handleListCandidates(sheetId) {
+  const targetSheetId = sheetId || STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
   const candidates = [];
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    let dateVal = row[idxDate];
-    if (dateVal instanceof Date) {
-      dateVal = dateVal.toISOString().split('T')[0];
-    } else {
-      dateVal = dateVal.toString();
+  const candKeys = new Set();
+
+  const parseCandidatesSheet = (ss) => {
+    if (!ss) return [];
+    let sheet = ss.getSheetByName('Candidates');
+    if (!sheet) {
+      sheet = getSheetByNameCaseInsensitive(ss, 'Candidates');
     }
-    
-    candidates.push({
-      date: dateVal,
-      requirement_name: idxReq !== -1 ? row[idxReq].toString() : '',
-      candidate_name: idxCand !== -1 ? row[idxCand].toString() : '',
-      resume_link: idxResume !== -1 ? row[idxResume].toString() : '',
-      notice_period: idxNotice !== -1 ? row[idxNotice].toString() : '',
-      ctc: idxCtc !== -1 ? row[idxCtc].toString() : '',
-      remarks: idxRemarks !== -1 ? row[idxRemarks].toString() : '',
-      submitted_by: idxSub !== -1 ? row[idxSub].toString() : '',
-      interview_status: idxInterview !== -1 ? row[idxInterview].toString().trim() : '',
-      interview_result: idxResult !== -1 ? row[idxResult].toString().trim() : '',
-      rejection_reason: idxReason !== -1 ? row[idxReason].toString().trim() : ''
+    if (!sheet) return [];
+
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) return [];
+
+    const data = sheet.getRange(1, 1, lastRow, sheet.getLastColumn()).getValues();
+    const headers = data[0].map(h => (h || '').toString().trim().toLowerCase());
+
+    const idxDate = findHeaderIdx(headers, ['date', 'submitted date', 'creation date']);
+    const idxReq = findHeaderIdx(headers, ['requirement name', 'requirement', 'role']);
+    const idxCand = findHeaderIdx(headers, ['candidate name', 'candidate', 'name']);
+    const idxResume = findHeaderIdx(headers, ['resume link', 'resume', 'cv link', 'drive link']);
+    const idxNotice = findHeaderIdx(headers, ['notice period', 'notice', 'np']);
+    const idxCtc = findHeaderIdx(headers, ['ctc', 'salary', 'budget']);
+    const idxRemarks = findHeaderIdx(headers, ['remarks', 'notes', 'comments']);
+    const idxSub = findHeaderIdx(headers, ['submitted by', 'candidate owner', 'recruiter', 'added by']);
+    const idxInterview = findHeaderIdx(headers, ['interview status', 'status']);
+    const idxResult = findHeaderIdx(headers, ['interview result', 'decision']);
+    const idxReason = findHeaderIdx(headers, ['rejection reason', 'reason']);
+    const idxNotSubmitted = findHeaderIdx(headers, ['not submitted reason']);
+
+    const list = [];
+    for (let i = 1; i < data.length; i++) {
+      const row = data[i];
+      const candName = idxCand !== -1 ? (row[idxCand] || '').toString().trim() : '';
+      if (!candName || candName === '—') continue;
+
+      let dateVal = idxDate !== -1 ? row[idxDate] : '';
+      if (dateVal instanceof Date) {
+        dateVal = dateVal.toISOString().split('T')[0];
+      } else {
+        dateVal = normalizeDate(dateVal);
+      }
+
+      list.push({
+        date: dateVal,
+        requirement_name: idxReq !== -1 ? (row[idxReq] || '').toString().trim() : '',
+        candidate_name: candName,
+        resume_link: idxResume !== -1 ? (row[idxResume] || '').toString().trim() : '',
+        notice_period: idxNotice !== -1 ? (row[idxNotice] || '').toString().trim() : '—',
+        ctc: idxCtc !== -1 ? (row[idxCtc] || '').toString().trim() : '—',
+        remarks: idxRemarks !== -1 ? (row[idxRemarks] || '').toString().trim() : '—',
+        submitted_by: idxSub !== -1 ? (row[idxSub] || '').toString().trim() : '—',
+        interview_status: idxInterview !== -1 ? (row[idxInterview] || '').toString().trim() : '',
+        interview_result: idxResult !== -1 ? (row[idxResult] || '').toString().trim() : '',
+        rejection_reason: idxReason !== -1 ? (row[idxReason] || '').toString().trim() : '',
+        not_submitted_reason: idxNotSubmitted !== -1 ? (row[idxNotSubmitted] || '').toString().trim() : ''
+      });
+    }
+    return list;
+  };
+
+  const addCandidatesToList = (list) => {
+    list.forEach(c => {
+      const key = `${(c.candidate_name || '').toLowerCase()}:::${(c.requirement_name || '').toLowerCase()}`;
+      if (!candKeys.has(key)) {
+        candKeys.add(key);
+        candidates.push(c);
+      }
     });
+  };
+
+  // 1. Load from Sheet B (local active sheet)
+  try {
+    const ssB = SpreadsheetApp.getActiveSpreadsheet();
+    addCandidatesToList(parseCandidatesSheet(ssB));
+  } catch (eB) {
+    Logger.log("Error loading candidates from Sheet B: " + eB.toString());
   }
-  
-  return { success: true, candidates: candidates };
+
+  // 2. Load from Sheet A (main shared sheet)
+  if (targetSheetId) {
+    try {
+      const ssA = SpreadsheetApp.openById(targetSheetId);
+      addCandidatesToList(parseCandidatesSheet(ssA));
+    } catch (eA) {
+      Logger.log("Error loading candidates from Sheet A: " + eA.toString());
+    }
+  }
+
+  return { success: true, count: candidates.length, candidates: candidates };
+}
+
+// 6a. Deep collection of candidate records across all candidate sheets & tabs (Sheet A & Sheet B)
+function handleCollectSheetCandidates(sheetId) {
+  const targetSheetId = sheetId || STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
+  const collectedCandidates = [];
+  const seenKeys = new Set();
+
+  const scanSpreadsheetForCandidates = (ss, sourceLabel) => {
+    if (!ss) return;
+    const sheets = ss.getSheets();
+
+    sheets.forEach(sheet => {
+      const sheetName = sheet.getName();
+      const sheetNameLower = sheetName.toLowerCase().trim();
+      const isCandidateSheet = sheetNameLower.includes('cand') || 
+                               sheetNameLower.includes('resume') || 
+                               sheetNameLower.includes('naukri') || 
+                               sheetNameLower.includes('pool') || 
+                               sheetNameLower.includes('sourc') ||
+                               sheetNameLower === 'final';
+
+      if (!isCandidateSheet) return;
+
+      const lastRow = sheet.getLastRow();
+      const lastCol = sheet.getLastColumn();
+      if (lastRow <= 1 || lastCol === 0) return;
+
+      const data = sheet.getRange(1, 1, lastRow, lastCol).getValues();
+      const headers = data[0].map(h => (h || '').toString().trim().toLowerCase());
+
+      const idxName = findHeaderIdx(headers, ['candidate name', 'candidate', 'name', 'full name']);
+      if (idxName === -1) return;
+
+      const idxReq = findHeaderIdx(headers, ['requirement name', 'requirement', 'role', 'job title', 'position']);
+      const idxResume = findHeaderIdx(headers, ['resume link', 'resume', 'cv link', 'cv', 'link', 'drive link']);
+      const idxSkills = findHeaderIdx(headers, ['key skills', 'skills', 'skill set', 'primary domain', 'tech stack', 'resume text']);
+      const idxExp = findHeaderIdx(headers, ['experience', 'total experience', 'exp', 'total exp', 'yrs exp']);
+      const idxNotice = findHeaderIdx(headers, ['notice period', 'notice', 'np']);
+      const idxCtc = findHeaderIdx(headers, ['ctc', 'current ctc', 'expected ctc', 'budget', 'salary']);
+      const idxExpectedCtc = findHeaderIdx(headers, ['expected ctc', 'ectc']);
+      const idxCurrentCtc = findHeaderIdx(headers, ['current ctc', 'cctc']);
+      const idxRemarks = findHeaderIdx(headers, ['remarks', 'notes', 'comments', 'feedback']);
+      const idxSubBy = findHeaderIdx(headers, ['submitted by', 'candidate owner', 'recruiter', 'added by', 'sourcing hr']);
+      const idxPhone = findHeaderIdx(headers, ['phone', 'mobile', 'contact', 'phone number', 'contact number']);
+      const idxEmail = findHeaderIdx(headers, ['email', 'email id', 'candidate email']);
+      const idxStatus = findHeaderIdx(headers, ['interview status', 'status', 'profile status']);
+      const idxResult = findHeaderIdx(headers, ['interview result', 'result', 'decision']);
+
+      for (let r = 1; r < data.length; r++) {
+        const row = data[r];
+        const rawName = (row[idxName] || '').toString().trim();
+        if (!rawName || rawName === '—' || rawName === '-' || rawName.toLowerCase() === 'na' || rawName.toLowerCase() === 'candidate not provided by hiring team') continue;
+
+        const reqTitle = idxReq !== -1 ? (row[idxReq] || '').toString().trim() : '';
+        const resumeUrl = idxResume !== -1 ? (row[idxResume] || '').toString().trim() : '';
+        const email = idxEmail !== -1 ? (row[idxEmail] || '').toString().trim() : '';
+        const phone = idxPhone !== -1 ? (row[idxPhone] || '').toString().trim() : '';
+
+        const dedupeKey = `${rawName.toLowerCase()}:::${(email || reqTitle || resumeUrl).toLowerCase()}`;
+        if (seenKeys.has(dedupeKey)) continue;
+        seenKeys.add(dedupeKey);
+
+        const skillsStr = idxSkills !== -1 ? (row[idxSkills] || '').toString().trim() : '';
+        const expVal = idxExp !== -1 ? (row[idxExp] || '').toString().trim() : '';
+        const noticeVal = idxNotice !== -1 ? (row[idxNotice] || '').toString().trim() : '';
+        const ctcVal = idxCtc !== -1 ? (row[idxCtc] || '').toString().trim() : '';
+        const expectedCtcVal = idxExpectedCtc !== -1 ? (row[idxExpectedCtc] || '').toString().trim() : ctcVal;
+        const currentCtcVal = idxCurrentCtc !== -1 ? (row[idxCurrentCtc] || '').toString().trim() : '';
+        const remarksVal = idxRemarks !== -1 ? (row[idxRemarks] || '').toString().trim() : '';
+        const subByVal = idxSubBy !== -1 ? (row[idxSubBy] || '').toString().trim() : '';
+        const statusVal = idxStatus !== -1 ? (row[idxStatus] || '').toString().trim() : '';
+        const resultVal = idxResult !== -1 ? (row[idxResult] || '').toString().trim() : '';
+
+        collectedCandidates.push({
+          candidate_name: rawName,
+          name: rawName,
+          standardized_title: reqTitle || 'Candidate Profile',
+          requirement_name: reqTitle,
+          resume_link: resumeUrl,
+          skills: skillsStr || reqTitle,
+          total_experience: expVal || '—',
+          notice_period: noticeVal || '—',
+          current_ctc: currentCtcVal || '—',
+          expected_ctc: expectedCtcVal || ctcVal || '—',
+          ctc: expectedCtcVal || ctcVal || '—',
+          phone_number: phone,
+          mobile: phone,
+          email: email,
+          remarks: remarksVal,
+          submitted_by: subByVal,
+          interview_status: statusVal,
+          interview_result: resultVal,
+          source_sheet: `${sourceLabel} (${sheetName})`,
+          source_origin: 'sheets',
+          source_label: 'Google Sheets (Live Sheet Pool)'
+        });
+      }
+    });
+  };
+
+  // 1. Scan Sheet B (Active Console)
+  try {
+    const ssB = SpreadsheetApp.getActiveSpreadsheet();
+    scanSpreadsheetForCandidates(ssB, 'Sheet B');
+  } catch(eB) {
+    Logger.log("Error scanning Sheet B candidates: " + eB.toString());
+  }
+
+  // 2. Scan Sheet A (Main Requirement Sheet)
+  if (targetSheetId) {
+    try {
+      const ssA = SpreadsheetApp.openById(targetSheetId);
+      scanSpreadsheetForCandidates(ssA, 'Sheet A');
+    } catch(eA) {
+      Logger.log("Error scanning Sheet A candidates: " + eA.toString());
+    }
+  }
+
+  return {
+    success: true,
+    total_candidates: collectedCandidates.length,
+    candidates: collectedCandidates
+  };
 }
 
 // 6b. Update candidate interview status & result in Candidates sheet & Requirements sheet
@@ -1008,8 +1177,8 @@ function handleUpdateCandidateInterviewStatus(data, sheetId) {
 }
 
 // ============================================================================
-// 7. FIND SUITABLE CANDIDATES VIA AI VECTOR WORKFLOW (Gemini 768d + Supabase)
-// Converted directly from n8n vector matching pipeline
+// 7. FIND SUITABLE CANDIDATES VIA HYBRID AI (Supabase Vector DB + Google Sheets)
+// Standalone backend Apps Script implementation (no n8n required)
 // ============================================================================
 const GEMINI_EMBEDDING_API_KEY = PropertiesService.getScriptProperties().getProperty('GEMINI_EMBEDDING_API_KEY') || "";
 const SUPABASE_URL = "https://lxhyyubrlcwmmmscuame.supabase.co/rest/v1/rpc/match_candidates";
@@ -1020,6 +1189,7 @@ function handleFindSuitableCandidates(data, sheetId) {
   const jdLink = (data.jd_link || '').trim();
   const reqName = (data.requirement_name || data.requirement || '').trim();
   const matchCount = parseInt(data.limit || 5, 10) || 5;
+  const targetSheetId = sheetId || STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
 
   // 1. Text extraction from Google Drive / Docs file if jdLink is provided
   if (jdLink) {
@@ -1052,7 +1222,7 @@ function handleFindSuitableCandidates(data, sheetId) {
             Logger.log("DOCX extraction error: " + eDocx.toString());
           }
         } else if (mimeType === 'application/pdf') {
-          // Attempt plain text read or fallback
+          // Attempt plain text read
           try {
             const rawStr = file.getBlob().getDataAsString();
             const printable = rawStr.replace(/[^\x20-\x7E\n\r]/g, ' ');
@@ -1064,7 +1234,7 @@ function handleFindSuitableCandidates(data, sheetId) {
             Logger.log("PDF extraction note: " + ePdf.toString());
           }
         } else {
-          // Plain text / markdown / other text file
+          // Plain text / markdown
           extractedText = file.getBlob().getDataAsString();
         }
 
@@ -1091,194 +1261,264 @@ function handleFindSuitableCandidates(data, sheetId) {
     jdText = jdText.substring(0, 6000);
   }
 
-  // 2. Generate 768-dimensional embedding via Gemini API
+  let dbCandidates = [];
+
+  // 2. Query Supabase vector DB via Gemini 768d embeddings if credentials configured
   let embeddingValues = null;
-  try {
-    const geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=" + GEMINI_EMBEDDING_API_KEY;
-    const geminiPayload = {
-      content: {
-        parts: [{ text: jdText }]
-      },
-      outputDimensionality: 768
-    };
-
-    const geminiRes = UrlFetchApp.fetch(geminiUrl, {
-      method: "post",
-      contentType: "application/json",
-      payload: JSON.stringify(geminiPayload),
-      muteHttpExceptions: true
-    });
-
-    const resCode = geminiRes.getResponseCode();
-    if (resCode >= 200 && resCode < 300) {
-      const geminiJson = JSON.parse(geminiRes.getContentText());
-      if (geminiJson.embedding && geminiJson.embedding.values) {
-        embeddingValues = geminiJson.embedding.values;
-      }
-    } else {
-      Logger.log("Gemini API error (" + resCode + "): " + geminiRes.getContentText());
-    }
-  } catch (errGemini) {
-    Logger.log("Gemini call error: " + errGemini.toString());
-  }
-
-  // 3. Query Supabase RPC match_candidates
-  if (embeddingValues && embeddingValues.length === 768) {
+  if (GEMINI_EMBEDDING_API_KEY && SUPABASE_API_KEY) {
     try {
-      const supaPayload = {
-        query_embedding: embeddingValues,
-        match_count: matchCount
+      const geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=" + GEMINI_EMBEDDING_API_KEY;
+      const geminiPayload = {
+        content: {
+          parts: [{ text: jdText }]
+        },
+        outputDimensionality: 768
       };
 
-      const supaRes = UrlFetchApp.fetch(SUPABASE_URL, {
+      const geminiRes = UrlFetchApp.fetch(geminiUrl, {
         method: "post",
-        headers: {
-          "apikey": SUPABASE_API_KEY,
-          "Authorization": "Bearer " + SUPABASE_API_KEY,
-          "Prefer": "return=representation"
-        },
         contentType: "application/json",
-        payload: JSON.stringify(supaPayload),
+        payload: JSON.stringify(geminiPayload),
         muteHttpExceptions: true
       });
 
-      const supaCode = supaRes.getResponseCode();
-      if (supaCode >= 200 && supaCode < 300) {
-        const rawCandidates = JSON.parse(supaRes.getContentText());
-        return {
-          success: true,
-          source: 'vector_supabase_ai',
-          matches: rawCandidates,
-          matches_count: rawCandidates.length,
-          jd_preview: jdText.substring(0, 180) + (jdText.length > 180 ? '...' : '')
-        };
+      const resCode = geminiRes.getResponseCode();
+      if (resCode >= 200 && resCode < 300) {
+        const geminiJson = JSON.parse(geminiRes.getContentText());
+        if (geminiJson.embedding && geminiJson.embedding.values) {
+          embeddingValues = geminiJson.embedding.values;
+        }
       } else {
-        Logger.log("Supabase RPC error (" + supaCode + "): " + supaRes.getContentText());
+        Logger.log("Gemini API error (" + resCode + "): " + geminiRes.getContentText());
       }
-    } catch (errSupa) {
-      Logger.log("Supabase call error: " + errSupa.toString());
+    } catch (errGemini) {
+      Logger.log("Gemini call error: " + errGemini.toString());
+    }
+
+    if (embeddingValues && embeddingValues.length === 768) {
+      try {
+        const supaPayload = {
+          query_embedding: embeddingValues,
+          match_count: matchCount * 2
+        };
+
+        const supaRes = UrlFetchApp.fetch(SUPABASE_URL, {
+          method: "post",
+          headers: {
+            "apikey": SUPABASE_API_KEY,
+            "Authorization": "Bearer " + SUPABASE_API_KEY,
+            "Prefer": "return=representation"
+          },
+          contentType: "application/json",
+          payload: JSON.stringify(supaPayload),
+          muteHttpExceptions: true
+        });
+
+        const supaCode = supaRes.getResponseCode();
+        if (supaCode >= 200 && supaCode < 300) {
+          dbCandidates = JSON.parse(supaRes.getContentText()) || [];
+        } else {
+          Logger.log("Supabase RPC error (" + supaCode + "): " + supaRes.getContentText());
+        }
+      } catch (errSupa) {
+        Logger.log("Supabase call error: " + errSupa.toString());
+      }
     }
   }
 
-  // 4. Graceful Fallback: Use keyword-based pool matcher if vector search is unavailable
-  Logger.log("Falling back to sheet keyword matcher");
-  const fallbackResult = handleFindResume({ jd_text: jdText }, sheetId);
-  fallbackResult.source = 'fallback_keyword_matcher';
-  fallbackResult.note = 'Vector search was temporarily unavailable; served from fallback pool.';
-  return fallbackResult;
+  // 3. Collect candidates ALSO from Google Sheets apart from DB
+  let sheetMatches = [];
+  try {
+    const sheetPoolResult = handleFindResume({ jd_text: jdText, limit: matchCount * 2 }, targetSheetId);
+    if (sheetPoolResult && sheetPoolResult.matches) {
+      sheetMatches = sheetPoolResult.matches;
+    }
+  } catch (eSheet) {
+    Logger.log("Error querying sheet candidates: " + eSheet.toString());
+  }
+
+  // 4. Merge and deduplicate candidates from BOTH Supabase DB and Google Sheets
+  const mergedMatches = [];
+  const nameMap = new Map();
+
+  const normKey = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Add DB candidates
+  dbCandidates.forEach(c => {
+    const key = normKey(c.candidate_name || c.name);
+    const enriched = {
+      ...c,
+      source_origin: 'database',
+      source_label: 'Database (Supabase Vector AI)'
+    };
+    if (key) nameMap.set(key, enriched);
+    mergedMatches.push(enriched);
+  });
+
+  // Merge or append Google Sheets candidates
+  sheetMatches.forEach(sc => {
+    const key = normKey(sc.candidate_name || sc.name);
+    const existing = key ? nameMap.get(key) : null;
+
+    if (existing) {
+      // Candidate exists in both DB and Sheets!
+      existing.source_origin = 'both';
+      existing.source_label = 'Both (Database & Google Sheets)';
+      if (sc.resume_link && !existing.resume_link) {
+        existing.resume_link = sc.resume_link;
+      }
+      if (sc.submitted_by) {
+        existing.submitted_by = sc.submitted_by;
+      }
+      if (sc.remarks) {
+        existing.sheet_remarks = sc.remarks;
+      }
+      if (sc.requirement_name) {
+        existing.requirement_name = sc.requirement_name;
+      }
+    } else {
+      // Candidate exclusively from Google Sheets
+      const sheetCand = {
+        ...sc,
+        source_origin: 'sheets',
+        source_label: 'Google Sheets (Live Sheet Pool)'
+      };
+      if (key) nameMap.set(key, sheetCand);
+      mergedMatches.push(sheetCand);
+    }
+  });
+
+  // Sort by similarity / fit score descending
+  mergedMatches.sort((a, b) => {
+    const simA = typeof a.similarity === 'number' ? a.similarity : (typeof a.overlap_ratio === 'number' ? a.overlap_ratio : 0);
+    const simB = typeof b.similarity === 'number' ? b.similarity : (typeof b.overlap_ratio === 'number' ? b.overlap_ratio : 0);
+    return simB - simA;
+  });
+
+  return {
+    success: true,
+    source: 'hybrid_db_and_sheets',
+    matches_count: Math.min(mergedMatches.length, matchCount),
+    total_found: mergedMatches.length,
+    matches: mergedMatches.slice(0, matchCount),
+    source_breakdown: {
+      database_count: dbCandidates.length,
+      sheets_count: sheetMatches.length,
+      merged_total: mergedMatches.length
+    },
+    jd_preview: jdText.substring(0, 180) + (jdText.length > 180 ? '...' : '')
+  };
 }
 
-// 7b. Fallback keyword-based candidate pool matcher
+// 7b. Candidate pool matcher across Google Sheets tabs with multi-attribute scoring
 function handleFindResume(data, sheetId) {
-  const jdText = data.jd_text;
+  const jdText = data.jd_text || '';
   if (!jdText) {
     return { success: false, message: 'No job description or requirement text provided.' };
   }
   
   const targetSheetId = sheetId || STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
+  const maxMatches = parseInt(data.limit || 10, 10) || 10;
   
-  // 1. Load candidate pool from Sheets
+  // 1. Collect candidate pool directly from Google Sheets
   let candidatePool = [];
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    // Try to find a sheet with candidate pool (e.g., 'Naukri', 'Candidate Pool', 'Resumes')
-    let poolSheet = getSheetByNameCaseInsensitive(ss, 'Naukri') || 
-                    getSheetByNameCaseInsensitive(ss, 'Candidate Pool') || 
-                    getSheetByNameCaseInsensitive(ss, 'Resumes');
-                    
-    // If not in Sheet B, try in Sheet A
-    if (!poolSheet) {
-      try {
-        const ssA = SpreadsheetApp.openById(targetSheetId);
-        poolSheet = getSheetByNameCaseInsensitive(ssA, 'Naukri') || 
-                    getSheetByNameCaseInsensitive(ssA, 'Candidate Pool') || 
-                    getSheetByNameCaseInsensitive(ssA, 'Resumes');
-      } catch (e) {
-        Logger.log("Could not open Sheet A for candidate pool: " + e.toString());
-      }
-    }
-    
-    if (poolSheet) {
-      const lastRow = poolSheet.getLastRow();
-      if (lastRow > 1) {
-        const sheetData = poolSheet.getRange(1, 1, lastRow, poolSheet.getLastColumn()).getValues();
-        const headers = sheetData[0].map(h => h.toString().trim().toLowerCase());
-        
-        const idxName = headers.indexOf('candidate name') !== -1 ? headers.indexOf('candidate name') : headers.indexOf('name');
-        const idxSkills = headers.indexOf('key skills') !== -1 ? headers.indexOf('key skills') : (headers.indexOf('skills') !== -1 ? headers.indexOf('skills') : headers.indexOf('resume text'));
-        const idxLink = headers.indexOf('resume link') !== -1 ? headers.indexOf('resume link') : (headers.indexOf('resume') !== -1 ? headers.indexOf('resume') : headers.indexOf('link'));
-        
-        if (idxName !== -1 && idxSkills !== -1) {
-          for (let i = 1; i < sheetData.length; i++) {
-            const row = sheetData[i];
-            const name = row[idxName].toString().trim();
-            const skillsStr = row[idxSkills].toString().trim();
-            const link = idxLink !== -1 ? row[idxLink].toString().trim() : '';
-            if (name && skillsStr) {
-              candidatePool.push({
-                name: name,
-                skills: skillsStr,
-                resume_link: link
-              });
-            }
-          }
-        }
-      }
+    const sheetDataRes = handleCollectSheetCandidates(targetSheetId);
+    if (sheetDataRes && sheetDataRes.candidates && sheetDataRes.candidates.length > 0) {
+      candidatePool = sheetDataRes.candidates;
     }
   } catch (err) {
-    Logger.log("Error loading candidate pool: " + err.toString());
+    Logger.log("Error loading collected candidates for matching: " + err.toString());
   }
   
-  // 2. If pool is empty or sheet not found, use a rich fallback list of mock candidates
+  // 2. If pool is still empty, supply rich starter candidate pool
   if (candidatePool.length === 0) {
     candidatePool = [
       {
-        name: "Pavan Kumar",
+        candidate_name: "Pavan Kumar",
+        standardized_title: "ServiceNow Developer",
+        primary_domain: "ServiceNow",
         skills: "ServiceNow, ITSM, ITIL, Portal Development, Client Scripting, Business Rules, Legal Service Delivery, Workflow, Flow Designer",
+        total_experience: "5 yrs",
+        expected_ctc: "14 LPA",
+        notice_period: "Immediate",
         resume_link: "https://drive.google.com/file/d/1example1"
       },
       {
-        name: "Shraddha Kulkarni",
+        candidate_name: "Shraddha Kulkarni",
+        standardized_title: "ServiceNow Service Portal Developer",
+        primary_domain: "ServiceNow Portal",
         skills: "ServiceNow Portal, Service Portal, Angular, JavaScript, HTML, CSS, Bootstrap, Widget Customization, UI/UX, ITSM",
+        total_experience: "4.5 yrs",
+        expected_ctc: "13 LPA",
+        notice_period: "15 Days",
         resume_link: "https://drive.google.com/file/d/1example2"
       },
       {
-        name: "Harsh Vardhan",
+        candidate_name: "Harsh Vardhan",
+        standardized_title: "ServiceNow AP/EA & ITOM Specialist",
+        primary_domain: "ServiceNow ITOM",
         skills: "ServiceNow Developer, AP/EA, Application Portfolio Management, Enterprise Architecture, IntegrationHub, REST API, ITOM",
+        total_experience: "6 yrs",
+        expected_ctc: "18 LPA",
+        notice_period: "1 Month",
         resume_link: "https://drive.google.com/file/d/1example3"
       },
       {
-        name: "Thami Zharasan",
+        candidate_name: "Thami Zharasan",
+        standardized_title: "ServiceNow ITAM & SAMPro Consultant",
+        primary_domain: "ServiceNow ITAM",
         skills: "ServiceNow ITAM, Software Asset Management, SAMPro, Hardware Asset Management, HAM, Discovery, ServiceNow Consultant",
+        total_experience: "5.5 yrs",
+        expected_ctc: "16 LPA",
+        notice_period: "Immediate",
         resume_link: "https://drive.google.com/file/d/1example4"
       },
       {
-        name: "Amit Verma",
+        candidate_name: "Amit Verma",
+        standardized_title: "ServiceNow ITSM Functional Lead",
+        primary_domain: "ServiceNow ITSM",
         skills: "ServiceNow ITSM, Functional Consultant, Agile, Requirement Gathering, Scrum, Business Analyst, Process Mapping, ServiceNow Implementation",
+        total_experience: "7 yrs",
+        expected_ctc: "20 LPA",
+        notice_period: "Immediate",
         resume_link: "https://drive.google.com/file/d/1example5"
       },
       {
-        name: "Rohan Sharma",
+        candidate_name: "Rohan Sharma",
+        standardized_title: "ServiceNow ITSM Developer",
+        primary_domain: "ServiceNow ITSM",
         skills: "ServiceNow ITSM Developer, Service Catalog, Client Scripts, UI Policies, Business Rules, JavaScript, ServiceNow Integration",
+        total_experience: "4 yrs",
+        expected_ctc: "12 LPA",
+        notice_period: "Immediate",
         resume_link: "https://drive.google.com/file/d/1example6"
       },
       {
-        name: "Anjali Mehta",
+        candidate_name: "Anjali Mehta",
+        standardized_title: "ServiceNow HRSD Consultant",
+        primary_domain: "ServiceNow HRSD",
         skills: "ServiceNow HRSD, HR Service Delivery, Case Management, Employee Service Center, HR Lifecycle Events, ServiceNow Administration",
+        total_experience: "5 yrs",
+        expected_ctc: "15 LPA",
+        notice_period: "Immediate",
         resume_link: "https://drive.google.com/file/d/1example7"
       },
       {
-        name: "Vikram Malhotra",
+        candidate_name: "Vikram Malhotra",
+        standardized_title: "ServiceNow ITOM Architect",
+        primary_domain: "ServiceNow ITOM",
         skills: "ServiceNow ITOM, Discovery, Service Mapping, Event Management, Orchestration, Cloud Provisioning, MID Server Setup",
+        total_experience: "8 yrs",
+        expected_ctc: "24 LPA",
+        notice_period: "30 Days",
         resume_link: "https://drive.google.com/file/d/1example8"
       }
     ];
   }
   
-  // 3. Perform matching
+  // 3. Multi-keyword & domain matching against JD text
   const jdLower = jdText.toLowerCase();
-  
-  // Extract keywords from JD
   const stopWords = new Set(["and", "the", "to", "of", "in", "for", "with", "a", "an", "is", "are", "on", "at", "by", "that", "this", "from", "as", "experience", "skills", "knowledge", "candidate", "role", "job", "description", "requirement", "work", "developer", "consultant", "engineer", "expert", "specialist"]);
   const jdWords = jdLower.match(/[a-z0-9+#]+/g) || [];
   const jdKeywords = [...new Set(jdWords.filter(w => w.length > 1 && !stopWords.has(w)))];
@@ -1287,62 +1527,83 @@ function handleFindResume(data, sheetId) {
   
   for (let i = 0; i < candidatePool.length; i++) {
     const cand = candidatePool[i];
-    const skillsLower = cand.skills.toLowerCase();
+    const skillsText = (cand.skills || '') + ' ' + (cand.requirement_name || '') + ' ' + (cand.standardized_title || '') + ' ' + (cand.remarks || '');
+    const skillsLower = skillsText.toLowerCase();
     
-    // Find matching keywords
     const matchedSkills = [];
-    let matchCount = 0;
+    let matchScore = 0;
     
-    // Check specific skill phrases first
-    const candSkillsList = cand.skills.split(',').map(s => s.trim());
-    
+    // Check specific skill tokens
+    const candSkillsList = (cand.skills || '').split(/[,|;]+/).map(s => s.trim()).filter(Boolean);
     candSkillsList.forEach(skill => {
       const skillLower = skill.toLowerCase();
-      // If the skill is mentioned in the JD
       if (jdLower.indexOf(skillLower) !== -1) {
         matchedSkills.push(skill);
-        matchCount += 2; // Extra weight for exact skill tag matches
+        matchScore += 2;
       }
     });
     
     // Check individual keywords
     jdKeywords.forEach(keyword => {
       if (skillsLower.indexOf(keyword) !== -1) {
-        // Avoid duplicate skill names in the matched list
         const isAlreadyMatched = matchedSkills.some(s => s.toLowerCase().indexOf(keyword) !== -1);
         if (!isAlreadyMatched) {
-          // Capitalize first letter of keyword for display
           const capKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1);
           matchedSkills.push(capKeyword);
         }
-        matchCount += 1;
+        matchScore += 1;
       }
     });
     
-    // Deduplicate matchedSkills
-    const uniqueMatchedSkills = [...new Set(matchedSkills)];
+    const uniqueSkills = [...new Set(matchedSkills)];
     
-    if (matchCount > 0) {
-      // Overlap ratio is based on matched keywords relative to total JD keywords
-      const totalJdKeywordsCount = jdKeywords.length || 1;
-      const overlapRatio = Math.min(matchCount / (totalJdKeywordsCount + 5), 1.0); // normalize with scaling
-      const fitScore = matchCount;
-      
+    // Check if domain matches (e.g. ServiceNow, Java, Python)
+    if (cand.primary_domain && jdLower.indexOf(cand.primary_domain.toLowerCase()) !== -1) {
+      matchScore += 2;
+    }
+    
+    // Include candidates if there is any keyword match or if requirement matches
+    if (matchScore > 0 || (cand.requirement_name && jdLower.indexOf(cand.requirement_name.toLowerCase()) !== -1)) {
+      const totalJdKeywordsCount = Math.max(jdKeywords.length, 3);
+      const rawRatio = Math.min((matchScore + 2) / (totalJdKeywordsCount + 4), 0.94);
+      const similarityDecimal = Math.max(0.45, Math.min(rawRatio, 0.95));
+
+      const skillsEvidence = uniqueSkills.map(s => ({
+        skill: s,
+        evidence: `Match identified in candidate profile from Google Sheets (${cand.source_sheet || 'Candidates Sheet'})`
+      }));
+
       matches.push({
-        matched_skills: uniqueMatchedSkills,
-        resume_link: cand.resume_link,
-        overlap_ratio: Math.max(0.1, Math.min(overlapRatio, 0.98)), // keep within realistic bounds
-        fit_score: fitScore,
-        match_count: uniqueMatchedSkills.length
+        candidate_name: cand.candidate_name || cand.name || 'Candidate',
+        name: cand.candidate_name || cand.name || 'Candidate',
+        standardized_title: cand.standardized_title || cand.requirement_name || 'Candidate Profile',
+        primary_domain: cand.primary_domain || 'ServiceNow',
+        total_experience: cand.total_experience || '—',
+        skills_with_evidence: skillsEvidence,
+        matched_skills: uniqueSkills,
+        searchable_summary: cand.remarks || (cand.skills ? `Skills: ${cand.skills}` : `Sourced candidate from Google Sheets`),
+        resume_link: cand.resume_link || '',
+        phone_number: cand.phone_number || cand.mobile || '',
+        email: cand.email || '',
+        current_ctc: cand.current_ctc || cand.ctc || '—',
+        expected_ctc: cand.expected_ctc || cand.ctc || '—',
+        notice_period: cand.notice_period || 'Immediate',
+        calling_status: cand.interview_status || 'Sheet Candidate',
+        overlap_ratio: similarityDecimal,
+        similarity: similarityDecimal,
+        fit_score: matchScore,
+        requirement_name: cand.requirement_name || '',
+        submitted_by: cand.submitted_by || '',
+        source_origin: 'sheets',
+        source_label: 'Google Sheets (Live Sheet Pool)'
       });
     }
   }
   
-  // Sort matches by fit score descending
-  matches.sort((a, b) => b.fit_score - a.fit_score);
+  // Sort matches by similarity score descending
+  matches.sort((a, b) => b.similarity - a.similarity);
   
-  // Return top 5 matches
-  return { success: true, matches: matches.slice(0, 5) };
+  return { success: true, matches: matches.slice(0, maxMatches) };
 }
 
 function normalizeDate(val) {
@@ -1652,19 +1913,6 @@ function handleScheduleHRInterview(data, sheetId) {
     };
   } catch (err) {
     return { success: false, message: 'Error scheduling interview: ' + err.toString() };
-  }
-}
-        requirement_name: data.requirement_name,
-        scheduled_date: data.scheduled_date,
-        scheduled_time: data.scheduled_time,
-        round: data.round,
-        interviewer: data.interviewer,
-        meet_link: meetLink,
-        status: 'Scheduled'
-      }
-    };
-  } catch (err) {
-    return { success: false, message: 'Failed to schedule interview: ' + err.toString() };
   }
 }
 

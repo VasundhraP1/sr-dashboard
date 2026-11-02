@@ -3061,7 +3061,15 @@
               <span>Client: —</span><span>Priority: —</span><span>Status: —</span>
             </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+          <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; color: var(--muted); font-family: var(--mono); margin: 0; font-weight: 600;">Source:</label>
+              <select id="find-source-filter" style="font-size: 11.5px; padding: 5px 8px; background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 6px;">
+                <option value="all" selected>All Sources (DB + Sheets)</option>
+                <option value="database">💾 Vector DB Only</option>
+                <option value="sheets">📊 Google Sheets Only</option>
+              </select>
+            </div>
             <div style="display: flex; align-items: center; gap: 6px;">
               <label style="font-size: 11px; color: var(--muted); font-family: var(--mono); margin: 0; font-weight: 600;">Matches:</label>
               <select id="find-match-limit" style="font-size: 11.5px; padding: 5px 8px; min-width: 55px; background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 6px;">
@@ -3070,6 +3078,9 @@
                 <option value="3">3</option>
               </select>
             </div>
+            <button class="btn secondary sm" id="btn-collect-sheets-cands" type="button" style="font-size: 11.5px; padding: 7px 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;" title="Collect and sync all candidates from Google Sheets">
+              📊 Collect from Sheets
+            </button>
             <button class="btn" id="btn-run-match" type="button" style="font-size: 12.5px; padding: 9px 18px; font-weight: 700;" disabled>
               ⚡ Fetch Suitable Resumes
             </button>
@@ -4727,7 +4738,7 @@
     }
   }
 
-  // In-browser Mock Database using LocalStorage (works completely serverless/without n8n)
+  // In-browser Mock Database using LocalStorage (works completely offline/serverless)
   function handleLocalMockRequest(path, options) {
     const action = path.replace(/^\//, '');
     let body = {};
@@ -5568,7 +5579,7 @@
           </button>
         </div>
         <div style="font-size:11px; font-family:var(--mono); color:var(--muted); background:var(--panel); padding:4px 8px; border-radius:4px; border:1px solid var(--line);">
-          🧠 ${currentMatchedSource === 'vector_supabase_ai' ? 'Gemini 768d + Supabase Vector Engine' : 'Candidate Pool Matcher'}
+          🧠 ${currentMatchedSource === 'hybrid_db_and_sheets' ? '⚡ Hybrid Matcher: Supabase Vector DB + Google Sheets Live Pool' : (currentMatchedSource === 'vector_supabase_ai' ? 'Gemini 768d + Supabase Vector Engine' : 'Google Sheets Live Candidate Matcher')}
         </div>
       </div>
 
@@ -5602,10 +5613,16 @@
               <div class="suitable-cand-card">
                 <div class="suitable-cand-header">
                   <div>
-                    <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                       <span style="font-family:var(--mono); font-size:11px; color:var(--muted); font-weight:700;">#${i+1}</span>
                       <span class="suitable-cand-name">${escapeHtml(candidateName)}</span>
                       ${c.primary_domain ? `<span style="font-size:10px; background:var(--panel-2); border:1px solid var(--line); padding:2px 6px; border-radius:4px; color:var(--muted);">${escapeHtml(c.primary_domain)}</span>` : ''}
+                      ${c.source_origin === 'database' 
+                        ? `<span style="font-size:10px; font-weight:700; background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); padding:2px 7px; border-radius:12px;">💾 Vector DB</span>`
+                        : (c.source_origin === 'sheets'
+                          ? `<span style="font-size:10px; font-weight:700; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); padding:2px 7px; border-radius:12px;">📊 Google Sheets</span>`
+                          : `<span style="font-size:10px; font-weight:700; background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); padding:2px 7px; border-radius:12px;">⚡ DB &amp; Sheets</span>`)
+                      }
                     </div>
                     <div class="suitable-cand-title">${escapeHtml(candTitle)}</div>
                   </div>
@@ -5630,6 +5647,8 @@
                   <div class="suitable-info-chip">Expected CTC: <b>${escapeHtml(ctcText)}</b></div>
                   <div class="suitable-info-chip">Notice Period: <b>${escapeHtml(noticeText)}</b></div>
                   ${phoneText ? `<div class="suitable-info-chip">Phone: <b>${escapeHtml(phoneText)}</b></div>` : ''}
+                  ${c.submitted_by ? `<div class="suitable-info-chip">Sourced by: <b>${escapeHtml(c.submitted_by)}</b></div>` : ''}
+                  ${c.source_sheet ? `<div class="suitable-info-chip">Sheet: <b>${escapeHtml(c.source_sheet)}</b></div>` : ''}
                 </div>
 
                 ${skillsList.length ? `
@@ -5788,20 +5807,24 @@
       resultsContainer.innerHTML = `
         <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:32px 20px; text-align:center;">
           <div style="font-size:28px; margin-bottom:12px; display:inline-block;">⚡</div>
-          <div style="font-weight:700; font-size:15px; color:var(--text); margin-bottom:6px;">Finding AI-Matched Candidates</div>
-          <div style="font-size:12px; color:var(--muted); max-width:440px; margin:0 auto; line-height:1.5;">
-            Extracting JD content → Computing 768d Gemini embeddings → Vector distance search in Supabase candidate database for <b>${escapeHtml(reqTitle)}</b>...
+          <div style="font-weight:700; font-size:15px; color:var(--text); margin-bottom:6px;">Finding Matched Candidates (DB + Sheets)</div>
+          <div style="font-size:12px; color:var(--muted); max-width:460px; margin:0 auto; line-height:1.5;">
+            Extracting JD content → Computing 768d Gemini embeddings in Supabase DB + Collecting candidates from Google Sheets for <b>${escapeHtml(reqTitle)}</b>...
           </div>
         </div>
       `;
     }
 
     try {
+      const sourceFilterEl = document.getElementById('find-source-filter');
+      const sourceFilterVal = sourceFilterEl ? sourceFilterEl.value : 'all';
+
       const payload = {
         requirement_name: req ? req.requirement : (customParams.requirement_name || ''),
         jd_link: req ? req.jd_link : (customParams.jd_link || ''),
         jd_text: customParams ? customParams.jd_text : '',
-        limit: limit
+        limit: limit,
+        source_filter: sourceFilterVal
       };
 
       const res = await apiFetch('/find-suitable-candidates', {
@@ -5866,6 +5889,41 @@
   if (btnRunMatch) {
     btnRunMatch.addEventListener('click', () => {
       if (activeFindRequirement) {
+        executeFindSuitable(activeFindRequirement);
+      }
+    });
+  }
+
+  const btnCollectSheetsCands = document.getElementById('btn-collect-sheets-cands');
+  if (btnCollectSheetsCands) {
+    btnCollectSheetsCands.addEventListener('click', async () => {
+      btnCollectSheetsCands.disabled = true;
+      btnCollectSheetsCands.innerHTML = '⏳ Collecting...';
+      try {
+        const res = await apiFetch('/api/collect-candidates-from-sheets', { method: 'POST' });
+        const json = await res.json();
+        if (json.success) {
+          showToast(`✅ Collected ${json.collected_count || 0} candidates from Google Sheets! (${json.new_added || 0} new)`, 'success');
+          loadCandidates(true);
+          if (activeFindRequirement) {
+            executeFindSuitable(activeFindRequirement);
+          }
+        } else {
+          showToast(`⚠️ Sheet collection warning: ${json.message || 'Failed to collect'}`, 'error');
+        }
+      } catch (err) {
+        showToast(`❌ Connection error: ${err.message}`, 'error');
+      } finally {
+        btnCollectSheetsCands.disabled = false;
+        btnCollectSheetsCands.innerHTML = '📊 Collect from Sheets';
+      }
+    });
+  }
+
+  const findSourceFilter = document.getElementById('find-source-filter');
+  if (findSourceFilter) {
+    findSourceFilter.addEventListener('change', () => {
+      if (activeFindRequirement && currentMatchedCandidates && currentMatchedCandidates.length > 0) {
         executeFindSuitable(activeFindRequirement);
       }
     });

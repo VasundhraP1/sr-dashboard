@@ -1,5 +1,2865 @@
 [
   {
+    "id": "notif_1793167625477_slfs4",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow QA Testing Automation using ATF\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_rdcxi",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow QA Testing Automation using ATF\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_wz2bf",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow QA Testing Automation using ATF\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_ui5g5",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, ITOM +CMDB\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_e1418",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, ITOM +CMDB\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_gsavh",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, ITOM +CMDB\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_md2nb",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer - Modernization Engineer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_4l60l",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer - Modernization Engineer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_7az2x",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer - Modernization Engineer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_sh9ky",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow (SNOW) Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_8jqtf",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow (SNOW) Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_ttyja",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow (SNOW) Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_wxts2",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Project Manager\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_hz6j4",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Project Manager\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_0n9ju",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Project Manager\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_wf3io",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow CPQ – Business Analyst\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_r04hd",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow CPQ – Business Analyst\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_o0wsd",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow CPQ – Business Analyst\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_f0ocb",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow (SNOW) Tester – Manual + Automation\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_b4jnx",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow (SNOW) Tester – Manual + Automation\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_69r94",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow (SNOW) Tester – Manual + Automation\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_at6j3",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"GRC/IRM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_zyei9",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"GRC/IRM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_n85qh",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"GRC/IRM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_cvewg",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Validation Engineer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_ra3f8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Validation Engineer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625477_yehoe",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Validation Engineer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.477Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_d2yo8",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_yvoa3",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_oubcm",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_di8mu",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Architect ITOM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_1i7p7",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Architect ITOM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_wyub0",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Architect ITOM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_85pk1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow SPM Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_0k1kh",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow SPM Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_opomg",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow SPM Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_cvjpu",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITSM Functional\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_5pdxv",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITSM Functional\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_8amtr",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITSM Functional\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_6ee5t",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow CSDM Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_6hfpd",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow CSDM Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_7l24p",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow CSDM Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_uw6sl",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow BA\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_1qyvx",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow BA\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_jsq79",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow BA\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_vvvbz",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow AP/EA Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_6e7qf",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow AP/EA Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_a1uk9",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow AP/EA Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_w57ga",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Portal Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_169vk",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Portal Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_77d9u",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Portal Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_uf94x",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Legal Service Delivery\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_9ik8n",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Legal Service Delivery\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_bpqoa",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Legal Service Delivery\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ioql7",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow NowAssist Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_yb763",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow NowAssist Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_avfm6",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow NowAssist Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_fbxl3",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow GRC / IRM – Lead Solution Advisor\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_7j4h9",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow GRC / IRM – Lead Solution Advisor\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_tmjow",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow GRC / IRM – Lead Solution Advisor\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_cvz68",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Sr. SAM Pro Consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_0t3e9",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Sr. SAM Pro Consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_hzb6m",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Sr. SAM Pro Consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_w2aet",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_id6dn",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_qozjq",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Senior Business Process Consultant with ITSM, CSM and CMDB expertise.\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_s70a8",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Sitefinity consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_a18xg",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Sitefinity consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_cgrwd",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Sitefinity consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_3da9i",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ATF (4-5 Yrs) 3 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_qqk8m",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ATF (4-5 Yrs) 3 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_i6ko2",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ATF (4-5 Yrs) 3 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_4wlky",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITOM Developer (6-10 Yrs) 3 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_xqwkc",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITOM Developer (6-10 Yrs) 3 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_jz9ht",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITOM Developer (6-10 Yrs) 3 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_m2117",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow HRSD Developer (5-12 Yrs) 1 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_5o7o1",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow HRSD Developer (5-12 Yrs) 1 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_23wba",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow HRSD Developer (5-12 Yrs) 1 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_kdn81",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow CSM Developer (5-12 Yrs) 1 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_6l4h8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow CSM Developer (5-12 Yrs) 1 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_zocvn",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow CSM Developer (5-12 Yrs) 1 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_sp3ug",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow GRC Developer (5 YRS ) 2 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_efhbd",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow GRC Developer (5 YRS ) 2 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_13wmk",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow GRC Developer (5 YRS ) 2 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_hyf2s",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITSM Lead Developer (8 YRS ) 3 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_blrcj",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITSM Lead Developer (8 YRS ) 3 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_bc7a9",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITSM Lead Developer (8 YRS ) 3 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_hjzso",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITSM Developer (4-8 Yrs) 1 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_stbtg",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITSM Developer (4-8 Yrs) 1 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_x6n12",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITSM Developer (4-8 Yrs) 1 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_rhh4x",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITSM Developer (5-8 Yrs) 4 Position\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_43rar",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITSM Developer (5-8 Yrs) 4 Position\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_65afh",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITSM Developer (5-8 Yrs) 4 Position\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_r09ni",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITOM Lead Developer (8 YRS) 1 P\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_z5fjg",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITOM Lead Developer (8 YRS) 1 P\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_mnnwo",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITOM Lead Developer (8 YRS) 1 P\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_wnrfu",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Senior Developer-HSE 5+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_a3jza",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Senior Developer-HSE 5+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_cc28f",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Senior Developer-HSE 5+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_b0o5s",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer-HSE 5+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_i0wmk",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer-HSE 5+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_0mmr6",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer-HSE 5+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_sps23",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Senior Technical Consultant – IT Workspace Service Delivery (WSD) 7+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_pyqnv",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Senior Technical Consultant – IT Workspace Service Delivery (WSD) 7+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ia1dp",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Senior Technical Consultant – IT Workspace Service Delivery (WSD) 7+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_m27i4",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Developer-WSD 5+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_0aqrr",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Developer-WSD 5+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_kw0gf",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Developer-WSD 5+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_uyxny",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Servicenow Developer 5+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_nh1bn",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Servicenow Developer 5+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_fntfb",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Servicenow Developer 5+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ynmxv",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ATF 5+ years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_9t4ro",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ATF 5+ years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_e7lnc",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ATF 5+ years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_br956",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITAM( SAM, HAM) Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_laktx",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITAM( SAM, HAM) Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_nuqi7",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITAM( SAM, HAM) Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_8ntqn",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Service Management & Field Service Management\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_cu20q",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Service Management & Field Service Management\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_66o2c",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Service Management & Field Service Management\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_snf79",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Trusted Network Inventory – TNI\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ncujl",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Trusted Network Inventory – TNI\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_dy757",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Trusted Network Inventory – TNI\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_q92ou",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Service Order Management – SOM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_9zqu8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Service Order Management – SOM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_wngl2",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Service Order Management – SOM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_a0t1i",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Service Now Admin and Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_xbj9c",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Service Now Admin and Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_6zv0l",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Service Now Admin and Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_edn7p",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Admin\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_hfonu",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Admin\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_c6671",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Admin\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_inu42",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer – Offshore\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_f8p3p",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer – Offshore\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ytjjf",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer – Offshore\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_sr7ev",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Tester – Offshore\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_qmlzc",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Tester – Offshore\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_15vjz",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Tester – Offshore\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_nfrn3",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Service Desk & Administrator\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_ob30q",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Service Desk & Administrator\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_nfqh4",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Service Desk & Administrator\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_3edfz",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"servicenow trainer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_oma47",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"servicenow trainer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_7s4pw",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"servicenow trainer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_xqdg9",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer – Now Assist & Virtual Agent (GenAI)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_rwwjy",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer – Now Assist & Virtual Agent (GenAI)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_zh05f",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer – Now Assist & Virtual Agent (GenAI)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_gqvk8",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Senior Consultant – ServiceNow SPM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_jfea8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Senior Consultant – ServiceNow SPM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_1najv",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Senior Consultant – ServiceNow SPM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_27pxt",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Technical Architect\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_28tei",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Technical Architect\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_dx73w",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Technical Architect\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625476_oz31e",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow AI(Now assist and Intelligence)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.476Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_pamet",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow AI(Now assist and Intelligence)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ynefi",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow AI(Now assist and Intelligence)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_yzwto",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"HRSD\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_qoaxw",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"HRSD\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_hlrzj",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"HRSD\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_85d8m",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, CSM, FSO\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_w2lcn",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, CSM, FSO\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_5x3wz",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, CSM, FSO\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_h2vbs",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ATF\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_7h2fm",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ATF\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_eqrg4",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ATF\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_yxa97",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, ITOM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_zn09t",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, ITOM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_0ye1s",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, ITOM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_vyr41",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, CSM, Scripting\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_hn6dh",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, CSM, Scripting\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_d7gcs",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, CSM, Scripting\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_3bgzy",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, CSM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_9axuc",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, CSM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_t58q2",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, CSM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_dc6r4",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM, CMDB, ITOM, Integration\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_awpdd",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM, CMDB, ITOM, Integration\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_75o5r",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM, CMDB, ITOM, Integration\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_r2gc1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"UI Builder\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_dmncx",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"UI Builder\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_xttyo",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"UI Builder\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_7qb8m",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_0y0i8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_72g9p",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_n84mg",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Senior ServiceNow Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_cglcx",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Senior ServiceNow Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_micuf",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Senior ServiceNow Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_xv464",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Principal Business Analyst\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_6pih6",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Principal Business Analyst\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_9ncoc",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Principal Business Analyst\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_oa71j",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow AI Architect - On Hands ( Core technical)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_zbrqh",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow AI Architect - On Hands ( Core technical)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_4i1e4",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow AI Architect - On Hands ( Core technical)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ofopb",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Full Stack Developer (JS + React)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_tahdh",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Full Stack Developer (JS + React)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_6styc",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Full Stack Developer (JS + React)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_9usu1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Technical Lead (ITOM & Workspace Service Delivery)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_5oxg8",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Technical Lead (ITOM & Workspace Service Delivery)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_acvg0",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Technical Lead (ITOM & Workspace Service Delivery)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_2mjc1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Technical Delivery Manager - GRC\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_jbw9m",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Technical Delivery Manager - GRC\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_tbjw4",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Technical Delivery Manager - GRC\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_c93ym",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Cyber Tech Risk – ServiceNow SecOps\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_0rrgi",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Cyber Tech Risk – ServiceNow SecOps\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_sxhfa",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Cyber Tech Risk – ServiceNow SecOps\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ebj1l",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow GRC/IRM Consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_185vi",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow GRC/IRM Consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_aip9w",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow GRC/IRM Consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_j3rwj",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Aravo GRC – Consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ed6oa",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Aravo GRC – Consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ws1pl",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Aravo GRC – Consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_ygmuq",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"JD_SNOW_IRM_Specialist_Mid\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_gnszc",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"JD_SNOW_IRM_Specialist_Mid\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_tgyax",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"JD_SNOW_IRM_Specialist_Mid\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_cbjwt",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW_IRM_Platform_Support_Mid\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_1gab7",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW_IRM_Platform_Support_Mid\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_07wv8",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW_IRM_Platform_Support_Mid\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_xmdcc",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW SecOps\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_osauq",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW SecOps\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_teqev",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW SecOps\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_bqip9",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"GRC/IRM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_zvmio",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"GRC/IRM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_llz8y",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"GRC/IRM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_367ok",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"AI Engineer with SNOW functional knowledge [Now Assist mandatory]\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_9kg8y",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"AI Engineer with SNOW functional knowledge [Now Assist mandatory]\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_g7is4",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"AI Engineer with SNOW functional knowledge [Now Assist mandatory]\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_g7hev",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Change Management – Designer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_x75hb",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Change Management – Designer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_hkpjq",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Change Management – Designer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_1az53",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"CMDB Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_139la",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"CMDB Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_3dv00",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"CMDB Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_dzwrk",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITOM – Discovery & Service Mapping & integrations with CMDB experience\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_1o3hc",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITOM – Discovery & Service Mapping & integrations with CMDB experience\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625475_iahca",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITOM – Discovery & Service Mapping & integrations with CMDB experience\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.475Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_1pn2k",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer Lead (Integrations & HRSD)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_9s7qe",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer Lead (Integrations & HRSD)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_36z1e",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer Lead (Integrations & HRSD)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_j299z",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer Lead (Service Portal & HRSD)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_6o5ny",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer Lead (Service Portal & HRSD)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_wn9yp",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer Lead (Service Portal & HRSD)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_cv7ap",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Sr. ServiceNow ITOM developer\" reassigned back to Afsheen (+4 candidates added by Richa).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_dkls4",
+    "type": "holiday_handover",
+    "recipient": "Richa",
+    "message": "📋 Handover complete: \"Sr. ServiceNow ITOM developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_1vpre",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Sr. ServiceNow ITOM developer\" has been automatically reassigned back to you. Richa submitted 4 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_y6zun",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow HCLS Consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_yrhu9",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow HCLS Consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_cvpdl",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow HCLS Consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_1q182",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Architect ITSM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ptx4u",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Architect ITSM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_d3cng",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Architect ITSM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_7znfs",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"AI Delivery Platform Administrator\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_86uf1",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"AI Delivery Platform Administrator\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ldyto",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"AI Delivery Platform Administrator\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ybihh",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Sr. Delivery Acceleration AI Engineer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ec9r1",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Sr. Delivery Acceleration AI Engineer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_3tg8m",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Sr. Delivery Acceleration AI Engineer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ldl15",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow CMDB & ITSM Lead\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_2omyi",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow CMDB & ITSM Lead\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_m9izk",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow CMDB & ITSM Lead\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_un2js",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow - NowAssist Senior Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_iornv",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow - NowAssist Senior Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_c193r",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow - NowAssist Senior Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_k4gvv",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow APM Lead\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_kfio9",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow APM Lead\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_l8aob",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow APM Lead\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_nujsa",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW - AI Developer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ngrc5",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW - AI Developer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_6eaae",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW - AI Developer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_zqge7",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Servicenow FSO Banking Consultant\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_7p6mn",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Servicenow FSO Banking Consultant\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_1nc1f",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Servicenow FSO Banking Consultant\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_cxlz1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Dev Ops-NonBGV\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_8zkwo",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Dev Ops-NonBGV\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_aykri",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Dev Ops-NonBGV\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_0wub6",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Developer (UK Location)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_y1dxs",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Developer (UK Location)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_2c34t",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Developer (UK Location)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_x82u1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Designer\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_e6amv",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Designer\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_yd0ha",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Designer\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_b1w16",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Full Stack Engineer — ServiceNow Product Developer\nRel Exp : 5+ yrs\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_3kh7j",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Full Stack Engineer — ServiceNow Product Developer\nRel Exp : 5+ yrs\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_jxk7a",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Full Stack Engineer — ServiceNow Product Developer\nRel Exp : 5+ yrs\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_75zth",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW Sr Developer/ Configuration Specialist\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_nu8t5",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW Sr Developer/ Configuration Specialist\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_9c370",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW Sr Developer/ Configuration Specialist\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_zfxgz",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW Lead Architect / Implementation Lead\n(5-8 yrs)\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_2vbyp",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW Lead Architect / Implementation Lead\n(5-8 yrs)\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_9kx9j",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW Lead Architect / Implementation Lead\n(5-8 yrs)\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_0yi0x",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow ITSM, Integration and Domain Separation\n        \nExp:5+| Rel Exp: 2-3 yrs\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_jeo0s",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow ITSM, Integration and Domain Separation\n        \nExp:5+| Rel Exp: 2-3 yrs\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_y5k45",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow ITSM, Integration and Domain Separation\n        \nExp:5+| Rel Exp: 2-3 yrs\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_s4ivb",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"SNOW SecOps\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_cny9c",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"SNOW SecOps\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_xuzo1",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"SNOW SecOps\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_wg2p7",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow SPM Architect\nExperience: 10–15 Years\nRel .Exp: 5+ Yrs SPM\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_0bxz5",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow SPM Architect\nExperience: 10–15 Years\nRel .Exp: 5+ Yrs SPM\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_39ocl",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow SPM Architect\nExperience: 10–15 Years\nRel .Exp: 5+ Yrs SPM\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_dx2bl",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"GRC/IRM\nExp : 3+ \nRel Exp: 3+\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_ia12l",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"GRC/IRM\nExp : 3+ \nRel Exp: 3+\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_8h5lh",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"GRC/IRM\nExp : 3+ \nRel Exp: 3+\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_hpq1g",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"GRC/IRM\nExp : 5+ \nRel Exp: 4+\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_e7rhm",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"GRC/IRM\nExp : 5+ \nRel Exp: 4+\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_g5j7d",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"GRC/IRM\nExp : 5+ \nRel Exp: 4+\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_rtmb1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow RPA  - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_5sc3o",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow RPA  - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_d2mtl",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow RPA  - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_so6ll",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Automation Architect  - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_tuv5f",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Automation Architect  - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_8brwi",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Automation Architect  - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_nqjsb",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Architect  - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_6su68",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Architect  - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_fbkqh",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Architect  - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_x46hh",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITOM Process Owner (SM019)  - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_o1hah",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITOM Process Owner (SM019)  - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_gb9ds",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITOM Process Owner (SM019)  - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_5oswd",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Vulnerability Management – SecOps  - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_qor0h",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Vulnerability Management – SecOps  - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625474_fmm2v",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Vulnerability Management – SecOps  - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.474Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_a1aji",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"Product Owner - GRC / CSM - 8-12 years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_a9l9o",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"Product Owner - GRC / CSM - 8-12 years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_15w0e",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"Product Owner - GRC / CSM - 8-12 years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_dvxvh",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Technical Delivery Manager (TDM)\nExp: 10+ years\nRel : 5+ Years\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_qt03s",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Technical Delivery Manager (TDM)\nExp: 10+ years\nRel : 5+ Years\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_b8zoo",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Technical Delivery Manager (TDM)\nExp: 10+ years\nRel : 5+ Years\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_zi2h1",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ITSM Platform architect / Developer\nExp : 8+ yrs\nRel : 8+ yrs\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_t0dok",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ITSM Platform architect / Developer\nExp : 8+ yrs\nRel : 8+ yrs\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_gns40",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ITSM Platform architect / Developer\nExp : 8+ yrs\nRel : 8+ yrs\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_hvgxx",
+    "type": "holiday_admin_update",
+    "recipient": "Navya Rastogi",
+    "recipient_email": "navya.rastogi@steady-rabbit.com",
+    "message": "🏖️ Auto-Handover Complete: Afsheen returned from holiday. \"ServiceNow Platform Developer(SPM/CSM/ITSM/HRSD)\nExp : 7-10 yrs \nRel Exp: 7-10 yrs\" reassigned back to Afsheen (+0 candidates added by Covering HR).",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_goohd",
+    "type": "holiday_handover",
+    "recipient": "Covering HR",
+    "message": "📋 Handover complete: \"ServiceNow Platform Developer(SPM/CSM/ITSM/HRSD)\nExp : 7-10 yrs \nRel Exp: 7-10 yrs\" automatically returned to Afsheen as their holiday concluded. Thank you for your coverage!",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
+    "id": "notif_1793167625473_rokbw",
+    "type": "holiday_return",
+    "recipient": "Afsheen",
+    "recipient_email": "afsheen@steadyrabbit.in",
+    "message": "🏖️ Welcome back! \"ServiceNow Platform Developer(SPM/CSM/ITSM/HRSD)\nExp : 7-10 yrs \nRel Exp: 7-10 yrs\" has been automatically reassigned back to you. Covering HR submitted 0 candidate(s) while you were away.",
+    "timestamp": "2026-10-28T06:07:05.473Z",
+    "read": false
+  },
+  {
     "id": "notif_1792737118030_i7klv",
     "type": "holiday_request",
     "holiday_id": "hol_1792737118027_ornq",

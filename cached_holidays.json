@@ -391,7 +391,7 @@
     "start_date": "2026-10-24",
     "end_date": "2026-10-28",
     "reason": "Annual family leave",
-    "status": "Reassigned",
+    "status": "Returned",
     "submitted_at": "2026-10-22T19:01:57.222Z",
     "notified_manager": "Navya Rastogi",
     "notified_email": "navya.rastogi@steady-rabbit.com",
@@ -422,15 +422,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.473Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-005",
@@ -439,15 +440,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.473Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-006",
@@ -456,15 +458,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.473Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-007",
@@ -473,15 +476,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.473Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-008",
@@ -490,15 +494,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-009",
@@ -507,15 +512,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-010",
@@ -524,15 +530,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-011",
@@ -541,15 +548,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-012",
@@ -558,15 +566,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-013",
@@ -575,15 +584,16 @@
         "priority": "High",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-014",
@@ -592,15 +602,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-015",
@@ -609,15 +620,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-016",
@@ -626,15 +638,16 @@
         "priority": "Very High",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-017",
@@ -643,15 +656,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-018",
@@ -660,15 +674,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-019",
@@ -677,15 +692,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-020",
@@ -694,15 +710,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-021",
@@ -711,15 +728,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-022",
@@ -728,15 +746,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-023",
@@ -745,15 +764,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-024",
@@ -762,15 +782,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-025",
@@ -779,15 +800,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-026",
@@ -796,15 +818,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-027",
@@ -813,15 +836,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-028",
@@ -830,15 +854,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-029",
@@ -847,15 +872,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-030",
@@ -864,15 +890,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-031",
@@ -881,15 +908,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-032",
@@ -898,15 +926,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-033",
@@ -915,16 +944,17 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 4,
         "candidates_added_during_leave": 4,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
         "current_assignee": "Richa",
-        "is_covered": false
+        "is_covered": false,
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-036",
@@ -933,15 +963,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-037",
@@ -950,15 +981,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.474Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-038",
@@ -967,15 +999,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-039",
@@ -984,15 +1017,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-040",
@@ -1001,15 +1035,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-041",
@@ -1018,15 +1053,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-042",
@@ -1035,15 +1071,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-043",
@@ -1052,15 +1089,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-044",
@@ -1069,15 +1107,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-045",
@@ -1086,15 +1125,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-046",
@@ -1103,15 +1143,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-047",
@@ -1120,15 +1161,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-048",
@@ -1137,15 +1179,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-049",
@@ -1154,15 +1197,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-050",
@@ -1171,15 +1215,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-051",
@@ -1188,15 +1233,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-052",
@@ -1205,15 +1251,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-053",
@@ -1222,15 +1269,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-054",
@@ -1239,15 +1287,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-055",
@@ -1256,15 +1305,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-056",
@@ -1273,15 +1323,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-057",
@@ -1290,15 +1341,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-058",
@@ -1307,15 +1359,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-059",
@@ -1324,15 +1377,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-060",
@@ -1341,15 +1395,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-061",
@@ -1358,15 +1413,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 1,
         "current_candidate_count": 1,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-062",
@@ -1375,15 +1431,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-063",
@@ -1392,15 +1449,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-064",
@@ -1409,15 +1467,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.475Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-065",
@@ -1426,15 +1485,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-066",
@@ -1443,15 +1503,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-067",
@@ -1460,15 +1521,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-068",
@@ -1477,15 +1539,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-069",
@@ -1494,15 +1557,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-070",
@@ -1511,15 +1575,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-071",
@@ -1528,15 +1593,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-072",
@@ -1545,15 +1611,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-073",
@@ -1562,15 +1629,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-074",
@@ -1579,15 +1647,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-075",
@@ -1596,15 +1665,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-076",
@@ -1613,15 +1683,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-077",
@@ -1630,15 +1701,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-078",
@@ -1647,15 +1719,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-079",
@@ -1664,15 +1737,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-080",
@@ -1681,15 +1755,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-081",
@@ -1698,15 +1773,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-082",
@@ -1715,15 +1791,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-083",
@@ -1732,15 +1809,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-084",
@@ -1749,15 +1827,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-085",
@@ -1766,15 +1845,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-086",
@@ -1783,15 +1863,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-087",
@@ -1800,15 +1881,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-088",
@@ -1817,15 +1899,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-089",
@@ -1834,15 +1917,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-090",
@@ -1851,15 +1935,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-091",
@@ -1868,15 +1953,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-092",
@@ -1885,15 +1971,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-093",
@@ -1902,15 +1989,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-094",
@@ -1919,15 +2007,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-095",
@@ -1936,15 +2025,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-096",
@@ -1953,15 +2043,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-097",
@@ -1970,15 +2061,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-098",
@@ -1987,15 +2079,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 1,
         "current_candidate_count": 1,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-099",
@@ -2004,15 +2097,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-100",
@@ -2021,15 +2115,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-101",
@@ -2038,15 +2133,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-102",
@@ -2055,15 +2151,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-103",
@@ -2072,15 +2169,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-104",
@@ -2089,15 +2187,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-105",
@@ -2106,15 +2205,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-106",
@@ -2123,15 +2223,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.476Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-107",
@@ -2140,15 +2241,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-108",
@@ -2157,15 +2259,16 @@
         "priority": "Medium",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "done",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-109",
@@ -2174,15 +2277,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-110",
@@ -2191,15 +2295,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-111",
@@ -2208,15 +2313,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-112",
@@ -2225,15 +2331,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-113",
@@ -2242,15 +2349,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-114",
@@ -2259,15 +2367,16 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       },
       {
         "req_id": "REQ-115",
@@ -2276,18 +2385,20 @@
         "priority": "Low",
         "original_assignee": "Afsheen",
         "temporary_assignee": "",
-        "status": "Pending Reassignment",
+        "status": "Returned",
         "initial_candidate_count": 0,
         "current_candidate_count": 0,
         "candidates_added_during_leave": 0,
         "progress_notes": "",
         "reassigned_at": null,
-        "returned_at": null,
+        "returned_at": "2026-10-28T06:07:05.477Z",
         "requirement_status": "Open – Assigned",
-        "current_assignee": "Afsheen"
+        "current_assignee": "Afsheen",
+        "returned_automatically": true
       }
     ],
-    "reassigned_at": "2026-10-22T19:02:25.631Z"
+    "reassigned_at": "2026-10-22T19:02:25.631Z",
+    "returned_at": "2026-10-28T06:07:05.477Z"
   },
   {
     "id": "hol_1792695689456_c9ly",

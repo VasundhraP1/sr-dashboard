@@ -742,34 +742,51 @@ async function syncFromGoogleSheets() {
   }
 
   try {
-    const resCand = await fetch(`${GAS_URL}?action=list-candidates`, { redirect: 'follow' });
-    if (resCand.ok) {
-      const dataCand = await resCand.json();
-      if (dataCand && dataCand.success && Array.isArray(dataCand.candidates) && dataCand.candidates.length > 0) {
-        // Merge candidates, preserving locally created candidate records and decisions
-        const candMap = new Map();
-        candidates.forEach(c => {
-          if (c.id) candMap.set(c.id, c);
-          if (c.candidate_name && c.requirement_name) candMap.set(`${c.candidate_name.toLowerCase()}:::${c.requirement_name.toLowerCase()}`, c);
-        });
-
-        dataCand.candidates.forEach(remoteCand => {
-          const key = `${(remoteCand.candidate_name || '').toLowerCase()}:::${(remoteCand.requirement_name || '').toLowerCase()}`;
-          const existing = candMap.get(key);
-          if (!existing) {
-            candidates.push(remoteCand);
-          } else {
-            // preserve local status decision (Shortlisted, Rejected, Hold)
-            if (existing.status && ['Shortlisted', 'Rejected', 'Hold'].includes(existing.status)) {
-              remoteCand.status = existing.status;
-            }
-            Object.assign(existing, remoteCand);
-          }
-        });
-
-        saveCandidatesToDisk();
-        console.log(`[Sync] Updated ${candidates.length} candidates merged.`);
+    let remoteCandidatesList = [];
+    try {
+      const resDeep = await fetch(`${GAS_URL}?action=collect-sheet-candidates`, { redirect: 'follow' });
+      if (resDeep.ok) {
+        const deepData = await resDeep.json();
+        if (deepData && deepData.success && Array.isArray(deepData.candidates) && deepData.candidates.length > 0) {
+          remoteCandidatesList = deepData.candidates;
+        }
       }
+    } catch (eDeep) {}
+
+    if (remoteCandidatesList.length === 0) {
+      const resCand = await fetch(`${GAS_URL}?action=list-candidates`, { redirect: 'follow' });
+      if (resCand.ok) {
+        const dataCand = await resCand.json();
+        if (dataCand && dataCand.success && Array.isArray(dataCand.candidates) && dataCand.candidates.length > 0) {
+          remoteCandidatesList = dataCand.candidates;
+        }
+      }
+    }
+
+    if (remoteCandidatesList.length > 0) {
+      // Merge candidates, preserving locally created candidate records and decisions
+      const candMap = new Map();
+      candidates.forEach(c => {
+        if (c.id) candMap.set(c.id, c);
+        if (c.candidate_name && c.requirement_name) candMap.set(`${c.candidate_name.toLowerCase()}:::${c.requirement_name.toLowerCase()}`, c);
+      });
+
+      remoteCandidatesList.forEach(remoteCand => {
+        const key = `${(remoteCand.candidate_name || '').toLowerCase()}:::${(remoteCand.requirement_name || '').toLowerCase()}`;
+        const existing = candMap.get(key);
+        if (!existing) {
+          candidates.push(remoteCand);
+        } else {
+          // preserve local status decision (Shortlisted, Rejected, Hold)
+          if (existing.status && ['Shortlisted', 'Rejected', 'Hold'].includes(existing.status)) {
+            remoteCand.status = existing.status;
+          }
+          Object.assign(existing, remoteCand);
+        }
+      });
+
+      saveCandidatesToDisk();
+      console.log(`[Sync] Updated ${candidates.length} candidates merged from Google Sheets.`);
     }
   } catch (err) {
     console.warn('[Sync] Candidate sync error:', err.message);
@@ -2400,17 +2417,61 @@ ${contextTranscript || contextNotes || 'Candidate demonstrated experience in req
   });
 });
 
-// AI Vector Candidate Matching (converted from n8n pipeline)
-const { matchCandidatesWorkflow } = require('./match_workflow');
+// Hybrid Candidate Matching & Google Sheets Integration
+const { matchCandidatesWorkflow, fetchGoogleSheetsCandidates } = require('./match_workflow');
+
+// Direct endpoint to collect candidates from Google Sheets apart from DB
+app.all(['/api/collect-candidates-from-sheets', '/api/collect-sheet-candidates'], async (req, res) => {
+  try {
+    const sheetCands = await fetchGoogleSheetsCandidates();
+    let newCount = 0;
+    const candMap = new Map();
+    candidates.forEach(c => {
+      const k = `${(c.candidate_name || '').toLowerCase()}:::${(c.requirement_name || '').toLowerCase()}`;
+      candMap.set(k, c);
+    });
+
+    sheetCands.forEach(sc => {
+      const k = `${(sc.candidate_name || '').toLowerCase()}:::${(sc.requirement_name || '').toLowerCase()}`;
+      if (!candMap.has(k)) {
+        candidates.push({
+          ...sc,
+          id: sc.id || `sheet_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+          status: sc.status || 'Sourced'
+        });
+        candMap.set(k, sc);
+        newCount++;
+      } else {
+        const existing = candMap.get(k);
+        if (!existing.resume_link && sc.resume_link) existing.resume_link = sc.resume_link;
+        if (!existing.skills && sc.skills) existing.skills = sc.skills;
+        if (!existing.total_experience && sc.total_experience) existing.total_experience = sc.total_experience;
+      }
+    });
+
+    saveCandidatesToDisk();
+    res.json({
+      success: true,
+      message: `Successfully collected ${sheetCands.length} candidate(s) from Google Sheets (${newCount} new added).`,
+      collected_count: sheetCands.length,
+      new_added: newCount,
+      total_cached: candidates.length
+    });
+  } catch (err) {
+    console.error('Error collecting candidates from Google Sheets:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
 app.post(['/find-suitable-candidates', '/find-resume'], async (req, res) => {
   try {
-    const { jd_text, jd_link, requirement_name, requirement, limit } = req.body || {};
+    const { jd_text, jd_link, requirement_name, requirement, limit, source_filter } = req.body || {};
     const result = await matchCandidatesWorkflow({
       jd_text,
       jd_link,
       requirement_name: requirement_name || requirement,
-      limit: parseInt(limit, 10) || 5
+      limit: parseInt(limit, 10) || 5,
+      source_filter: source_filter || 'all'
     });
     res.json(result);
   } catch (err) {
@@ -2421,7 +2482,7 @@ app.post(['/find-suitable-candidates', '/find-resume'], async (req, res) => {
 
 app.get(['/find-suitable-candidates', '/find-resume'], async (req, res) => {
   try {
-    const { jd_text, jd_link, requirement_name, requirement, limit, data } = req.query || {};
+    const { jd_text, jd_link, requirement_name, requirement, limit, data, source_filter } = req.query || {};
     let parsedData = {};
     if (data) {
       try { parsedData = JSON.parse(data); } catch(e) {}
@@ -2430,7 +2491,8 @@ app.get(['/find-suitable-candidates', '/find-resume'], async (req, res) => {
       jd_text: parsedData.jd_text || jd_text,
       jd_link: parsedData.jd_link || jd_link,
       requirement_name: parsedData.requirement_name || parsedData.requirement || requirement_name || requirement,
-      limit: parseInt(parsedData.limit || limit, 10) || 5
+      limit: parseInt(parsedData.limit || limit, 10) || 5,
+      source_filter: parsedData.source_filter || source_filter || 'all'
     });
     res.json(result);
   } catch (err) {
