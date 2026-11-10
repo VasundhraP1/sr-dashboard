@@ -5,7 +5,7 @@
 
 // CONFIGURATION:
 // Paste the Spreadsheet ID of Sheet A (the main requirements sheet) here:
-const STEADY_RABBIT_MAIN_REQ_SHEET_A_ID = "12X7Ncm64f692t8gStSGvzGA9M255uhQbJbQ9-xfmc8c";
+const STEADY_RABBIT_MAIN_REQ_SHEET_A_ID = "1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE";
 const SHEET_ID_A = STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
 
 // Run this function once in the Apps Script editor (press "Run") to authorize the script to access Sheet A!

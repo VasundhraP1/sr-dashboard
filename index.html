@@ -2740,8 +2740,8 @@
     <div style="display:flex; align-items:center; gap:8px;" id="sheet-selector-container">
       <label style="font-size:11px; font-family:var(--mono); color:var(--muted);">📁 SHEET:</label>
       <select id="global-sheet-select" style="padding:4px 8px; font-size:11px; background:var(--panel); border:1px solid var(--line); color:var(--text); border-radius:20px; font-family:var(--mono); cursor:pointer; outline:none;">
-        <option value="12X7Ncm64f692t8gStSGvzGA9M255uhQbJbQ9-xfmc8c">NMo Sheet (Default)</option>
-        <option value="1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE">SR Sales Sheet</option>
+        <option value="1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE" selected>SR Sales Sheet (Default)</option>
+        <option value="12X7Ncm64f692t8gStSGvzGA9M255uhQbJbQ9-xfmc8c">NMo Sheet</option>
       </select>
     </div>
 
@@ -3022,12 +3022,22 @@
       <!-- Left: Assigned Requirements List -->
       <div class="find-sidebar" style="background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px; max-height: calc(100vh - 190px); overflow-y: auto; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-family: var(--mono);">Your Assigned Tasks</span>
+          <span id="find-sidebar-heading" style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-family: var(--mono);">Your Assigned Tasks</span>
           <span class="count-tag" id="find-req-count" style="font-size: 11px; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 10px; border: 1px solid var(--line);">0 tasks</span>
         </div>
 
+        <!-- Admin Recruiter Selector for Tab 03 -->
+        <div id="find-assignee-filter-wrap" style="display: none; flex-direction: column; gap: 4px; padding: 8px 10px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px;">
+          <label style="font-size: 10.5px; font-weight: 700; color: var(--muted); font-family: var(--mono);">👤 ASSIGNEE FILTER:</label>
+          <select id="find-assignee-filter" style="font-size: 12px; padding: 5px 8px; border-radius: 4px; background: var(--panel); border: 1px solid var(--line); color: var(--text); font-family: inherit; width: 100%;">
+            <option value="mine">My Assigned Work</option>
+            <option value="all">All Recruiters (Everyone)</option>
+            <option value="unassigned">Unassigned Requirements</option>
+          </select>
+        </div>
+
         <div style="display: flex; gap: 6px;">
-          <input type="text" id="find-req-search" placeholder="Search your requirements..." style="font-size: 12.5px; padding: 8px 12px; width: 100%; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--line); color: var(--text);">
+          <input type="text" id="find-req-search" placeholder="Search requirements..." style="font-size: 12.5px; padding: 8px 12px; width: 100%; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--line); color: var(--text);">
         </div>
 
         <div class="pillgroup" id="find-req-status-filter" style="width: 100%; padding: 3px; gap: 4px; background: var(--panel-2); border: 1px solid var(--line);">
@@ -3319,10 +3329,20 @@
 
   <!-- OPEN REQUIREMENTS VIEW (personal) -->
   <div class="view" id="view-pending">
-    <h1>Your open requirements</h1>
-    <p class="sub">Requirements assigned to you. Toggle status to see what's still open vs. active. Add candidates to your assigned requirements.</p>
+    <h1 id="pending-header-title">Your open requirements</h1>
+    <p class="sub" id="pending-header-sub">Requirements assigned to you. Toggle status to see what's still open vs. active. Add candidates to your assigned requirements.</p>
 
-    <div class="filterbar">
+    <div class="filterbar" style="flex-wrap:wrap; gap:10px;">
+      <!-- Admin Assignee Filter -->
+      <div id="pending-assignee-filter-wrap" style="display:none; align-items:center; gap:8px;">
+        <label style="font-size:11.5px; font-weight:700; color:var(--muted); font-family:var(--mono); white-space:nowrap;">👤 ASSIGNEE:</label>
+        <select id="pending-assignee-filter" style="padding:5px 10px; font-size:12.5px; border-radius:6px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-family:inherit;">
+          <option value="mine">My Assigned Work</option>
+          <option value="all">All Recruiters (Everyone)</option>
+          <option value="unassigned">Unassigned Requirements</option>
+        </select>
+      </div>
+
       <div class="pillgroup" id="pending-status-filter">
         <div class="pill active" data-status="inactive">Open</div>
         <div class="pill" data-status="active">Active</div>
@@ -5263,9 +5283,38 @@
   let activeFindRequirement = null;
   let findReqStatusFilter = 'all';
 
+  function populateFindAssigneeFilter() {
+    const sel = document.getElementById('find-assignee-filter');
+    if (!sel) return;
+    const current = sel.value || 'mine';
+
+    const defaultRecruiters = ['Afsheen', 'Ayushi', 'Diksha', 'Kavipriya', 'Likitha', 'Naagu', 'Navya Rastogi', 'Prachi', 'Richa', 'Sahil', 'Shailly', 'Shinjini', 'Siddhi', 'Vasundhara Panwar'];
+    const sheetAssignees = (allRequirements || []).map(r => (r.assignee || '').trim()).filter(a => a && a !== '—' && a.toLowerCase() !== 'unassigned');
+    const allRecruiters = [...new Set([...defaultRecruiters, ...sheetAssignees])].sort();
+
+    let html = `
+      <option value="mine">My Assigned Work</option>
+      <option value="all">All Recruiters (Everyone)</option>
+      <option value="unassigned">Unassigned Requirements</option>
+      <optgroup label="Filter by Recruiter">
+    `;
+    allRecruiters.forEach(name => {
+      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`;
+    });
+    html += `</optgroup>`;
+    sel.innerHTML = html;
+
+    if (['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
+      sel.value = current;
+    } else {
+      sel.value = 'mine';
+    }
+  }
+
   function renderFindSuitableRequirements() {
     const listEl = document.getElementById('find-req-list');
     const countEl = document.getElementById('find-req-count');
+    const headingEl = document.getElementById('find-sidebar-heading');
     if (!listEl) return;
 
     if (!allRequirements || !allRequirements.length) {
@@ -5274,13 +5323,33 @@
       return;
     }
 
-    // Filter to current HR user's assigned requirements (or all if admin)
-    const isAll = activeRole === 'All' || (currentUser && currentUser.role === 'Admin');
-    const myReqs = allRequirements.filter(r => isAll || isUserAssignee(r.assignee, currentUser));
+    const isAdmin = isUserAdmin(currentUser);
+    const sel = document.getElementById('find-assignee-filter');
+    const selected = (isAdmin && sel) ? sel.value : 'mine';
+
+    let targetReqs = [];
+    if (!isAdmin || selected === 'mine') {
+      targetReqs = allRequirements.filter(r => currentUser && isUserAssignee(r.assignee, currentUser));
+      if (headingEl) headingEl.textContent = 'Your Assigned Tasks';
+    } else if (selected === 'all') {
+      targetReqs = [...allRequirements];
+      if (headingEl) headingEl.textContent = 'All Assigned Tasks';
+    } else if (selected === 'unassigned') {
+      targetReqs = allRequirements.filter(r => !r.assignee || r.assignee.trim() === '' || r.assignee === '—' || r.assignee.toLowerCase() === 'unassigned');
+      if (headingEl) headingEl.textContent = 'Unassigned Tasks';
+    } else {
+      targetReqs = allRequirements.filter(r => {
+        const norm = s => (s || '').trim().toLowerCase().replace(/vasundhra/g, 'vasundhara');
+        const a = norm(r.assignee);
+        const target = norm(selected);
+        return a === target || a.includes(target) || target.includes(a);
+      });
+      if (headingEl) headingEl.textContent = `${selected}'s Tasks`;
+    }
 
     const searchTerm = (document.getElementById('find-req-search')?.value || '').trim().toLowerCase();
     
-    const filtered = myReqs.filter(r => {
+    const filtered = targetReqs.filter(r => {
       const s = (r.status || '').toLowerCase();
       const statusOk = findReqStatusFilter === 'all' || s === findReqStatusFilter;
       const searchOk = !searchTerm || 
@@ -5290,12 +5359,14 @@
       return statusOk && searchOk;
     });
 
-    if (countEl) countEl.textContent = `${filtered.length} of ${myReqs.length} tasks`;
+    if (countEl) countEl.textContent = `${filtered.length} of ${targetReqs.length} tasks`;
 
     if (!filtered.length) {
       listEl.innerHTML = '<div class="empty" style="padding:20px 0;">No matching requirements found.</div>';
       return;
     }
+
+    const showAssigneeTag = isAdmin && selected !== 'mine';
 
     listEl.innerHTML = filtered.map(r => {
       const s = (r.status || '').toLowerCase();
@@ -5314,6 +5385,7 @@
       return `
         <div class="find-req-card ${isSelected ? 'active' : ''}" data-date="${escapeHtml(r.date)}" data-req="${escapeHtml(r.requirement)}">
           <div class="find-req-card-title">${escapeHtml(r.requirement)}</div>
+          ${showAssigneeTag ? `<div style="font-size:11px; color:var(--accent); font-weight:600; margin: 3px 0 2px 0;">👤 ${escapeHtml(r.assignee || 'Unassigned')}</div>` : ''}
           <div class="find-req-card-meta">
             <span style="font-weight:600; color:#cbd5e1;">${escapeHtml(r.client_name || 'Client')}</span>
             <div class="find-req-badge-group">
@@ -5871,6 +5943,11 @@
     if (tabFind) {
       tabFind.click();
     }
+    const isAdmin = isUserAdmin(currentUser);
+    const findSel = document.getElementById('find-assignee-filter');
+    if (isAdmin && findSel && req && req.assignee && currentUser && !isUserAssignee(req.assignee, currentUser)) {
+      findSel.value = 'all';
+    }
     setTimeout(() => {
       renderFindSuitableRequirements();
       selectFindRequirement(req);
@@ -5926,6 +6003,13 @@
       if (activeFindRequirement && currentMatchedCandidates && currentMatchedCandidates.length > 0) {
         executeFindSuitable(activeFindRequirement);
       }
+    });
+  }
+
+  const findAssigneeFilter = document.getElementById('find-assignee-filter');
+  if (findAssigneeFilter) {
+    findAssigneeFilter.addEventListener('change', () => {
+      renderFindSuitableRequirements();
     });
   }
 
@@ -6414,8 +6498,10 @@
       listLoaded = true;
       
       // Update data views that depend on requirements list
+      if (typeof populatePendingAssigneeFilter === 'function') populatePendingAssigneeFilter();
+      if (typeof populateFindAssigneeFilter === 'function') populateFindAssigneeFilter();
       if (currentUser && (activeRole === 'HR' || activeRole === 'All')) {
-        renderPending(allRequirements.filter(r => isUserAssignee(r.assignee, currentUser)));
+        renderPending();
       }
       renderFindSuitableRequirements();
     } catch (err) {
@@ -6464,11 +6550,13 @@
 
   function populateAssigneeFilter(){
     const sel = document.getElementById('assignee-filter');
+    if (!sel) return;
     const current = sel.value;
-    const names = [...new Set(allRequirements.map(r => r.assignee).filter(Boolean))].sort();
+    const defaultRecruiters = ['Afsheen', 'Ayushi', 'Diksha', 'Kavipriya', 'Likitha', 'Naagu', 'Navya Rastogi', 'Prachi', 'Richa', 'Sahil', 'Shailly', 'Shinjini', 'Siddhi', 'Vasundhara Panwar'];
+    const names = [...new Set([...defaultRecruiters, ...allRequirements.map(r => r.assignee).filter(Boolean)])].filter(n => n && n !== '—' && n.toLowerCase() !== 'unassigned').sort();
     sel.innerHTML = '<option value="all">All assignees</option>' +
       names.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
-    if (names.includes(current)) sel.value = current;
+    if (names.includes(current) || current === 'all') sel.value = current;
   }
 
   function populatePriorityFilter(){
@@ -6756,25 +6844,93 @@
   let currentModalReqId = null;
   let draftedCandidates = [];
 
+  function populatePendingAssigneeFilter() {
+    const sel = document.getElementById('pending-assignee-filter');
+    if (!sel) return;
+    const current = sel.value || 'mine';
+
+    const defaultRecruiters = ['Afsheen', 'Ayushi', 'Diksha', 'Kavipriya', 'Likitha', 'Naagu', 'Navya Rastogi', 'Prachi', 'Richa', 'Sahil', 'Shailly', 'Shinjini', 'Siddhi', 'Vasundhara Panwar'];
+    const sheetAssignees = (allRequirements || []).map(r => (r.assignee || '').trim()).filter(a => a && a !== '—' && a.toLowerCase() !== 'unassigned');
+    const allRecruiters = [...new Set([...defaultRecruiters, ...sheetAssignees])].sort();
+
+    let html = `
+      <option value="mine">My Assigned Work</option>
+      <option value="all">All Recruiters (Everyone)</option>
+      <option value="unassigned">Unassigned Requirements</option>
+      <optgroup label="Filter by Recruiter">
+    `;
+    allRecruiters.forEach(name => {
+      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`;
+    });
+    html += `</optgroup>`;
+    sel.innerHTML = html;
+
+    if (['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
+      sel.value = current;
+    } else {
+      sel.value = 'mine';
+    }
+  }
+
+  function getFilteredPendingRequirements() {
+    const isAdmin = isUserAdmin(currentUser);
+    const sel = document.getElementById('pending-assignee-filter');
+    const selected = (isAdmin && sel) ? sel.value : 'mine';
+    
+    // Update Header Text based on selection
+    const titleEl = document.getElementById('pending-header-title');
+    const subEl = document.getElementById('pending-header-sub');
+
+    let baseList = [];
+    if (!isAdmin || selected === 'mine') {
+      baseList = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser));
+      if (titleEl) titleEl.textContent = 'Your open requirements';
+      if (subEl) subEl.textContent = "Requirements assigned to you. Toggle status to see what's still open vs. active. Add candidates to your assigned requirements.";
+    } else if (selected === 'all') {
+      baseList = [...(allRequirements || [])];
+      if (titleEl) titleEl.textContent = 'All Open Requirements';
+      if (subEl) subEl.textContent = 'Viewing requirements across all recruiters and team members.';
+    } else if (selected === 'unassigned') {
+      baseList = (allRequirements || []).filter(r => !r.assignee || r.assignee.trim() === '' || r.assignee === '—' || r.assignee.toLowerCase() === 'unassigned');
+      if (titleEl) titleEl.textContent = 'Unassigned Requirements';
+      if (subEl) subEl.textContent = 'Requirements currently waiting to be assigned to a recruiter.';
+    } else {
+      baseList = (allRequirements || []).filter(r => {
+        const norm = s => (s || '').trim().toLowerCase().replace(/vasundhra/g, 'vasundhara');
+        const a = norm(r.assignee);
+        const target = norm(selected);
+        return a === target || a.includes(target) || target.includes(a);
+      });
+      if (titleEl) titleEl.textContent = `${selected}'s Assigned Requirements`;
+      if (subEl) subEl.textContent = `Showing requirements assigned to ${selected}.`;
+    }
+
+    return { baseList, selected, isAdmin };
+  }
+
   async function loadPending(forceRefresh = false){
-    document.getElementById('pending-results').innerHTML = '<div class="loading">Loading your tasks</div>';
+    document.getElementById('pending-results').innerHTML = '<div class="loading">Loading tasks</div>';
     try {
       const endpoint = forceRefresh ? '/list-requirements?bypass_cache=true' : '/list-requirements';
       const res = await apiFetch(endpoint);
       const json = await res.json();
       allRequirements = json.requirements || [];
-      const mine = allRequirements.filter(r => currentUser && isUserAssignee(r.assignee, currentUser));
-      renderPending(mine);
+      populatePendingAssigneeFilter();
+      renderPending();
       pendingLoaded = true;
     } catch (err) {
       document.getElementById('pending-results').innerHTML = '<div class="empty">Could not load tasks: ' + escapeHtml(err.message) + '</div>';
     }
   }
 
-  function renderPending(mine){
-    const filtered = mine.filter(r => pendingStatusFilter === 'all' || (r.status || '').toLowerCase() === pendingStatusFilter ||
+  function renderPending(customList){
+    const { baseList, selected, isAdmin } = getFilteredPendingRequirements();
+    const sourceList = (isAdmin && selected !== 'mine') ? baseList : (Array.isArray(customList) ? customList : baseList);
+    const showAssigneeCol = isAdmin && selected !== 'mine';
+
+    const filtered = sourceList.filter(r => pendingStatusFilter === 'all' || (r.status || '').toLowerCase() === pendingStatusFilter ||
       (pendingStatusFilter === 'inactive' && (r.status === 'Open – Assigned' || r.status === 'Inactive' || r.status === 'Open – Unassigned')));
-    document.getElementById('pending-count').textContent = filtered.length + ' of ' + mine.length;
+    document.getElementById('pending-count').textContent = filtered.length + ' of ' + sourceList.length;
 
     const container = document.getElementById('pending-results');
     if (!filtered.length) {
@@ -6798,6 +6954,7 @@
               ${r.handover_summary ? `<div style="font-size:10px; color:var(--accent); margin-top:2px;" title="${escapeHtml(r.handover_summary)}">📈 ${escapeHtml(r.handover_summary)}</div>` : ''}
             </div>
           </td>
+          ${showAssigneeCol ? `<td><span class="pill sm" style="font-size:11px; font-weight:600; background:rgba(79, 209, 165, 0.12); border:1px solid rgba(79, 209, 165, 0.3); color:var(--accent);">👤 ${escapeHtml(r.assignee || 'Unassigned')}</span></td>` : ''}
           <td>${escapeHtml(r.priority || 'Medium')}</td>
           <td>${escapeHtml(r.client_name || '—')}</td>
           <td>${renderStatusBadge(r.status)}</td>
@@ -6828,7 +6985,7 @@
         <table class="req-table">
           <thead>
             <tr>
-              <th>Date</th><th>Req ID / Title</th><th>Priority</th><th>Client</th>
+              <th>Date</th><th>Req ID / Title</th>${showAssigneeCol ? '<th>Assignee</th>' : ''}<th>Priority</th><th>Client</th>
               <th>Status</th><th>Latest Candidate</th><th>Actions</th>
             </tr>
           </thead>
@@ -6863,12 +7020,19 @@
     });
   }
 
+  const pendingAssigneeFilterEl = document.getElementById('pending-assignee-filter');
+  if (pendingAssigneeFilterEl) {
+    pendingAssigneeFilterEl.addEventListener('change', () => {
+      renderPending();
+    });
+  }
+
   document.querySelectorAll('#pending-status-filter .pill').forEach(pill => {
     pill.addEventListener('click', () => {
       document.querySelectorAll('#pending-status-filter .pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       pendingStatusFilter = pill.dataset.status;
-      loadPending();
+      renderPending();
     });
   });
   document.getElementById('pending-refresh').addEventListener('click', () => loadPending(true));
@@ -11837,6 +12001,10 @@ Steady Rabbit HR Team`;
         loadPending();
       }
     }
+
+    if (currentUser) {
+      applyUserPermissions(currentUser);
+    }
   }
 
   // Set up role switcher click handlers
@@ -12012,10 +12180,16 @@ Steady Rabbit HR Team`;
     const isAdmin = isUserAdmin(user);
     const btnUserRoles = document.getElementById('btn-user-roles');
     const switcher = document.getElementById('role-switcher');
+    const pendingFilterWrap = document.getElementById('pending-assignee-filter-wrap');
+    const findFilterWrap = document.getElementById('find-assignee-filter-wrap');
 
     if (isAdmin) {
       if (btnUserRoles) btnUserRoles.style.display = 'inline-flex';
       if (switcher) switcher.style.display = 'flex';
+      if (pendingFilterWrap) pendingFilterWrap.style.display = 'inline-flex';
+      if (findFilterWrap) findFilterWrap.style.display = 'flex';
+      if (typeof populatePendingAssigneeFilter === 'function') populatePendingAssigneeFilter();
+      if (typeof populateFindAssigneeFilter === 'function') populateFindAssigneeFilter();
 
       // Unhide all tabs for Admins
       SYSTEM_TABS.forEach(tab => {
@@ -12033,9 +12207,16 @@ Steady Rabbit HR Team`;
       return;
     }
 
-    // Non-Admin: Hide User Roles management & Role Switcher
+    // Non-Admin: Hide User Roles management & Role Switcher & Admin Assignee Filters
     if (btnUserRoles) btnUserRoles.style.display = 'none';
     if (switcher) switcher.style.display = 'none';
+    if (pendingFilterWrap) pendingFilterWrap.style.display = 'none';
+    const pendingSel = document.getElementById('pending-assignee-filter');
+    if (pendingSel) pendingSel.value = 'mine';
+
+    if (findFilterWrap) findFilterWrap.style.display = 'none';
+    const findSel = document.getElementById('find-assignee-filter');
+    if (findSel) findSel.value = 'mine';
 
     // Determine allowed tabs and subtabs
     let allowedTabs = Array.isArray(user.allowedTabs) && user.allowedTabs.length > 0 ? user.allowedTabs : null;
@@ -12767,7 +12948,7 @@ Steady Rabbit HR Team`;
     const select = document.getElementById('add-profile-status');
     if (!select) return;
 
-    const activeSheetId = localStorage.getItem('sr_selected_sheet_id') || '12X7Ncm64f692t8gStSGvzGA9M255uhQbJbQ9-xfmc8c';
+    const activeSheetId = localStorage.getItem('sr_selected_sheet_id') || '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE';
     const isSR = (activeSheetId === '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE');
 
     const options = isSR ? srProfileStatusOptions : nmoProfileStatusOptions;
@@ -12788,7 +12969,14 @@ Steady Rabbit HR Team`;
 
   const sheetSelect = document.getElementById('global-sheet-select');
   if (sheetSelect) {
-    const savedSheetId = localStorage.getItem('sr_selected_sheet_id');
+    // Automatic migration to make SR Sales Sheet default
+    const migrated = localStorage.getItem('sr_default_sheet_migrated_v3');
+    if (!migrated) {
+      localStorage.setItem('sr_selected_sheet_id', '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE');
+      localStorage.setItem('sr_default_sheet_migrated_v3', 'true');
+    }
+
+    const savedSheetId = localStorage.getItem('sr_selected_sheet_id') || '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE';
     if (savedSheetId) {
       sheetSelect.value = savedSheetId;
     }
