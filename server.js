@@ -796,10 +796,12 @@ async function syncFromGoogleSheets() {
 // Background sync every 5 minutes and immediately on start
 setTimeout(() => {
   syncFromGoogleSheets();
+  if (typeof syncFromExcelSheets === 'function') syncFromExcelSheets();
   checkAndAutoReturnHolidays();
 }, 2000);
 setInterval(() => {
   syncFromGoogleSheets();
+  if (typeof syncFromExcelSheets === 'function') syncFromExcelSheets();
   checkAndAutoReturnHolidays();
 }, 5 * 60 * 1000);
 
@@ -2417,8 +2419,135 @@ ${contextTranscript || contextNotes || 'Candidate demonstrated experience in req
   });
 });
 
-// Hybrid Candidate Matching & Google Sheets Integration
-const { matchCandidatesWorkflow, fetchGoogleSheetsCandidates } = require('./match_workflow');
+// Hybrid Candidate Matching, Google Sheets & Excel Spreadsheets Integration
+const { matchCandidatesWorkflow, fetchGoogleSheetsCandidates, fetchExcelCandidates } = require('./match_workflow');
+const {
+  saveUploadedExcelFile,
+  getExcelFilesStatus,
+  exportCandidatesToExcel,
+  createSampleExcelIfEmpty
+} = require('./excel_connector');
+
+// Ensure starter Excel template exists
+createSampleExcelIfEmpty();
+
+function syncFromExcelSheets() {
+  try {
+    const excelCands = fetchExcelCandidates();
+    if (!Array.isArray(excelCands) || excelCands.length === 0) return 0;
+
+    let newCount = 0;
+    const candMap = new Map();
+    candidates.forEach(c => {
+      const k = `${(c.candidate_name || '').toLowerCase().trim()}:::${(c.requirement_name || '').toLowerCase().trim()}`;
+      candMap.set(k, c);
+    });
+
+    excelCands.forEach(ec => {
+      const k = `${(ec.candidate_name || '').toLowerCase().trim()}:::${(ec.requirement_name || '').toLowerCase().trim()}`;
+      if (!candMap.has(k)) {
+        candidates.push({
+          ...ec,
+          id: ec.id || `excel_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+          status: ec.status || 'Sourced'
+        });
+        candMap.set(k, ec);
+        newCount++;
+      } else {
+        const existing = candMap.get(k);
+        if (!existing.resume_link && ec.resume_link) existing.resume_link = ec.resume_link;
+        if (!existing.skills && ec.skills) existing.skills = ec.skills;
+        if (!existing.total_experience && ec.total_experience) existing.total_experience = ec.total_experience;
+        if (!existing.source_label && ec.source_label) existing.source_label = ec.source_label;
+      }
+    });
+
+    if (newCount > 0) {
+      saveCandidatesToDisk();
+      console.log(`[Excel Sync] Merged ${newCount} candidate(s) from Excel sheets into pool.`);
+    }
+    return newCount;
+  } catch (err) {
+    console.warn('[Excel Sync] Error syncing from Excel sheets:', err.message);
+    return 0;
+  }
+}
+
+// Initial sync on module load
+setTimeout(() => {
+  syncFromExcelSheets();
+}, 2500);
+
+// Status of connected Excel files
+app.get('/api/excel-status', (req, res) => {
+  try {
+    const status = getExcelFilesStatus();
+    res.json({ success: true, ...status });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// Endpoint to collect / sync candidates from all Excel files in excel_data/
+app.all(['/api/collect-excel-candidates', '/api/sync-excel'], async (req, res) => {
+  try {
+    const excelCands = fetchExcelCandidates();
+    const newAdded = syncFromExcelSheets();
+    res.json({
+      success: true,
+      message: `Successfully connected to Excel sheets. Parsed ${excelCands.length} candidate(s) (${newAdded} new added to active pool).`,
+      candidates_count: excelCands.length,
+      new_added: newAdded,
+      total_cached: candidates.length
+    });
+  } catch (err) {
+    console.error('Error in /api/collect-excel-candidates:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// Endpoint to upload an Excel file directly from browser (.xlsx / .xls)
+app.post('/api/upload-excel', async (req, res) => {
+  try {
+    const { file_name, file_base64 } = req.body || {};
+    if (!file_base64) {
+      return res.status(400).json({ success: false, message: 'No Excel file content provided (file_base64 required).' });
+    }
+
+    const base64Clean = file_base64.replace(/^data:.*?;base64,/, '');
+    const buffer = Buffer.from(base64Clean, 'base64');
+    const safeName = file_name || `Candidates_${Date.now()}.xlsx`;
+
+    const parsed = saveUploadedExcelFile(buffer, safeName);
+    const newAdded = syncFromExcelSheets();
+
+    res.json({
+      success: true,
+      message: `Successfully imported "${parsed.fileName}". Extracted ${parsed.candidates.length} candidate(s).`,
+      file_name: parsed.fileName,
+      candidates_extracted: parsed.candidates.length,
+      requirements_extracted: parsed.requirements.length,
+      new_candidates_added: newAdded,
+      total_candidates: candidates.length
+    });
+  } catch (err) {
+    console.error('Error in /api/upload-excel:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// Endpoint to export candidates to Excel (.xlsx)
+app.get('/api/export-excel-candidates', (req, res) => {
+  try {
+    const buf = exportCandidatesToExcel(candidates);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename="SteadyRabbit_Candidates_${new Date().toISOString().split('T')[0]}.xlsx"`);
+    res.send(buf);
+  } catch (err) {
+    console.error('Error in /api/export-excel-candidates:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
 // Direct endpoint to collect candidates from Google Sheets apart from DB
 app.all(['/api/collect-candidates-from-sheets', '/api/collect-sheet-candidates'], async (req, res) => {

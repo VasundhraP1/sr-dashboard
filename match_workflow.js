@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { fetchExcelCandidates } = require('./excel_connector');
 
 // Auto-load local .env if present (git-ignored)
 try {
@@ -231,9 +232,9 @@ function scoreSheetCandidatesAgainstJD(sheetCandidates, jdText) {
         fit_score: matchScore,
         requirement_name: cand.requirement_name || '',
         submitted_by: cand.submitted_by || '',
-        source_sheet: cand.source_sheet || 'Google Sheets',
-        source_origin: 'sheets',
-        source_label: 'Google Sheets (Live Sheet Pool)'
+        source_sheet: cand.source_sheet || 'Spreadsheet',
+        source_origin: cand.source_origin || 'sheets',
+        source_label: cand.source_label || (cand.source_origin === 'excel' ? 'Excel Sheet' : 'Google Sheets (Live Sheet Pool)')
       });
     }
   });
@@ -368,7 +369,22 @@ async function matchCandidatesWorkflow({
     console.warn('[Sheets Collection] Error querying sheet candidates:', errSheet.message);
   }
 
-  // 4. Step 3 (Merge & Deduplicate): Combine candidates from BOTH sources
+  // 4. Step 3 (Excel Sheets Collection): Connect to Microsoft Excel (.xlsx / .xls) files
+  let excelMatches = [];
+  try {
+    const rawExcelCandidates = fetchExcelCandidates();
+    if (Array.isArray(rawExcelCandidates) && rawExcelCandidates.length > 0) {
+      excelMatches = scoreSheetCandidatesAgainstJD(rawExcelCandidates, textToEmbed).map(em => ({
+        ...em,
+        source_origin: 'excel',
+        source_label: em.source_label || `Excel Sheet (${em.source_file || 'Spreadsheet'})`
+      }));
+    }
+  } catch (errExcel) {
+    console.warn('[Excel Collection] Error querying Excel candidates:', errExcel.message);
+  }
+
+  // 5. Step 4 (Merge & Deduplicate): Combine candidates from Vector DB, Google Sheets, AND Excel Sheets
   const mergedMap = new Map();
   const allMerged = [];
 
@@ -385,34 +401,43 @@ async function matchCandidatesWorkflow({
     const existing = key ? mergedMap.get(key) : null;
 
     if (existing) {
-      // Candidate exists in both Vector DB and Google Sheets!
       existing.source_origin = 'both';
       existing.source_label = 'Both (Database & Google Sheets)';
-      if (sc.resume_link && !existing.resume_link) {
-        existing.resume_link = sc.resume_link;
-      }
-      if (sc.submitted_by) {
-        existing.submitted_by = sc.submitted_by;
-      }
-      if (sc.remarks) {
-        existing.sheet_remarks = sc.remarks;
-      }
-      if (sc.requirement_name) {
-        existing.requirement_name = sc.requirement_name;
-      }
+      if (sc.resume_link && !existing.resume_link) existing.resume_link = sc.resume_link;
+      if (sc.submitted_by) existing.submitted_by = sc.submitted_by;
+      if (sc.remarks) existing.sheet_remarks = sc.remarks;
+      if (sc.requirement_name) existing.requirement_name = sc.requirement_name;
     } else {
-      // Exclusively in Google Sheets
       if (key) mergedMap.set(key, sc);
       allMerged.push(sc);
+    }
+  });
+
+  // Merge or append Excel Sheets matches
+  excelMatches.forEach(ec => {
+    const key = normalizeCandidateKey(ec.candidate_name || ec.name);
+    const existing = key ? mergedMap.get(key) : null;
+
+    if (existing) {
+      existing.source_origin = 'multiple';
+      existing.source_label = `${existing.source_label || 'DB/Sheets'} + Excel`;
+      if (ec.resume_link && !existing.resume_link) existing.resume_link = ec.resume_link;
+      if (ec.skills && !existing.skills) existing.skills = ec.skills;
+      if (ec.remarks) existing.excel_remarks = ec.remarks;
+    } else {
+      if (key) mergedMap.set(key, ec);
+      allMerged.push(ec);
     }
   });
 
   // Filter based on requested source_filter
   let filtered = allMerged;
   if (source_filter === 'database') {
-    filtered = allMerged.filter(c => c.source_origin === 'database' || c.source_origin === 'both');
+    filtered = allMerged.filter(c => c.source_origin === 'database' || c.source_origin === 'both' || c.source_origin === 'multiple');
   } else if (source_filter === 'sheets') {
-    filtered = allMerged.filter(c => c.source_origin === 'sheets' || c.source_origin === 'both');
+    filtered = allMerged.filter(c => c.source_origin === 'sheets' || c.source_origin === 'both' || c.source_origin === 'multiple');
+  } else if (source_filter === 'excel') {
+    filtered = allMerged.filter(c => c.source_origin === 'excel' || c.source_origin === 'multiple');
   }
 
   // Rank by similarity percentage descending
@@ -426,14 +451,15 @@ async function matchCandidatesWorkflow({
 
   return {
     success: true,
-    source: 'hybrid_db_and_sheets',
-    source_label: 'Hybrid: Supabase Vector DB + Google Sheets Live Pool',
+    source: 'hybrid_db_sheets_and_excel',
+    source_label: 'Hybrid: Supabase Vector DB + Google Sheets + Excel Sheets Live Pool',
     matches_count: finalMatches.length,
     total_available: filtered.length,
     matches: finalMatches,
     source_breakdown: {
       database_matches: dbMatches.length,
       sheets_matches: sheetMatches.length,
+      excel_matches: excelMatches.length,
       merged_total: allMerged.length
     },
     filter_applied: source_filter,
@@ -445,6 +471,7 @@ async function matchCandidatesWorkflow({
 module.exports = {
   matchCandidatesWorkflow,
   fetchGoogleSheetsCandidates,
+  fetchExcelCandidates,
   extractDriveFileId
 };
 

@@ -3075,9 +3075,10 @@
             <div style="display: flex; align-items: center; gap: 6px;">
               <label style="font-size: 11px; color: var(--muted); font-family: var(--mono); margin: 0; font-weight: 600;">Source:</label>
               <select id="find-source-filter" style="font-size: 11.5px; padding: 5px 8px; background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 6px;">
-                <option value="all" selected>All Sources (DB + Sheets)</option>
+                <option value="all" selected>All Sources (DB + Sheets + Excel)</option>
                 <option value="database">💾 Vector DB Only</option>
                 <option value="sheets">📊 Google Sheets Only</option>
+                <option value="excel">📗 Excel Sheets (.xlsx) Only</option>
               </select>
             </div>
             <div style="display: flex; align-items: center; gap: 6px;">
@@ -3088,8 +3089,14 @@
                 <option value="3">3</option>
               </select>
             </div>
-            <button class="btn secondary sm" id="btn-collect-sheets-cands" type="button" style="font-size: 11.5px; padding: 7px 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;" title="Collect and sync all candidates from Google Sheets">
-              📊 Collect from Sheets
+            <button class="btn secondary sm" id="btn-collect-sheets-cands" type="button" style="font-size: 11.5px; padding: 7px 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" title="Collect and sync candidates from Google Sheets">
+              📊 Sync Sheets
+            </button>
+            <button class="btn secondary sm" id="btn-collect-excel-cands" type="button" style="font-size: 11.5px; padding: 7px 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" title="Connect and sync candidate profiles from Excel sheets in excel_data/">
+              📗 Sync Excel
+            </button>
+            <button class="btn secondary sm" id="btn-upload-excel-btn" type="button" style="font-size: 11.5px; padding: 7px 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" title="Upload an Excel spreadsheet (.xlsx / .xls)">
+              📤 Upload Excel
             </button>
             <button class="btn" id="btn-run-match" type="button" style="font-size: 12.5px; padding: 9px 18px; font-weight: 700;" disabled>
               ⚡ Fetch Suitable Resumes
@@ -3361,7 +3368,7 @@
     <h1>View Candidates</h1>
     <p class="sub">Complete directory of candidates submitted by HR against different job requirements.</p>
 
-    <div class="filterbar">
+    <div class="filterbar" style="flex-wrap:wrap; gap:8px;">
       <select id="cand-req-filter">
         <option value="all">All Requirements</option>
       </select>
@@ -3371,9 +3378,18 @@
       <input type="date" id="cand-date-filter" title="Filter by date">
       <input type="text" id="cand-search-filter" placeholder="Search candidate..." style="max-width:180px;">
       <div class="spacer"></div>
+      <button class="btn secondary sm" id="btn-import-excel-cand" type="button" style="font-size: 11.5px; padding: 6px 10px; display: inline-flex; align-items: center; gap: 4px;" title="Import candidates from an Excel spreadsheet (.xlsx / .xls)">
+        📗 Import Excel
+      </button>
+      <button class="btn secondary sm" id="btn-export-excel-cand" type="button" style="font-size: 11.5px; padding: 6px 10px; display: inline-flex; align-items: center; gap: 4px;" title="Export candidates database to Excel (.xlsx)">
+        📥 Export Excel
+      </button>
       <span class="count-tag" id="cand-count"></span>
       <button class="btn secondary" id="cand-refresh" type="button">Refresh List</button>
     </div>
+
+    <!-- Hidden global file input for Excel sheets -->
+    <input type="file" id="global-excel-file-input" accept=".xlsx,.xls,.xlsm" style="display:none;">
 
     <div id="candidates-results"><div class="loading">Loading candidates list</div></div>
   </div>
@@ -5651,7 +5667,7 @@
           </button>
         </div>
         <div style="font-size:11px; font-family:var(--mono); color:var(--muted); background:var(--panel); padding:4px 8px; border-radius:4px; border:1px solid var(--line);">
-          🧠 ${currentMatchedSource === 'hybrid_db_and_sheets' ? '⚡ Hybrid Matcher: Supabase Vector DB + Google Sheets Live Pool' : (currentMatchedSource === 'vector_supabase_ai' ? 'Gemini 768d + Supabase Vector Engine' : 'Google Sheets Live Candidate Matcher')}
+          🧠 ${currentMatchedSource === 'hybrid_db_sheets_and_excel' ? '⚡ Hybrid Matcher: Supabase Vector DB + Google Sheets + Excel Sheets' : (currentMatchedSource === 'hybrid_db_and_sheets' ? '⚡ Hybrid Matcher: Supabase Vector DB + Google Sheets Live Pool' : (currentMatchedSource === 'vector_supabase_ai' ? 'Gemini 768d + Supabase Vector Engine' : 'Live Candidate Matcher'))}
         </div>
       </div>
 
@@ -5693,7 +5709,9 @@
                         ? `<span style="font-size:10px; font-weight:700; background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); padding:2px 7px; border-radius:12px;">💾 Vector DB</span>`
                         : (c.source_origin === 'sheets'
                           ? `<span style="font-size:10px; font-weight:700; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); padding:2px 7px; border-radius:12px;">📊 Google Sheets</span>`
-                          : `<span style="font-size:10px; font-weight:700; background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); padding:2px 7px; border-radius:12px;">⚡ DB &amp; Sheets</span>`)
+                          : (c.source_origin === 'excel'
+                            ? `<span style="font-size:10px; font-weight:700; background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); padding:2px 7px; border-radius:12px;" title="${escapeHtml(c.source_label || 'Excel')}">📗 Excel Sheet</span>`
+                            : `<span style="font-size:10px; font-weight:700; background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); padding:2px 7px; border-radius:12px;">⚡ Multi-Source</span>`))
                       }
                     </div>
                     <div class="suitable-cand-title">${escapeHtml(candTitle)}</div>
@@ -5992,8 +6010,91 @@
         showToast(`❌ Connection error: ${err.message}`, 'error');
       } finally {
         btnCollectSheetsCands.disabled = false;
-        btnCollectSheetsCands.innerHTML = '📊 Collect from Sheets';
+        btnCollectSheetsCands.innerHTML = '📊 Sync Sheets';
       }
+    });
+  }
+
+  // Connect & Sync Excel Files Handler
+  const btnCollectExcelCands = document.getElementById('btn-collect-excel-cands');
+  if (btnCollectExcelCands) {
+    btnCollectExcelCands.addEventListener('click', async () => {
+      btnCollectExcelCands.disabled = true;
+      btnCollectExcelCands.innerHTML = '⏳ Syncing Excel...';
+      try {
+        const res = await apiFetch('/api/collect-excel-candidates', { method: 'POST' });
+        const json = await res.json();
+        if (json.success) {
+          showToast(`✅ Connected to Excel! ${json.candidates_count || 0} candidate(s) parsed (${json.new_added || 0} new added)`, 'success');
+          loadCandidates(true);
+          if (activeFindRequirement) {
+            executeFindSuitable(activeFindRequirement);
+          }
+        } else {
+          showToast(`⚠️ Excel sync notice: ${json.message || 'Failed to sync'}`, 'error');
+        }
+      } catch (err) {
+        showToast(`❌ Excel connection error: ${err.message}`, 'error');
+      } finally {
+        btnCollectExcelCands.disabled = false;
+        btnCollectExcelCands.innerHTML = '📗 Sync Excel';
+      }
+    });
+  }
+
+  // Excel Upload & Export Handlers
+  const globalExcelFileInput = document.getElementById('global-excel-file-input');
+  const btnUploadExcelFind = document.getElementById('btn-upload-excel-btn');
+  const btnImportExcelCand = document.getElementById('btn-import-excel-cand');
+  const btnExportExcelCand = document.getElementById('btn-export-excel-cand');
+
+  if (btnUploadExcelFind && globalExcelFileInput) {
+    btnUploadExcelFind.addEventListener('click', () => globalExcelFileInput.click());
+  }
+  if (btnImportExcelCand && globalExcelFileInput) {
+    btnImportExcelCand.addEventListener('click', () => globalExcelFileInput.click());
+  }
+
+  if (btnExportExcelCand) {
+    btnExportExcelCand.addEventListener('click', () => {
+      window.open('/api/export-excel-candidates', '_blank');
+    });
+  }
+
+  if (globalExcelFileInput) {
+    globalExcelFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async (evt) => {
+        const base64Data = evt.target.result;
+        showToast(`⏳ Reading and uploading "${file.name}"...`, 'info');
+        try {
+          const res = await apiFetch('/api/upload-excel', {
+            method: 'POST',
+            body: JSON.stringify({
+              file_name: file.name,
+              file_base64: base64Data
+            })
+          });
+          const json = await res.json();
+          if (json.success) {
+            showToast(`✅ Connected "${file.name}": Extracted ${json.candidates_extracted || 0} candidate(s)!`, 'success');
+            loadCandidates(true);
+            if (activeFindRequirement) {
+              executeFindSuitable(activeFindRequirement);
+            }
+          } else {
+            showToast(`❌ Excel upload error: ${json.message || 'Processing failed'}`, 'error');
+          }
+        } catch (err) {
+          showToast(`❌ Connection error: ${err.message}`, 'error');
+        } finally {
+          globalExcelFileInput.value = '';
+        }
+      };
+      reader.readAsDataURL(file);
     });
   }
 
