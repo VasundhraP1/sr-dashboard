@@ -39,6 +39,7 @@ const GEMINI_EMBEDDING_API_KEY = process.env.GEMINI_API_KEY || "";
 const SUPABASE_URL = process.env.SUPABASE_URL || "https://lxhyyubrlcwmmmscuame.supabase.co/rest/v1/rpc/match_candidates";
 const SUPABASE_API_KEY = process.env.SUPABASE_API_KEY || "";
 const GAS_URL = process.env.GAS_URL || 'https://script.google.com/macros/s/AKfycby12-cThQgrSHi1SDgwDoFylJxFcsbXe1gjBJecYBaYCU1xCCpJRq_pHV_gJtR3nidn3w/exec';
+const DEFAULT_SHEET_ID = '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE';
 
 /**
  * Extracts Google Drive / Docs file ID from a link
@@ -59,7 +60,7 @@ function normalizeCandidateKey(name) {
 /**
  * Fetches and collects candidates from Google Sheets (via Google Apps Script Web App or local synced cache)
  */
-async function fetchGoogleSheetsCandidates() {
+async function fetchGoogleSheetsCandidates(targetSheetId = DEFAULT_SHEET_ID) {
   const candidates = [];
   const seenKeys = new Set();
 
@@ -88,7 +89,7 @@ async function fetchGoogleSheetsCandidates() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout to stay responsive
 
-      const gasRes = await fetch(`${GAS_URL}?action=collect-sheet-candidates`, {
+      const gasRes = await fetch(`${GAS_URL}?action=collect-sheet-candidates&sheet_id=${targetSheetId}`, {
         signal: controller.signal,
         redirect: 'follow'
       });
@@ -105,7 +106,7 @@ async function fetchGoogleSheetsCandidates() {
       try {
         const controller2 = new AbortController();
         const timeoutId2 = setTimeout(() => controller2.abort(), 4000);
-        const resList = await fetch(`${GAS_URL}?action=list-candidates`, {
+        const resList = await fetch(`${GAS_URL}?action=list-candidates&sheet_id=${targetSheetId}`, {
           signal: controller2.signal,
           redirect: 'follow'
         });

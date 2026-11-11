@@ -5339,7 +5339,7 @@
     if (current && ['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
       sel.value = current;
     } else {
-      sel.value = (isAdmin && myTasksCount === 0) ? 'all' : 'mine';
+      sel.value = isAdmin ? 'all' : (myTasksCount > 0 ? 'mine' : 'all');
     }
   }
 
@@ -5358,7 +5358,7 @@
     const isAdmin = isUserAdmin(currentUser);
     const sel = document.getElementById('find-assignee-filter');
     const myTasksCount = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser)).length;
-    const selected = (isAdmin && sel) ? sel.value : (isAdmin && myTasksCount === 0 ? 'all' : 'mine');
+    const selected = (isAdmin && sel) ? sel.value : (isAdmin ? 'all' : (myTasksCount > 0 ? 'mine' : 'all'));
 
     let targetReqs = [];
     if (!isAdmin || selected === 'mine') {
@@ -5386,18 +5386,19 @@
       const s = (r.status || '').toLowerCase().trim();
       let statusOk = true;
       if (findReqStatusFilter === 'active') {
-        // Matches Open - Assigned and Active
-        statusOk = s.includes('assigned') || s === 'active' || s === 'in progress';
+        // Matches Open - Assigned, Open - Unassigned, Active, In Progress, Open
+        statusOk = s.includes('assigned') || s.includes('unassigned') || s === 'active' || s === 'in progress' || s === 'open';
       } else if (findReqStatusFilter === 'inactive') {
-        // Matches Open - Unassigned, Inactive, Open
-        statusOk = s.includes('unassigned') || s === 'inactive' || s === 'open' || s === 'pending';
+        // Matches Inactive, Closed, Filled, Hold
+        statusOk = s === 'inactive' || s === 'closed' || s === 'filled' || s === 'hold';
       } else {
         statusOk = true;
       }
       const searchOk = !searchTerm || 
         (r.requirement || '').toLowerCase().includes(searchTerm) || 
         (r.client_name || '').toLowerCase().includes(searchTerm) ||
-        (r.assignee || '').toLowerCase().includes(searchTerm);
+        (r.assignee || '').toLowerCase().includes(searchTerm) ||
+        (r.req_id || '').toLowerCase().includes(searchTerm);
       return statusOk && searchOk;
     });
 
@@ -5412,7 +5413,7 @@
 
     listEl.innerHTML = filtered.map(r => {
       const s = (r.status || '').toLowerCase();
-      const badgeClass = s === 'active' ? 'active' : s === 'inactive' ? 'inactive' : 'other';
+      const badgeClass = (s.includes('assigned') || s === 'active') ? 'active' : (s.includes('unassigned') || s === 'inactive') ? 'inactive' : 'other';
       const isSelected = activeFindRequirement && 
         activeFindRequirement.requirement === r.requirement && 
         activeFindRequirement.date === r.date;
@@ -5426,7 +5427,7 @@
 
       return `
         <div class="find-req-card ${isSelected ? 'active' : ''}" data-date="${escapeHtml(r.date)}" data-req="${escapeHtml(r.requirement)}">
-          <div class="find-req-card-title">${escapeHtml(r.requirement)}</div>
+          <div class="find-req-card-title">${r.req_id ? `<span style="font-family:var(--mono); color:#38bdf8; font-size:11px; margin-right:4px;">[${escapeHtml(r.req_id)}]</span>` : ''}${escapeHtml(r.requirement)}</div>
           ${showAssigneeTag ? `<div style="font-size:11px; color:var(--accent); font-weight:600; margin: 3px 0 2px 0;">👤 ${escapeHtml(r.assignee || 'Unassigned')}</div>` : ''}
           <div class="find-req-card-meta">
             <span style="font-weight:600; color:#cbd5e1;">${escapeHtml(r.client_name || 'Client')}</span>

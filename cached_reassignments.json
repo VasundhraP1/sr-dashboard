@@ -14,10 +14,10 @@
     "current_candidates_count": 5,
     "candidates_added_while_reassigned": 2,
     "requirement_status": "Open – Assigned",
-    "current_assignee": "Richa",
-    "priority": "Medium",
-    "client_name": "HADRON",
-    "date": "2026-05-20"
+    "current_assignee": "Afsheen",
+    "priority": "Very High",
+    "client_name": "Softechera",
+    "date": "2026-10-13"
   },
   {
     "id": "reassign_REQ-034",
@@ -34,10 +34,10 @@
     "current_candidates_count": 5,
     "candidates_added_while_reassigned": 4,
     "requirement_status": "Open – Assigned",
-    "current_assignee": "Richa",
-    "priority": "Medium",
-    "client_name": "HADRON",
-    "date": "2026-05-20"
+    "current_assignee": "Afsheen",
+    "priority": "Very High",
+    "client_name": "Softechera",
+    "date": "2026-10-13"
   },
   {
     "id": "reassign_REQ-033",
@@ -53,11 +53,11 @@
     "notes": "Covering during Richa leave",
     "current_candidates_count": 5,
     "candidates_added_while_reassigned": 4,
-    "requirement_status": "Open – Assigned",
-    "current_assignee": "Afsheen",
-    "priority": "Low",
-    "client_name": "In genral",
-    "date": "2026-05-20"
+    "requirement_status": "Open – Unassigned",
+    "current_assignee": "",
+    "priority": "High",
+    "client_name": "Tekbon",
+    "date": "2026-10-14"
   },
   {
     "id": "reassign_REQ-033",
@@ -73,11 +73,11 @@
     "notes": "Covering during Richa leave",
     "current_candidates_count": 5,
     "candidates_added_while_reassigned": 5,
-    "requirement_status": "Open – Assigned",
-    "current_assignee": "Afsheen",
-    "priority": "Low",
-    "client_name": "In genral",
-    "date": "2026-05-20"
+    "requirement_status": "Open – Unassigned",
+    "current_assignee": "",
+    "priority": "High",
+    "client_name": "Tekbon",
+    "date": "2026-10-14"
   },
   {
     "id": "reassign_REQ-034",
@@ -94,10 +94,10 @@
     "current_candidates_count": 5,
     "candidates_added_while_reassigned": 5,
     "requirement_status": "Open – Assigned",
-    "current_assignee": "Richa",
-    "priority": "Medium",
-    "client_name": "HADRON",
-    "date": "2026-05-20"
+    "current_assignee": "Afsheen",
+    "priority": "Very High",
+    "client_name": "Softechera",
+    "date": "2026-10-13"
   },
   {
     "id": "reassign_REQ-003",
@@ -113,10 +113,10 @@
     "notes": "Please source 2-3 ServiceNow ITSM profiles.",
     "current_candidates_count": 0,
     "candidates_added_while_reassigned": 0,
-    "requirement_status": "Open – Assigned",
-    "current_assignee": "Afsheen",
-    "priority": "Low",
-    "client_name": "",
-    "date": "2026-08-12"
+    "requirement_status": "Open – Unassigned",
+    "current_assignee": "",
+    "priority": "High",
+    "client_name": "Happiest Minds",
+    "date": "2026-10-30"
   }
 ]

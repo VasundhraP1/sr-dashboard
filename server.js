@@ -697,11 +697,12 @@ function saveInterviewsToDisk() {
 }
 
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby12-cThQgrSHi1SDgwDoFylJxFcsbXe1gjBJecYBaYCU1xCCpJRq_pHV_gJtR3nidn3w/exec';
+const DEFAULT_SHEET_ID = '1vUK6MvjrHeE1OdCY7Tt5x4XRty-rTBFc9RAFoYRvdtE';
 
 // Live background sync from Google Apps Script
-async function syncFromGoogleSheets() {
+async function syncFromGoogleSheets(targetSheetId = DEFAULT_SHEET_ID) {
   try {
-    const resReq = await fetch(`${GAS_URL}?action=list-requirements`, { redirect: 'follow' });
+    const resReq = await fetch(`${GAS_URL}?action=list-requirements&sheet_id=${targetSheetId}&bypass_cache=true`, { redirect: 'follow' });
     if (resReq.ok) {
       const dataReq = await resReq.json();
       if (dataReq && dataReq.success && Array.isArray(dataReq.requirements) && dataReq.requirements.length > 0) {
@@ -709,14 +710,27 @@ async function syncFromGoogleSheets() {
         const existingMap = new Map();
         requirements.forEach(r => {
           if (r.req_id) existingMap.set(r.req_id, r);
-          if (r.requirement) existingMap.set(r.requirement.toLowerCase(), r);
+          if (r.requirement) existingMap.set(r.requirement.toLowerCase().trim(), r);
         });
 
+        const merged = [];
+        const seenKeys = new Set();
+
         dataReq.requirements.forEach(remoteReq => {
-          const key = (remoteReq.requirement || '').toLowerCase();
-          const existing = existingMap.get(key);
+          const reqName = (remoteReq.requirement || '').trim();
+          if (!reqName) return;
+
+          const key = `${reqName.toLowerCase()}___${remoteReq.date || ''}___${remoteReq.client_name || ''}`;
+          if (seenKeys.has(key)) return;
+          seenKeys.add(key);
+
+          const existing = existingMap.get(reqName.toLowerCase());
           if (!existing) {
-            requirements.push(remoteReq);
+            const hasAssignee = remoteReq.assignee && remoteReq.assignee.trim() !== '' && remoteReq.assignee !== '—' && remoteReq.assignee !== '-';
+            if (!remoteReq.status || remoteReq.status === '' || remoteReq.status === 'Inactive' || remoteReq.status === 'Active') {
+              remoteReq.status = hasAssignee ? 'Open – Assigned' : 'Open – Unassigned';
+            }
+            merged.push(remoteReq);
           } else {
             // keep existing status and assignee if updated locally
             if (!remoteReq.status || remoteReq.status === 'Inactive') {
@@ -729,12 +743,14 @@ async function syncFromGoogleSheets() {
               remoteReq.req_id = existing.req_id;
             }
             Object.assign(existing, remoteReq);
+            merged.push(existing);
           }
         });
 
+        requirements = merged;
         ensureRequirementIdsAndStatuses();
         saveRequirementsToDisk();
-        console.log(`[Sync] Updated ${requirements.length} requirements merged.`);
+        console.log(`[Sync] Updated ${requirements.length} requirements merged from Google Sheets (${targetSheetId}).`);
       }
     }
   } catch (err) {
@@ -744,7 +760,7 @@ async function syncFromGoogleSheets() {
   try {
     let remoteCandidatesList = [];
     try {
-      const resDeep = await fetch(`${GAS_URL}?action=collect-sheet-candidates`, { redirect: 'follow' });
+      const resDeep = await fetch(`${GAS_URL}?action=collect-sheet-candidates&sheet_id=${targetSheetId}`, { redirect: 'follow' });
       if (resDeep.ok) {
         const deepData = await resDeep.json();
         if (deepData && deepData.success && Array.isArray(deepData.candidates) && deepData.candidates.length > 0) {
@@ -754,7 +770,7 @@ async function syncFromGoogleSheets() {
     } catch (eDeep) {}
 
     if (remoteCandidatesList.length === 0) {
-      const resCand = await fetch(`${GAS_URL}?action=list-candidates`, { redirect: 'follow' });
+      const resCand = await fetch(`${GAS_URL}?action=list-candidates&sheet_id=${targetSheetId}`, { redirect: 'follow' });
       if (resCand.ok) {
         const dataCand = await resCand.json();
         if (dataCand && dataCand.success && Array.isArray(dataCand.candidates) && dataCand.candidates.length > 0) {
@@ -1146,8 +1162,17 @@ app.post('/update-req-checklist', (req, res) => {
   });
 });
 
-// List requirements
-app.get('/list-requirements', (req, res) => {
+// List requirements (supports live sync & specific sheet ID)
+app.get('/list-requirements', async (req, res) => {
+  const forceRefresh = req.query.bypass_cache === 'true';
+  const targetSheetId = req.query.sheet_id || DEFAULT_SHEET_ID;
+  if (forceRefresh) {
+    try {
+      await syncFromGoogleSheets(targetSheetId);
+    } catch (e) {
+      console.warn('Sync error on list-requirements:', e.message);
+    }
+  }
   res.json({ success: true, requirements: requirements });
 });
 

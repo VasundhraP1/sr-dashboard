@@ -27,6 +27,7 @@ function doGet(e) {
   const action = e.parameter.action;
   const bypassCache = e.parameter.bypass_cache === 'true';
   const sheetId = e.parameter.sheet_id;
+  const tabName = e.parameter.tab_name || e.parameter.tab;
   let response = { success: false, message: 'Invalid action' };
   
   try {
@@ -36,7 +37,7 @@ function doGet(e) {
     }
     
     if (action === 'list-requirements') {
-      response = handleListRequirements(bypassCache, sheetId);
+      response = handleListRequirements(bypassCache, sheetId, tabName);
     } else if (action === 'list-candidates') {
       response = handleListCandidates(sheetId);
     } else if (action === 'collect-sheet-candidates') {
@@ -144,15 +145,21 @@ function getSheetByNameCaseInsensitive(ss, targetName) {
 }
 
 // Smart helper to locate the requirements tab dynamically
-function getRequirementsSheet(ss) {
+function getRequirementsSheet(ss, tabName) {
   if (!ss) return null;
   
-  // 1. Try 'Requirement sheet new' specifically (prioritize newer sales tab)
-  let sheet = getSheetByNameCaseInsensitive(ss, 'Requirement sheet new');
+  // 0. Explicit tabName requested
+  if (tabName) {
+    const explicit = getSheetByNameCaseInsensitive(ss, tabName);
+    if (explicit) return explicit;
+  }
+
+  // 1. Try 'Requirement Sheet' specifically (matches sales tab gid=0)
+  let sheet = getSheetByNameCaseInsensitive(ss, 'Requirement Sheet');
   if (sheet) return sheet;
 
-  // 2. Try 'Requirement Sheet' specifically
-  sheet = getSheetByNameCaseInsensitive(ss, 'Requirement Sheet');
+  // 2. Try 'Requirement sheet new' specifically (prioritize newer sales tab)
+  sheet = getSheetByNameCaseInsensitive(ss, 'Requirement sheet new');
   if (sheet) return sheet;
   
   // 3. Try 'Final' (NMo Sheet tab name)
@@ -269,7 +276,7 @@ function handleGoogleLogin(data) {
   }
 }
 
-// Helper to dynamically locate column indexes in Google Sheets
+// Helper to dynamically locate column indexes in Google Sheets (first occurrence)
 function findHeaderIdx(headers, names) {
   for (let i = 0; i < names.length; i++) {
     const idx = headers.indexOf(names[i].toLowerCase().trim());
@@ -285,12 +292,23 @@ function findHeaderIdx(headers, names) {
   return -1;
 }
 
+// Helper to dynamically locate column indexes in Google Sheets (last occurrence, to pick Col V over Col F)
+function findHeaderLastIdx(headers, names) {
+  for (let i = 0; i < names.length; i++) {
+    const target = names[i].toLowerCase().trim();
+    for (let j = headers.length - 1; j >= 0; j--) {
+      if (headers[j] === target || headers[j].indexOf(target) !== -1) return j;
+    }
+  }
+  return -1;
+}
+
 // 2. Fetch Requirements list from both Sheet A's "Final" tab and Sheet B's "Final" tab
-function handleListRequirements(bypassCache, sheetId) {
+function handleListRequirements(bypassCache, sheetId, tabName) {
   const cache = CacheService.getScriptCache();
   let requirementsA = [];
   const targetSheetId = sheetId || STEADY_RABBIT_MAIN_REQ_SHEET_A_ID;
-  const cacheKey = "requirements_" + targetSheetId;
+  const cacheKey = "requirements_" + targetSheetId + (tabName ? "_" + tabName : "");
   
   if (!bypassCache) {
     const cachedData = cache.get(cacheKey);
@@ -312,23 +330,25 @@ function handleListRequirements(bypassCache, sheetId) {
     const headers = data[0].map(h => h.toString().trim().toLowerCase());
     
     const colDate = findHeaderIdx(headers, ['date', 'opening date', 'requirement opening date']);
+    const colReqCode = findHeaderIdx(headers, ['requirement code', 'req code', 'code', 'req id']);
     const colReq = findHeaderIdx(headers, ['requirement', 'requirement name']);
     const colPriority = findHeaderIdx(headers, ['priority', 'requirement priority']);
     const colJd = findHeaderIdx(headers, ['job description', 'jd', 'jd link', 'job description link']);
     const colClientBudget = findHeaderIdx(headers, ['client budget', 'budget']);
     const colVendorBudget = findHeaderIdx(headers, ['vendor budget']);
     const colLocation = findHeaderIdx(headers, ['location']);
-    const colContractType = findHeaderIdx(headers, ['type of contract', 'contract type']);
-    const colClient = findHeaderIdx(headers, ['client name', 'client name + company profile link', 'client']);
+    const colContractType = findHeaderIdx(headers, ['type of contract', 'contract type', 'type of requirement']);
+    const colClient = findHeaderIdx(headers, ['client name + company profile', 'client name + company profile link', 'client name', 'client']);
     const colPoc = findHeaderIdx(headers, ['poc', 'point of contact']);
     const colEntity = findHeaderIdx(headers, ['entity']);
     const colShiftTimings = findHeaderIdx(headers, ['shift timings']);
     const colEmploymentMode = findHeaderIdx(headers, ['c2c/c2h/permanent', 'c2c/c2h/perm']);
     const colAutomationStatus = findHeaderIdx(headers, ['automation status']);
-    const colCommentsMarketing = findHeaderIdx(headers, ['comments (marketing team)', 'comments (marketing)']);
-    const colStatus = findHeaderIdx(headers, ['status', 'requirement status']);
+    const colCommentsMarketing = findHeaderIdx(headers, ['comments (marketing team)', 'comments (marketing)', 'remarks / client status', 'remarks']);
+    // For status, check from right to left so Col V ("Requirement Status" = Active) is picked over Col F
+    const colStatus = findHeaderLastIdx(headers, ['requirement status', 'status']);
     const colAssignee = findHeaderIdx(headers, ['assignee', 'assigned to']);
-    const colProfileStatus = findHeaderIdx(headers, ['profile status']);
+    const colProfileStatus = findHeaderIdx(headers, ['profile status', 'zoho stage']);
     const colSharedDate = findHeaderIdx(headers, ['candidate shared to client on', 'shared date', 'date shared']);
     const colInterviewDate = findHeaderIdx(headers, ['client interview date', 'interview date']);
     const colCandidate = findHeaderIdx(headers, ['candidate', 'candidate name']);
@@ -350,7 +370,12 @@ function handleListRequirements(bypassCache, sheetId) {
       let onboardingVal = colOnboardingDate !== -1 ? normalizeDate(row[colOnboardingDate]) : '';
       let closedVal = colClosedDate !== -1 ? normalizeDate(row[colClosedDate]) : '';
 
+      const rawCode = colReqCode !== -1 ? row[colReqCode].toString().trim() : '';
+      const rawStatus = colStatus !== -1 ? row[colStatus].toString().trim() : '';
+      const normStatus = (rawStatus.toLowerCase() === 'active') ? 'Active' : (rawStatus || 'Inactive');
+
       list.push({
+        req_id: rawCode,
         date: dateVal,
         requirement: reqName,
         priority: colPriority !== -1 ? row[colPriority].toString().trim() : '',
@@ -366,7 +391,7 @@ function handleListRequirements(bypassCache, sheetId) {
         employment_mode: colEmploymentMode !== -1 ? row[colEmploymentMode].toString().trim() : '—',
         automation_status: colAutomationStatus !== -1 ? row[colAutomationStatus].toString().trim() : '',
         comments_marketing: colCommentsMarketing !== -1 ? row[colCommentsMarketing].toString().trim() : '',
-        status: colStatus !== -1 ? row[colStatus].toString().trim() : 'Inactive',
+        status: normStatus,
         assignee: colAssignee !== -1 ? row[colAssignee].toString().trim() : '',
         profile_status: colProfileStatus !== -1 ? row[colProfileStatus].toString().trim() : '—',
         shared_date: sharedVal,
@@ -386,7 +411,7 @@ function handleListRequirements(bypassCache, sheetId) {
   if (requirementsA.length === 0) {
     try {
       const ssA = SpreadsheetApp.openById(targetSheetId);
-      const sheetA = getRequirementsSheet(ssA);
+      const sheetA = getRequirementsSheet(ssA, tabName);
       requirementsA = parseSheetData(sheetA);
       
       // Save in cache for 5 minutes (300 seconds) to keep it fast
