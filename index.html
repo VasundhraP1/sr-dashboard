@@ -5302,28 +5302,44 @@
   function populateFindAssigneeFilter() {
     const sel = document.getElementById('find-assignee-filter');
     if (!sel) return;
-    const current = sel.value || 'mine';
+
+    const isAdmin = isUserAdmin(currentUser);
+    const myTasksCount = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser)).length;
+    const current = sel.value;
+
+    // Count tasks per assignee
+    const counts = {};
+    let unassignedCount = 0;
+    (allRequirements || []).forEach(r => {
+      const a = (r.assignee || '').trim();
+      if (!a || a === '—' || a.toLowerCase() === 'unassigned') {
+        unassignedCount++;
+      } else {
+        counts[a] = (counts[a] || 0) + 1;
+      }
+    });
 
     const defaultRecruiters = ['Afsheen', 'Ayushi', 'Diksha', 'Kavipriya', 'Likitha', 'Naagu', 'Navya Rastogi', 'Prachi', 'Richa', 'Sahil', 'Shailly', 'Shinjini', 'Siddhi', 'Vasundhara Panwar'];
-    const sheetAssignees = (allRequirements || []).map(r => (r.assignee || '').trim()).filter(a => a && a !== '—' && a.toLowerCase() !== 'unassigned');
+    const sheetAssignees = Object.keys(counts);
     const allRecruiters = [...new Set([...defaultRecruiters, ...sheetAssignees])].sort();
 
     let html = `
-      <option value="mine">My Assigned Work</option>
-      <option value="all">All Recruiters (Everyone)</option>
-      <option value="unassigned">Unassigned Requirements</option>
+      <option value="all">All Recruiters (Everyone) — ${allRequirements.length} tasks</option>
+      <option value="mine">My Assigned Work — ${myTasksCount} tasks</option>
+      <option value="unassigned">Unassigned Requirements — ${unassignedCount} tasks</option>
       <optgroup label="Filter by Recruiter">
     `;
     allRecruiters.forEach(name => {
-      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`;
+      const cnt = counts[name] || 0;
+      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)} (${cnt} task${cnt === 1 ? '' : 's'})</option>`;
     });
     html += `</optgroup>`;
     sel.innerHTML = html;
 
-    if (['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
+    if (current && ['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
       sel.value = current;
     } else {
-      sel.value = 'mine';
+      sel.value = (isAdmin && myTasksCount === 0) ? 'all' : 'mine';
     }
   }
 
@@ -5341,7 +5357,8 @@
 
     const isAdmin = isUserAdmin(currentUser);
     const sel = document.getElementById('find-assignee-filter');
-    const selected = (isAdmin && sel) ? sel.value : 'mine';
+    const myTasksCount = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser)).length;
+    const selected = (isAdmin && sel) ? sel.value : (isAdmin && myTasksCount === 0 ? 'all' : 'mine');
 
     let targetReqs = [];
     if (!isAdmin || selected === 'mine') {
@@ -5366,8 +5383,17 @@
     const searchTerm = (document.getElementById('find-req-search')?.value || '').trim().toLowerCase();
     
     const filtered = targetReqs.filter(r => {
-      const s = (r.status || '').toLowerCase();
-      const statusOk = findReqStatusFilter === 'all' || s === findReqStatusFilter;
+      const s = (r.status || '').toLowerCase().trim();
+      let statusOk = true;
+      if (findReqStatusFilter === 'active') {
+        // Matches Open - Assigned and Active
+        statusOk = s.includes('assigned') || s === 'active' || s === 'in progress';
+      } else if (findReqStatusFilter === 'inactive') {
+        // Matches Open - Unassigned, Inactive, Open
+        statusOk = s.includes('unassigned') || s === 'inactive' || s === 'open' || s === 'pending';
+      } else {
+        statusOk = true;
+      }
       const searchOk = !searchTerm || 
         (r.requirement || '').toLowerCase().includes(searchTerm) || 
         (r.client_name || '').toLowerCase().includes(searchTerm) ||
@@ -5975,8 +6001,19 @@
   // Hook up controls for Find Suitable Candidates
   const btnRefreshFindReqs = document.getElementById('btn-refresh-find-reqs');
   if (btnRefreshFindReqs) {
-    btnRefreshFindReqs.addEventListener('click', () => {
-      loadRequirements(true);
+    btnRefreshFindReqs.addEventListener('click', async () => {
+      btnRefreshFindReqs.disabled = true;
+      btnRefreshFindReqs.innerHTML = '⏳ Refreshing...';
+      try {
+        listLoaded = false;
+        await loadRequirements(true);
+        showToast(`✅ Refreshed ${allRequirements.length} requirements from Google Sheets!`, 'success');
+      } catch (err) {
+        showToast(`❌ Refresh error: ${err.message}`, 'error');
+      } finally {
+        btnRefreshFindReqs.disabled = false;
+        btnRefreshFindReqs.innerHTML = '🔄 Refresh List';
+      }
     });
   }
 
@@ -5993,18 +6030,19 @@
   if (btnCollectSheetsCands) {
     btnCollectSheetsCands.addEventListener('click', async () => {
       btnCollectSheetsCands.disabled = true;
-      btnCollectSheetsCands.innerHTML = '⏳ Collecting...';
+      btnCollectSheetsCands.innerHTML = '⏳ Syncing Sheets...';
       try {
         const res = await apiFetch('/api/collect-candidates-from-sheets', { method: 'POST' });
         const json = await res.json();
-        if (json.success) {
-          showToast(`✅ Collected ${json.collected_count || 0} candidates from Google Sheets! (${json.new_added || 0} new)`, 'success');
-          loadCandidates(true);
-          if (activeFindRequirement) {
-            executeFindSuitable(activeFindRequirement);
-          }
-        } else {
-          showToast(`⚠️ Sheet collection warning: ${json.message || 'Failed to collect'}`, 'error');
+
+        // Also force reload requirements from Google Sheets
+        listLoaded = false;
+        await loadRequirements(true);
+
+        showToast(`✅ Synced with Google Sheets! ${allRequirements.length} requirements & ${json.collected_count || 0} candidates active.`, 'success');
+        loadCandidates(true);
+        if (activeFindRequirement) {
+          executeFindSuitable(activeFindRequirement);
         }
       } catch (err) {
         showToast(`❌ Connection error: ${err.message}`, 'error');
@@ -6948,35 +6986,51 @@
   function populatePendingAssigneeFilter() {
     const sel = document.getElementById('pending-assignee-filter');
     if (!sel) return;
-    const current = sel.value || 'mine';
+
+    const isAdmin = isUserAdmin(currentUser);
+    const myTasksCount = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser)).length;
+    const current = sel.value;
+
+    const counts = {};
+    let unassignedCount = 0;
+    (allRequirements || []).forEach(r => {
+      const a = (r.assignee || '').trim();
+      if (!a || a === '—' || a.toLowerCase() === 'unassigned') {
+        unassignedCount++;
+      } else {
+        counts[a] = (counts[a] || 0) + 1;
+      }
+    });
 
     const defaultRecruiters = ['Afsheen', 'Ayushi', 'Diksha', 'Kavipriya', 'Likitha', 'Naagu', 'Navya Rastogi', 'Prachi', 'Richa', 'Sahil', 'Shailly', 'Shinjini', 'Siddhi', 'Vasundhara Panwar'];
-    const sheetAssignees = (allRequirements || []).map(r => (r.assignee || '').trim()).filter(a => a && a !== '—' && a.toLowerCase() !== 'unassigned');
+    const sheetAssignees = Object.keys(counts);
     const allRecruiters = [...new Set([...defaultRecruiters, ...sheetAssignees])].sort();
 
     let html = `
-      <option value="mine">My Assigned Work</option>
-      <option value="all">All Recruiters (Everyone)</option>
-      <option value="unassigned">Unassigned Requirements</option>
+      <option value="all">All Recruiters (Everyone) — ${allRequirements.length} tasks</option>
+      <option value="mine">My Assigned Work — ${myTasksCount} tasks</option>
+      <option value="unassigned">Unassigned Requirements — ${unassignedCount} tasks</option>
       <optgroup label="Filter by Recruiter">
     `;
     allRecruiters.forEach(name => {
-      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`;
+      const cnt = counts[name] || 0;
+      html += `<option value="${escapeHtml(name)}">${escapeHtml(name)} (${cnt} task${cnt === 1 ? '' : 's'})</option>`;
     });
     html += `</optgroup>`;
     sel.innerHTML = html;
 
-    if (['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
+    if (current && ['mine', 'all', 'unassigned', ...allRecruiters].includes(current)) {
       sel.value = current;
     } else {
-      sel.value = 'mine';
+      sel.value = (isAdmin && myTasksCount === 0) ? 'all' : 'mine';
     }
   }
 
   function getFilteredPendingRequirements() {
     const isAdmin = isUserAdmin(currentUser);
     const sel = document.getElementById('pending-assignee-filter');
-    const selected = (isAdmin && sel) ? sel.value : 'mine';
+    const myTasksCount = (allRequirements || []).filter(r => currentUser && isUserAssignee(r.assignee, currentUser)).length;
+    const selected = (isAdmin && sel) ? sel.value : (isAdmin && myTasksCount === 0 ? 'all' : 'mine');
     
     // Update Header Text based on selection
     const titleEl = document.getElementById('pending-header-title');
@@ -7029,8 +7083,15 @@
     const sourceList = (isAdmin && selected !== 'mine') ? baseList : (Array.isArray(customList) ? customList : baseList);
     const showAssigneeCol = isAdmin && selected !== 'mine';
 
-    const filtered = sourceList.filter(r => pendingStatusFilter === 'all' || (r.status || '').toLowerCase() === pendingStatusFilter ||
-      (pendingStatusFilter === 'inactive' && (r.status === 'Open – Assigned' || r.status === 'Inactive' || r.status === 'Open – Unassigned')));
+    const filtered = sourceList.filter(r => {
+      const s = (r.status || '').toLowerCase().trim();
+      if (pendingStatusFilter === 'active') {
+        return s.includes('assigned') || s === 'active';
+      } else if (pendingStatusFilter === 'inactive') {
+        return s.includes('unassigned') || s === 'inactive' || s === 'open';
+      }
+      return true; // 'all'
+    });
     document.getElementById('pending-count').textContent = filtered.length + ' of ' + sourceList.length;
 
     const container = document.getElementById('pending-results');
